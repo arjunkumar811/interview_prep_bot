@@ -1,15 +1,21 @@
 import { Telegraf } from 'telegraf';
 import { env } from '../config/env';
+import {
+  handleStart,
+  handleRoadmapSelection,
+  handleModuleSelection,
+  handleBack,
+  handlePlaceholder,
+} from '../handlers/roadmap.handlers';
 
 export const bot = new Telegraf(env.BOT_TOKEN);
 
-bot.start((ctx) => {
-  ctx.reply('Welcome to DevPrep!');
-});
+bot.start(handleStart);
 
-bot.help((ctx) => {
-  ctx.reply('Send me a message and I will echo it back.');
-});
+bot.action(/^roadmap:.+/, handleRoadmapSelection);
+bot.action(/^module:.+/, handleModuleSelection);
+bot.action(/^back:.+/, handleBack);
+bot.action(/^placeholder:.+/, handlePlaceholder);
 
 export const startBot = async () => {
   try {
