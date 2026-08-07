@@ -41,3 +41,14 @@ export const getModuleDetailKeyboard = (moduleId: string, roadmapId: string, lev
     [Markup.button.callback('⬅ Back', `back:level:${roadmapId}:${levelId}`)],
   ]);
 };
+
+export const getLessonCompletionKeyboard = (moduleId: string, roadmapId: string, levelId: string, nextModule?: ModuleConstant) => {
+  const rows = [];
+  if (nextModule) {
+    // Send user to the next module's details page to decide to Learn or Quiz
+    rows.push([Markup.button.callback(`▶️ Next: ${nextModule.name}`, `module:${nextModule.id}`)]);
+  }
+  rows.push([Markup.button.callback('📝 Take Quiz', `quiz:${moduleId}`)]);
+  rows.push([Markup.button.callback('⬅ Back to Modules', `back:level:${roadmapId}:${levelId}`)]);
+  return Markup.inlineKeyboard(rows);
+};

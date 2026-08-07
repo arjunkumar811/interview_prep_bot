@@ -6,6 +6,7 @@ import {
   getLevelSelectionKeyboard,
   getModulesKeyboard,
   getModuleDetailKeyboard,
+  getLessonCompletionKeyboard,
 } from '../keyboards/roadmap.keyboards';
 
 const roadmapService = new RoadmapNavigationService();
@@ -152,6 +153,15 @@ export const handleLearn = async (ctx: Context) => {
       // Small delay to ensure sequential delivery order in Telegram
       await new Promise(resolve => setTimeout(resolve, 300));
     }
+
+    // Show completion menu with next module
+    const moduleInfo = roadmapService.getModuleDetails(moduleId);
+    const siblings = roadmapService.getModulesByLevel(moduleInfo.roadmapId, moduleInfo.levelId);
+    const currentIndex = siblings.findIndex(m => m.id === moduleId);
+    const nextModule = currentIndex >= 0 && currentIndex < siblings.length - 1 ? siblings[currentIndex + 1] : undefined;
+    
+    const endKeyboard = getLessonCompletionKeyboard(moduleId, moduleInfo.roadmapId, moduleInfo.levelId, nextModule);
+    await ctx.reply('🎉 <b>Lesson Complete!</b> What would you like to do next?', { ...endKeyboard, parse_mode: 'HTML' });
 
   } catch (error) {
     console.error('Failed to load lesson:', error);
