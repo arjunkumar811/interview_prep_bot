@@ -1,4 +1,13 @@
-import { ROADMAPS, BACKEND_LEVELS, BACKEND_MODULES, RoadmapConstant, LevelConstant, ModuleConstant } from '../constants/roadmap.constants';
+import { 
+  ROADMAPS, 
+  BACKEND_LEVELS, 
+  BACKEND_MODULES, 
+  FRONTEND_LEVELS,
+  FRONTEND_MODULES,
+  RoadmapConstant, 
+  LevelConstant, 
+  ModuleConstant 
+} from '../constants/roadmap.constants';
 import { NotFoundError } from '../utils/errors';
 
 export class RoadmapNavigationService {
@@ -16,27 +25,32 @@ export class RoadmapNavigationService {
     if (roadmapId === 'backend') {
       return BACKEND_LEVELS;
     }
+    if (roadmapId === 'frontend') {
+      return FRONTEND_LEVELS;
+    }
     return [];
   }
 
   public getLevelById(roadmapId: string, levelId: string): LevelConstant {
-    if (roadmapId === 'backend') {
-      const level = BACKEND_LEVELS.find(l => l.id === levelId);
-      if (!level) throw new NotFoundError('Level not found');
-      return level;
-    }
-    throw new NotFoundError('Level not found for roadmap');
+    const levels = this.getLevelsByRoadmap(roadmapId);
+    const level = levels.find(l => l.id === levelId);
+    if (!level) throw new NotFoundError('Level not found');
+    return level;
   }
 
   public getModulesByLevel(roadmapId: string, levelId: string): ModuleConstant[] {
     if (roadmapId === 'backend') {
       return BACKEND_MODULES.filter(m => m.levelId === levelId);
     }
+    if (roadmapId === 'frontend') {
+      return FRONTEND_MODULES.filter(m => m.levelId === levelId);
+    }
     return [];
   }
 
   public getModuleDetails(moduleId: string): ModuleConstant {
-    const moduleInfo = BACKEND_MODULES.find(m => m.id === moduleId);
+    const allModules = [...BACKEND_MODULES, ...FRONTEND_MODULES];
+    const moduleInfo = allModules.find(m => m.id === moduleId);
     if (!moduleInfo) throw new NotFoundError('Module not found');
     return moduleInfo;
   }
