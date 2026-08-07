@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Why Test?
 
 Without tests, you only find bugs when a real user hits them. With tests, you catch bugs the moment you write the code — and CI/CD (Lesson 14) can automatically reject broken code before it reaches production.

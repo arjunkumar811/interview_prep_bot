@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is the CAP Theorem?
 
 One of the most famous ideas in distributed systems. It states that a distributed database can only guarantee **2 out of 3** of the following at the same time:

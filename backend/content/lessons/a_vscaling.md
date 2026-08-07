@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 *(Builds on Lesson 15 — Scaling)*
 
 ## Recap

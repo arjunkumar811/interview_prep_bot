@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Beyond `useState` and `useEffect`
 
 At a senior level, React interviews focus on **performance, rendering behavior, and advanced patterns** — not just hook syntax.

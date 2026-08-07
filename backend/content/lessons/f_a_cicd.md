@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 *(Builds on Lesson 14 — CI/CD, and Lesson 15 — Deployment from your earlier notes)*
 
 ## The Frontend CI/CD Pipeline

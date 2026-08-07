@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Testing the Frontend
 
 *(Builds on Lesson 39 — Testing Node.js from your backend notes — same principles, applied to UI)*

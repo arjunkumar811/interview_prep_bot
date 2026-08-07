@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is CSS?
 
 If HTML is the skeleton of a house, **CSS (Cascading Style Sheets)** is the paint, furniture, and layout — it controls how everything *looks*.

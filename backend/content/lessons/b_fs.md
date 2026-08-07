@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ---
 
 # 🚀 File Storage Review — Lesson 12

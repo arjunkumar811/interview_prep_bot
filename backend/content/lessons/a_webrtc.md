@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is WebRTC?
 
 **WebRTC (Web Real-Time Communication)** lets browsers send video, audio, and data **directly to each other**, without routing every frame through a server. It's what powers Google Meet, Discord video calls, and WhatsApp Web calls.

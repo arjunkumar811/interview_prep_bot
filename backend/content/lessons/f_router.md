@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is React Router?
 
 By default, a React app is a **Single Page Application (SPA)** — there's only one HTML page. React Router lets you simulate multiple "pages" (URLs) without a full page reload.

@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ---
 
 # 🚀 Redis Review — Lesson 9

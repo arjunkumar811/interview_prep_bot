@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is a Proxy?
 
 A **proxy** sits between a client and the internet, making requests *on behalf of* the client.

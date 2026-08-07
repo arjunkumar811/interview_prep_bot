@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is Capacity Estimation?
 
 Before building a system, engineers estimate: how much traffic, storage, and bandwidth will we actually need? This is a classic **System Design interview** exercise.

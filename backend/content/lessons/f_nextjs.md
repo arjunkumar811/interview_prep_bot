@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is Next.js?
 
 Plain React (via Create React App / Vite) renders everything in the **browser** — the server sends a nearly empty HTML file, and JavaScript builds the page after loading. This is slower for first load and bad for SEO (search engines see an empty page).

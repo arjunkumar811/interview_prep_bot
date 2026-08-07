@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 *(Builds on Lesson 12 — Authentication from your earlier notes)*
 
 ## 🤔 Why Frontend Security Matters

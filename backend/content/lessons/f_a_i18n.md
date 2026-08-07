@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is i18n?
 
 "Internationalization" (i18n — "i" + 18 letters + "n") is the process of designing an app so it can be adapted to different languages, regions, and cultures without code changes — **localization (l10n)** is then the actual process of translating and adapting it for a specific locale.

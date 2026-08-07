@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What are Design Patterns?
 
 Reusable, proven solutions to common software problems — a shared vocabulary engineers use to describe a design without re-explaining it from scratch.

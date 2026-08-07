@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is Kafka?
 
 Apache Kafka is a **distributed event streaming platform** — think of it as a message queue on steroids, built to handle massive volumes of real-time data (millions of events per second).

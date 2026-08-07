@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is a Micro Frontend?
 
 *(The frontend equivalent of microservices — ties into your backend Design Patterns notes)*

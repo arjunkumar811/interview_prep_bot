@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Why Animation Matters
 
 Good animation gives users feedback, guides attention, and makes an interface feel polished — but poorly done animation hurts performance and can even trigger motion sickness for some users.

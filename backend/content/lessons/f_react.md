@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is React?
 
 Imagine rebuilding your entire living room every time you move one chair. That's how updating a webpage with raw JavaScript can feel — you often re-manipulate large chunks of the DOM manually.

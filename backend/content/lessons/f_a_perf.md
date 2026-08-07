@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Why Performance Matters
 
 Every 100ms of added load time measurably reduces conversions and engagement — performance is a feature, not an afterthought.

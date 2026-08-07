@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is TypeScript?
 
 Imagine JavaScript is a form with no field labels — you can type anything anywhere, and mistakes are only caught when the app crashes.

@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 # 📚 Database Revision (Complete)
 
 ## What is a Database?

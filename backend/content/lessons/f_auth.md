@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Authentication on the Frontend
 
 *(Builds directly on Lesson 4 — Authentication from your backend notes)*

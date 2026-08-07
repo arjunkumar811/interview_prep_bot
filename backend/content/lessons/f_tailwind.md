@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is Tailwind CSS?
 
 Instead of writing custom CSS classes and switching files back and forth, Tailwind gives you small, single-purpose **utility classes** you apply directly in your HTML/JSX.

@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 *(Builds on Lesson 13 — Testing from your earlier notes)*
 
 ## Visual Regression Testing

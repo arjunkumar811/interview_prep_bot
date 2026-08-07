@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is Rate Limiting?
 
 Imagine a nightclub that only lets 50 people in per hour, no matter how many show up. That's rate limiting — controlling how many requests a client can make in a given time window.

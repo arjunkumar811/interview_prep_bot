@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## CAPTCHAs
 
 ## 🤔 What is a CAPTCHA?

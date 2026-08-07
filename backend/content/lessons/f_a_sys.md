@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 *(Ties into your backend System Design notes — Capacity Estimation, CAP Theorem, Load Balancers)*
 
 ## 🤔 What is Frontend System Design?

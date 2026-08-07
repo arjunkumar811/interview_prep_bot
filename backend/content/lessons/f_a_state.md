@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 *(Builds on Lesson 9 — State Management from your earlier notes)*
 
 ## 🤔 Beyond Context and Redux Basics

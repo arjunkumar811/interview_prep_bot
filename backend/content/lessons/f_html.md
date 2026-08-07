@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is HTML?
 
 Imagine building a house. Before you paint the walls or add furniture, you need the **structure** — walls, doors, rooms. That structure is HTML.

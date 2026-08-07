@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is gRPC?
 
 gRPC (**g**oogle **R**emote **P**rocedure **C**all) is a way for services to call functions on each other directly, as if they were local functions — instead of manually building REST endpoints.

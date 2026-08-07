@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 *(Ties together Lessons 11, 20, 34, 35)*
 
 ## 🤔 What is Real-time Communication?

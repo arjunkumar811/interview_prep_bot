@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is Resiliency?
 
 > **Resiliency is a system's ability to keep working — or fail gracefully — when part of it breaks.**

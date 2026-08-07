@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is it?
 
 So far you've learned that a client talks to a server using HTTP. But real systems are made of **many servers talking to each other** — an Orders service talks to a Payments service, which talks to an Inventory service, which talks to a Notification service.

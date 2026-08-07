@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is Git?
 
 Imagine writing a document and wanting to save every draft, ever — being able to jump back to "the version from 3 days ago" instantly, or see exactly what changed.

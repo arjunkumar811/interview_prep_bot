@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is API Integration?
 
 This is how your React frontend actually talks to a backend (like the Express APIs from your backend notes) — sending requests and displaying the response.

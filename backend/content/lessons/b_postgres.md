@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 # PostgreSQL Revision (Interview Guide)
 
 ## 1. What is PostgreSQL?

@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is JavaScript?
 
 JavaScript is the **behavior** layer of the web — it makes pages interactive: button clicks, form validation, animations, fetching data.

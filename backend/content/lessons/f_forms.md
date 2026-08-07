@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is Form Handling in React?
 
 Forms are one of the trickiest parts of frontend development — tracking input values, validating them, and showing helpful errors, all while keeping the UI responsive.

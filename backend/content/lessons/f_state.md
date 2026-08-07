@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is State Management?
 
 In a small app, `useState` is enough. But as an app grows, **many components need access to the same data** — the logged-in user, the shopping cart, theme settings. Passing that data down through many layers of props ("prop drilling") becomes painful.

@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 *(Builds on Lesson 14 — Next.js from your earlier notes)*
 
 ## Middleware

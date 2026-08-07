@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Deploying a Frontend App
 
 *(Builds on Lesson 16 — Deployment from your backend notes)*

@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 *(Builds on Lesson 15 — Deployment and Lesson 15 (CI/CD) from this guide — the final piece bringing it all together)*
 
 ## 🤔 What "Production-Ready" Really Means

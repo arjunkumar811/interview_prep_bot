@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Beyond Basic Types
 
 You already know interfaces, generics, and unions. Advanced TypeScript is about **manipulating types themselves** to build safer, more expressive APIs.

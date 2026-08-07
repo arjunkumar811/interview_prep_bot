@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is Polling?
 
 Before you learned about WebSockets (Lesson 11), you saw the "old way" — repeatedly asking the server "anything new?" This is called **Polling**.

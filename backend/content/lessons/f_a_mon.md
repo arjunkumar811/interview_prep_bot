@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Why Monitor the Frontend?
 
 Once your app is live, you need to know: is it actually working for real users, where are they dropping off, and what's breaking in production that your tests didn't catch?

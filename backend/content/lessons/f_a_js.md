@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 Beyond the Basics
 
 You already know closures, promises, and array methods. Advanced JavaScript is about understanding **what's actually happening under the hood** — this is where senior interviews live.

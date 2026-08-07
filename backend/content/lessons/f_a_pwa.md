@@ -1,3 +1,5 @@
+⏳ **Estimated Learning Time:** 10-15 min
+
 ## 🤔 What is a PWA?
 
 A Progressive Web App is a website built to **feel and behave like a native app** — installable, works offline, and can send push notifications — while still being just a website under the hood.
