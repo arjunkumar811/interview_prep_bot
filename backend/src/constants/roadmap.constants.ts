@@ -28,8 +28,8 @@ export const ROADMAPS: RoadmapConstant[] = [
 ];
 
 export const BACKEND_LEVELS: LevelConstant[] = [
-  { id: 'beginner', name: '🟢 Beginner (0 → 1)', description: 'For developers who are new to backend development.' },
-  { id: 'advanced', name: '🔴 Advanced (1 → 100)', description: 'For developers preparing for senior backend engineering interviews and production-scale systems.' },
+  { id: 'beginner', name: '🟢 Beginner (10-12+ LPA)', description: 'Designed for **entry-level** jobs and **internships**.' },
+  { id: 'advanced', name: '🔴 Advanced (30L - 1Cr+)', description: 'Designed for **senior** roles.' },
 ];
 
 export const BACKEND_MODULES: ModuleConstant[] = [

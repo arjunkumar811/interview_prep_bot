@@ -34,9 +34,10 @@ export const handleRoadmapSelection = async (ctx: Context) => {
     const levels = roadmapService.getLevelsByRoadmap(roadmapId);
     const keyboard = getLevelSelectionKeyboard(roadmapId, levels);
     
-    const message = `📚 ${roadmap.name} Roadmap\n\nSelect your learning level.`;
+    const descriptions = levels.map(l => `**${l.name}**\n${l.description}`).join('\n\n');
+    const message = `📚 ${roadmap.name} Roadmap\n\nSelect your learning level.\n\n${descriptions}`;
 
-    await ctx.editMessageText(message, keyboard);
+    await ctx.editMessageText(message, { ...keyboard, parse_mode: 'Markdown' });
     await ctx.answerCbQuery();
   } catch (error) {
     await ctx.answerCbQuery('Error loading roadmap levels.', { show_alert: true });
@@ -51,12 +52,13 @@ export const handleLevelSelection = async (ctx: Context) => {
 
   try {
     const roadmap = roadmapService.getRoadmapById(roadmapId);
+    const level = roadmapService.getLevelById(roadmapId, levelId);
     const modules = roadmapService.getModulesByLevel(roadmapId, levelId);
     const keyboard = getModulesKeyboard(roadmapId, modules);
 
-    const message = `📚 ${roadmap.name} Roadmap\n\nChoose a module to begin learning.`;
+    const message = `📚 ${roadmap.name} Roadmap\n\n**${level.name}**\n${level.description}\n\nChoose a module to begin learning.`;
 
-    await ctx.editMessageText(message, keyboard);
+    await ctx.editMessageText(message, { ...keyboard, parse_mode: 'Markdown' });
     await ctx.answerCbQuery();
   } catch (error) {
     await ctx.answerCbQuery('Error loading modules.', { show_alert: true });
@@ -104,9 +106,10 @@ export const handleBack = async (ctx: Context) => {
       const levels = roadmapService.getLevelsByRoadmap(roadmapId);
       const keyboard = getLevelSelectionKeyboard(roadmapId, levels);
       
-      const message = `📚 ${roadmap.name} Roadmap\n\nSelect your learning level.`;
+      const descriptions = levels.map(l => `**${l.name}**\n${l.description}`).join('\n\n');
+      const message = `📚 ${roadmap.name} Roadmap\n\nSelect your learning level.\n\n${descriptions}`;
 
-      await ctx.editMessageText(message, keyboard);
+      await ctx.editMessageText(message, { ...keyboard, parse_mode: 'Markdown' });
       await ctx.answerCbQuery();
     } else if (target === 'level') {
       // Back from Module detail to Level modules list
