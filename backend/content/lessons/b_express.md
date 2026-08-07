@@ -1,125 +1,742 @@
+# Express.js Revision
+
 ## What is Express.js?
 
-Imagine you are building a house (a web server).
+Imagine you own a restaurant.
 
-Using raw Node.js is like building the house from scratch.
-You have to chop the wood, mix the cement, and forge the nails yourself.
+Customers don't walk into the kitchen.
 
-```typescript
-// Raw Node.js
+Instead they talk to the waiter.
+
+```
+Customer
+    ↓
+ Waiter
+    ↓
+ Kitchen
+    ↓
+ Waiter
+    ↓
+Customer
+```
+
+The waiter
+
+* takes requests
+* gives them to the kitchen
+* brings back the response
+
+Express is exactly that waiter.
+
+It receives HTTP requests from clients and sends back responses.
+
+---
+
+## Without Express
+
+If we only use Node.js:
+
+```js
+const http = require("http");
+
 const server = http.createServer((req, res) => {
-  if (req.url === '/' && req.method === 'GET') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World!');
-  }
+  res.end("Hello");
 });
-```
-It takes too much time just to do simple things.
 
-## The Express Way
-
-Express.js is like buying a pre-fabricated house.
-The walls, doors, and roof are already built. You just place your furniture inside.
-
-```typescript
-// Express.js
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+server.listen(3000);
 ```
 
-Express is a fast, unopinionated, minimalist web framework for Node.js. It makes routing and handling requests extremely easy.
+Everything has to be written manually.
 
-## How Routing Works
+You have to
 
-A Router is a traffic cop.
+* check URL
+* check request method
+* send response
+* parse body
+* etc.
 
-When a request arrives, the router checks two things:
-1. HTTP Method (GET, POST, PUT, DELETE)
-2. Path (`/users`, `/products`)
+Lots of work.
 
-Request: GET /users
-│
-▼
-Router checks rules...
-│
-├── GET /products ❌ Ignored
-├── POST /users   ❌ Ignored
-└── GET /users    ✅ Matches!
-      │
-      ▼
- Sends Response: [User1, User2]
+---
 
-## Understanding Middleware
+## With Express
 
-Middleware is the most important concept in Express.
+```js
+const express = require("express");
 
-Imagine a secure office building.
-
-Visitor (Request)
-│
-▼
-Security Check (Middleware 1: Is user logged in?)
-│
-▼
-Metal Detector (Middleware 2: Is data safe?)
-│
-▼
-Office Room (Final Route: Saves data to DB)
-│
-▼
-Response sent back to Visitor
-
-Middleware are functions that run **between** the request and the final route.
-
-## Code Example
-
-```typescript
-import express from 'express';
 const app = express();
 
-// Middleware: Runs for EVERY request
-app.use((req, res, next) => {
-  console.log('Time:', Date.now());
-  next(); // Move to the next function
+app.get("/", (req, res) => {
+    res.send("Hello");
 });
 
-// Route
-app.get('/', (req, res) => {
-  res.send('Welcome to the homepage!');
-});
-
-app.listen(3000, () => console.log('Server running!'));
+app.listen(3000);
 ```
 
-## Common Mistakes
+Much shorter.
 
-❌ **Forgetting `next()` in Middleware**
-```typescript
-app.use((req, res, next) => {
-  console.log("Checking user...");
-  // Forgot next()!
+Express handles most of the boring work.
+
+---
+
+# Why was Express created?
+
+Node gives us
+
+* HTTP server
+
+That's all.
+
+Express adds
+
+* Routing
+* Middleware
+* Request parsing
+* Response helpers
+* Error handling
+* Static files
+* Easy APIs
+
+---
+
+# Installation
+
+```bash
+mkdir myapp
+
+cd myapp
+
+npm init -y
+
+npm install express
+```
+
+Project
+
+```
+myapp
+
+node_modules/
+
+package.json
+
+server.js
+```
+
+---
+
+# Creating Express App
+
+```js
+const express = require("express");
+
+const app = express();
+```
+
+Think of
+
+```
+app
+
+↓
+
+Entire website
+```
+
+Everything happens through `app`.
+
+---
+
+# Starting Server
+
+```js
+app.listen(3000, () => {
+    console.log("Server Started");
 });
 ```
-If you forget `next()`, the request hangs forever. The user just sees a loading spinner!
 
-❌ **Wrong Error Handling placement**
-Error handling middleware must always be placed at the very end of your file, after all other `app.use()` and routes.
+Output
 
-## Interview Questions
+```
+Server Started
+```
 
-**Q1. What is Express.js?**
-**Answer:** It is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+Visit
 
-**Q2. What is Middleware?**
-**Answer:** Middleware functions are functions that have access to the request object (`req`), the response object (`res`), and the `next` middleware function in the application's request-response cycle. They can execute code, modify requests, end responses, or call `next()`.
+```
+localhost:3000
+```
 
-**Q3. How do you handle 404 errors in Express?**
-**Answer:** By adding a catch-all middleware at the very end of your routes that sends a 404 response.
+---
 
-## Key Takeaways
+# What is a Route?
 
-• Express makes building Node.js servers faster and cleaner.
-• Routing directs HTTP traffic based on URL and Method.
-• Middleware runs in the middle of a request to modify it or block it.
-• Always remember to call `next()` in your middleware!
+Suppose
+
+```
+Amazon
+
+/
+
+Homepage
+
+/products
+
+Products
+
+/login
+
+Login
+
+/cart
+
+Cart
+
+/profile
+
+Profile
+```
+
+Each URL is called a **route**.
+
+Express lets us define them.
+
+```js
+app.get("/", (req, res)=>{
+    res.send("Home");
+});
+
+app.get("/about",(req,res)=>{
+    res.send("About");
+});
+```
+
+---
+
+# HTTP Methods
+
+Imagine a notebook.
+
+You can
+
+Read
+
+Write
+
+Update
+
+Delete
+
+HTTP does the same.
+
+| Method | Meaning |
+| ------ | ------- |
+| GET    | Read    |
+| POST   | Create  |
+| PUT    | Replace |
+| PATCH  | Update  |
+| DELETE | Delete  |
+
+This is called **CRUD**.
+
+---
+
+# GET Request
+
+Client asks for data.
+
+```
+Browser
+
+↓
+
+GET /users
+
+↓
+
+Server
+
+↓
+
+Users List
+```
+
+```js
+app.get("/users",(req,res)=>{
+    res.send("All Users");
+});
+```
+
+---
+
+# POST Request
+
+Used to create data.
+
+```
+POST /users
+
+↓
+
+Create User
+```
+
+```js
+app.post("/users",(req,res)=>{
+    res.send("User Created");
+});
+```
+
+---
+
+# PUT
+
+Replace entire object.
+
+```js
+app.put("/users/:id",(req,res)=>{
+    res.send("Updated Entire User");
+});
+```
+
+---
+
+# PATCH
+
+Update only part.
+
+```js
+app.patch("/users/:id",(req,res)=>{
+    res.send("Updated Age");
+});
+```
+
+---
+
+# DELETE
+
+```js
+app.delete("/users/:id",(req,res)=>{
+    res.send("Deleted");
+});
+```
+
+---
+
+# Request Object (`req`)
+
+Whenever a client sends a request, Express creates a request object.
+
+```
+Client
+
+↓
+
+Express
+
+↓
+
+req
+```
+
+Contains
+
+* URL
+* Method
+* Headers
+* Body
+* Query
+* Params
+
+Example
+
+```js
+app.get("/", (req,res)=>{
+    console.log(req.method);
+});
+```
+
+Output
+
+```
+GET
+```
+
+---
+
+# Response Object (`res`)
+
+Used to send data back.
+
+```js
+res.send("Hello");
+```
+
+or
+
+```js
+res.json({
+    name:"Arjun"
+});
+```
+
+or
+
+```js
+res.status(404).send("Not Found");
+```
+
+---
+
+# Route Parameters
+
+Suppose
+
+```
+/users/1
+
+/users/2
+
+/users/10
+```
+
+Instead of writing many routes
+
+```js
+app.get("/users/:id",(req,res)=>{
+    console.log(req.params.id);
+});
+```
+
+Visit
+
+```
+/users/25
+```
+
+Output
+
+```
+25
+```
+
+---
+
+# Query Parameters
+
+```
+/search?name=Arjun
+```
+
+```js
+app.get("/search",(req,res)=>{
+    console.log(req.query.name);
+});
+```
+
+Output
+
+```
+Arjun
+```
+
+---
+
+# JSON Response
+
+```js
+app.get("/user",(req,res)=>{
+    res.json({
+        name:"Arjun",
+        age:20
+    });
+});
+```
+
+Browser
+
+```json
+{
+  "name":"Arjun",
+  "age":20
+}
+```
+
+---
+
+# Sending Status Code
+
+```js
+res.status(200).send("Success");
+```
+
+```js
+res.status(404).send("Not Found");
+```
+
+```js
+res.status(500).send("Server Error");
+```
+
+---
+
+# Middleware (The Heart of Express)
+
+Imagine airport security.
+
+```
+Passenger
+
+↓
+
+Security Check
+
+↓
+
+Board Plane
+```
+
+Every passenger goes through security before entering.
+
+Middleware is the security check.
+
+```
+Request
+
+↓
+
+Middleware
+
+↓
+
+Route
+
+↓
+
+Response
+```
+
+Example
+
+```js
+app.use((req,res,next)=>{
+    console.log("Request Received");
+    next();
+});
+```
+
+`next()` tells Express:
+
+> "I'm done. Continue to the next middleware or route."
+
+If you don't call `next()` (and don't send a response), the request will hang forever.
+
+---
+
+# Parsing JSON
+
+Client sends
+
+```json
+{
+   "name":"Arjun"
+}
+```
+
+Without middleware
+
+```js
+req.body
+```
+
+is
+
+```
+undefined
+```
+
+Enable JSON parsing:
+
+```js
+app.use(express.json());
+```
+
+Now
+
+```js
+app.post("/",(req,res)=>{
+    console.log(req.body);
+});
+```
+
+Output
+
+```js
+{
+ name:"Arjun"
+}
+```
+
+---
+
+# Static Files
+
+Suppose
+
+```
+public/
+
+logo.png
+
+style.css
+```
+
+```js
+app.use(express.static("public"));
+```
+
+Now
+
+```
+localhost:3000/logo.png
+```
+
+works directly.
+
+---
+
+# Real-world Express Flow
+
+```
+Browser
+
+↓
+
+GET /products
+
+↓
+
+Express
+
+↓
+
+Middleware
+
+↓
+
+Authentication
+
+↓
+
+Controller
+
+↓
+
+Database
+
+↓
+
+Controller
+
+↓
+
+Response
+
+↓
+
+Browser
+```
+
+This is the flow you'll use in real backend projects.
+
+---
+
+# Folder Structure (Simple)
+
+```
+project/
+
+server.js
+
+routes/
+
+controllers/
+
+models/
+
+middlewares/
+
+public/
+
+package.json
+```
+
+As projects grow, each responsibility gets its own folder.
+
+---
+
+# Common Interview Questions
+
+### 1. What is Express.js?
+
+A minimal and flexible web framework for Node.js that simplifies building web servers and APIs.
+
+---
+
+### 2. Why use Express over Node's `http` module?
+
+Because it provides routing, middleware, request parsing, error handling, and many utilities, reducing boilerplate code.
+
+---
+
+### 3. What is middleware?
+
+A function that runs between receiving a request and sending a response. It can inspect, modify, end the request, or pass control using `next()`.
+
+---
+
+### 4. Difference between `req.params` and `req.query`?
+
+* `req.params` → values from the URL path (e.g., `/users/:id`)
+* `req.query` → values after `?` in the URL (e.g., `/search?name=Arjun`)
+
+---
+
+### 5. Difference between `res.send()` and `res.json()`?
+
+* `res.send()` can send strings, HTML, buffers, or objects.
+* `res.json()` is specifically for sending JSON and automatically sets the `Content-Type` to `application/json`.
+
+---
+
+## Quick Revision Cheatsheet
+
+```js
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
+
+app.post("/users", (req, res) => {
+  res.json(req.body);
+});
+
+app.get("/users/:id", (req, res) => {
+  res.send(req.params.id);
+});
+
+app.get("/search", (req, res) => {
+  res.send(req.query.name);
+});
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+```
+
+---

@@ -61,6 +61,11 @@ export class ContentService {
     // Unordered lists: - item or * item -> • item
     html = html.replace(/^[-*]\s+(.*$)/gm, '• $1');
 
+    // Markdown tables: wrap in <pre><code> to preserve alignment on mobile
+    html = html.replace(/(?:^\|.*(?:\n|$))+/gm, (match) => {
+      return `<pre><code>${match.trim()}</code></pre>\n`;
+    });
+
     return html;
   }
 }
