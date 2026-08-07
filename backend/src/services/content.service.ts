@@ -19,7 +19,30 @@ export class ContentService {
     // Split content by '---' to allow explicit pagination by the author
     const rawChunks = content.split(/^---$/m);
 
-    return rawChunks
+    // Auto-split any chunk that is too long (Telegram limit is 4096)
+    const finalChunks: string[] = [];
+    const MAX_CHUNK_LENGTH = 3500; 
+    
+    for (const chunk of rawChunks) {
+      if (chunk.length <= MAX_CHUNK_LENGTH) {
+        finalChunks.push(chunk);
+      } else {
+        // Split by heading "## " to avoid breaking mid-sentence
+        const subChunks = chunk.split(/^(?=## )/m);
+        let currentSubChunk = '';
+        for (const sub of subChunks) {
+          if (currentSubChunk.length + sub.length > MAX_CHUNK_LENGTH) {
+            if (currentSubChunk) finalChunks.push(currentSubChunk);
+            currentSubChunk = sub;
+          } else {
+            currentSubChunk += sub;
+          }
+        }
+        if (currentSubChunk) finalChunks.push(currentSubChunk);
+      }
+    }
+
+    return finalChunks
       .map(chunk => this.parseMarkdownToTelegramHtml(chunk.trim()))
       .filter(chunk => chunk.length > 0);
   }
@@ -51,8 +74,12 @@ export class ContentService {
     html = html.replace(/\b_(.*?)_\b/g, '<i>$1</i>');
 
     // Code block: ```lang\ncode\n``` -> <pre><code class="language-lang">code</code></pre>
-    html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
-      return `<pre><code class="language-${lang}">${code}</code></pre>`;
+    html = html.replace(/```([^\r\n]*)\r?\n([\s\S]*?)```/g, (match, langRaw, code) => {
+      const lang = langRaw.trim();
+      if (lang) {
+        return `<pre><code class="language-${lang}">${code}</code></pre>`;
+      }
+      return `<pre><code>${code}</code></pre>`;
     });
 
     // Inline code: `code` -> <code>code</code>
@@ -62,7 +89,7 @@ export class ContentService {
     html = html.replace(/^[-*]\s+(.*$)/gm, '• $1');
 
     // Markdown tables: wrap in <pre><code> to preserve alignment on mobile
-    html = html.replace(/(?:^\|.*(?:\n|$))+/gm, (match) => {
+    html = html.replace(/(?:^\|.*(?:\r?\n|$))+/gm, (match) => {
       return `<pre><code>${match.trim()}</code></pre>\n`;
     });
 
