@@ -35,8 +35,8 @@ export const getModulesKeyboard = (roadmapId: string, modules: ModuleConstant[])
 export const getModuleDetailKeyboard = (moduleId: string, roadmapId: string, levelId: string) => {
   return Markup.inlineKeyboard([
     [
-      Markup.button.callback('📖 Learn', `placeholder:learn:${moduleId}`),
-      Markup.button.callback('📝 Quiz', `placeholder:quiz:${moduleId}`),
+      Markup.button.callback('📖 Learn', `learn:${moduleId}`),
+      Markup.button.callback('📝 Quiz', `quiz:${moduleId}`),
     ],
     [Markup.button.callback('⬅ Back', `back:level:${roadmapId}:${levelId}`)],
   ]);

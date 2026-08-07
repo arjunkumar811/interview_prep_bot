@@ -1,5 +1,6 @@
 import { Context } from 'telegraf';
 import { RoadmapNavigationService } from '../services/roadmapNavigation.service';
+import { contentService } from '../services/content.service';
 import {
   getRoadmapSelectionKeyboard,
   getLevelSelectionKeyboard,
@@ -129,6 +130,35 @@ export const handleBack = async (ctx: Context) => {
   }
 };
 
-export const handlePlaceholder = async (ctx: Context) => {
-  await ctx.answerCbQuery('Coming soon', { show_alert: true });
+export const handleLearn = async (ctx: Context) => {
+  const cbQuery = ctx.callbackQuery as any;
+  if (!cbQuery || !cbQuery.data) return;
+
+  const [, moduleId] = cbQuery.data.split(':');
+
+  try {
+    const chunks = contentService.getLessonChunks(moduleId);
+    
+    if (chunks.length === 0) {
+      await ctx.answerCbQuery('Lesson content not found. Coming soon!', { show_alert: true });
+      return;
+    }
+
+    await ctx.answerCbQuery('Loading lesson...');
+
+    for (const chunk of chunks) {
+      // Send each chunk sequentially as HTML
+      await ctx.reply(chunk, { parse_mode: 'HTML' });
+      // Small delay to ensure sequential delivery order in Telegram
+      await new Promise(resolve => setTimeout(resolve, 300));
+    }
+
+  } catch (error) {
+    console.error('Failed to load lesson:', error);
+    await ctx.reply('Error loading lesson content.');
+  }
+};
+
+export const handleQuiz = async (ctx: Context) => {
+  await ctx.answerCbQuery('Quizzes coming soon!', { show_alert: true });
 };
