@@ -2,6 +2,7 @@ import { Context } from 'telegraf';
 import { RoadmapNavigationService } from '../services/roadmapNavigation.service';
 import {
   getRoadmapSelectionKeyboard,
+  getLevelSelectionKeyboard,
   getModulesKeyboard,
   getModuleDetailKeyboard,
 } from '../keyboards/roadmap.keyboards';
@@ -17,7 +18,6 @@ export const handleStart = async (ctx: Context) => {
 };
 
 export const handleRoadmapSelection = async (ctx: Context) => {
-  // We use type assertion since we know it's a callback query with data
   const cbQuery = ctx.callbackQuery as any;
   if (!cbQuery || !cbQuery.data) return;
 
@@ -31,15 +31,35 @@ export const handleRoadmapSelection = async (ctx: Context) => {
       return;
     }
 
-    const modules = roadmapService.getModulesByRoadmap(roadmapId);
-    const keyboard = getModulesKeyboard(modules);
+    const levels = roadmapService.getLevelsByRoadmap(roadmapId);
+    const keyboard = getLevelSelectionKeyboard(roadmapId, levels);
     
+    const message = `📚 ${roadmap.name} Roadmap\n\nSelect your learning level.`;
+
+    await ctx.editMessageText(message, keyboard);
+    await ctx.answerCbQuery();
+  } catch (error) {
+    await ctx.answerCbQuery('Error loading roadmap levels.', { show_alert: true });
+  }
+};
+
+export const handleLevelSelection = async (ctx: Context) => {
+  const cbQuery = ctx.callbackQuery as any;
+  if (!cbQuery || !cbQuery.data) return;
+
+  const [, roadmapId, levelId] = cbQuery.data.split(':');
+
+  try {
+    const roadmap = roadmapService.getRoadmapById(roadmapId);
+    const modules = roadmapService.getModulesByLevel(roadmapId, levelId);
+    const keyboard = getModulesKeyboard(roadmapId, modules);
+
     const message = `📚 ${roadmap.name} Roadmap\n\nChoose a module to begin learning.`;
 
     await ctx.editMessageText(message, keyboard);
     await ctx.answerCbQuery();
   } catch (error) {
-    await ctx.answerCbQuery('Error loading roadmap.', { show_alert: true });
+    await ctx.answerCbQuery('Error loading modules.', { show_alert: true });
   }
 };
 
@@ -51,7 +71,7 @@ export const handleModuleSelection = async (ctx: Context) => {
 
   try {
     const moduleInfo = roadmapService.getModuleDetails(moduleId);
-    const keyboard = getModuleDetailKeyboard(moduleId, moduleInfo.roadmapId);
+    const keyboard = getModuleDetailKeyboard(moduleId, moduleInfo.roadmapId, moduleInfo.levelId);
 
     const message = `**${moduleInfo.name}**\n\n${moduleInfo.description}\n\nEstimated Topics: ${moduleInfo.estimatedTopics}\nEstimated Learning Time: ${moduleInfo.estimatedTime}`;
 
@@ -78,11 +98,24 @@ export const handleBack = async (ctx: Context) => {
       await ctx.editMessageText(message, keyboard);
       await ctx.answerCbQuery();
     } else if (target === 'roadmap') {
+      // Back from Level modules list to Roadmap levels selection
       const roadmapId = parts[2];
       const roadmap = roadmapService.getRoadmapById(roadmapId);
-      const modules = roadmapService.getModulesByRoadmap(roadmapId);
-      const keyboard = getModulesKeyboard(modules);
+      const levels = roadmapService.getLevelsByRoadmap(roadmapId);
+      const keyboard = getLevelSelectionKeyboard(roadmapId, levels);
       
+      const message = `📚 ${roadmap.name} Roadmap\n\nSelect your learning level.`;
+
+      await ctx.editMessageText(message, keyboard);
+      await ctx.answerCbQuery();
+    } else if (target === 'level') {
+      // Back from Module detail to Level modules list
+      const roadmapId = parts[2];
+      const levelId = parts[3];
+      const roadmap = roadmapService.getRoadmapById(roadmapId);
+      const modules = roadmapService.getModulesByLevel(roadmapId, levelId);
+      const keyboard = getModulesKeyboard(roadmapId, modules);
+
       const message = `📚 ${roadmap.name} Roadmap\n\nChoose a module to begin learning.`;
 
       await ctx.editMessageText(message, keyboard);
