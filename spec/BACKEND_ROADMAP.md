@@ -204,7 +204,7 @@ or
 
 Select your learning level.
 
-🟢 Beginner (0 → 1)
+🟢 Beginner (0 → 1) 
 
 🔴 Advanced (1 → 100)
 

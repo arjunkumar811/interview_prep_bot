@@ -20,9 +20,16 @@ bot.action(/^module:.+/, handleModuleSelection);
 bot.action(/^back:.+/, handleBack);
 bot.action(/^learn:.+/, handleLearn);
 bot.action(/^quiz:.+/, handleQuiz);
+bot.action('restart', handleStart);
+
+bot.hears(/restart/i, handleStart);
+bot.command('restart', handleStart);
 
 export const startBot = async () => {
   try {
+    await bot.telegram.setMyCommands([
+      { command: 'restart', description: 'Restart from the beginning' },
+    ]);
     await bot.launch();
     console.log('Telegram bot started successfully');
 
