@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is TypeScript fundamentally?",
+    "options": [
+      "A completely new language that runs directly in the browser.",
+      "A syntactic superset of JavaScript that adds static typing and compiles down to plain JavaScript.",
+      "A backend framework for Node.js.",
+      "A CSS preprocessor."
+    ],
+    "correctOptionId": 1,
+    "explanation": "TypeScript is built on top of JavaScript. Browsers cannot run TypeScript directly; it must first be 'transpiled' (compiled) into standard JavaScript using the TypeScript Compiler (tsc)."
+  },
+  {
+    "question": "What is the primary benefit of using TypeScript over plain JavaScript?",
+    "options": [
+      "It makes the final application run faster in the browser.",
+      "It catches type-related errors at compile time (during development) rather than at runtime (in the browser), drastically improving code reliability and developer experience.",
+      "It automatically encrypts the source code.",
+      "It compresses image files."
+    ],
+    "correctOptionId": 1,
+    "explanation": "By explicitly defining what types of data (string, number, object) your variables and functions expect, your IDE can immediately warn you if you pass the wrong data, preventing crashes."
+  },
+  {
+    "question": "Which of the following is valid TypeScript syntax to declare a variable explicitly as a number?",
+    "options": [
+      "let age = Number;",
+      "let age: number = 30;",
+      "number age = 30;",
+      "let age = 30 as number;"
+    ],
+    "correctOptionId": 1,
+    "explanation": "TypeScript uses the colon `:` syntax to annotate types. However, note that if you just write `let age = 30;`, TypeScript will automatically infer that it is a number."
+  },
+  {
+    "question": "What is an 'Interface' in TypeScript?",
+    "options": [
+      "A graphical user interface component.",
+      "A powerful way to define the shape (structure) of an object, specifying what properties and methods it must have.",
+      "A class that cannot be instantiated.",
+      "A module bundler."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Interfaces are contracts. If you define `interface User { name: string; age: number; }`, any object claiming to be a User MUST have those exact properties of those exact types."
+  },
+  {
+    "question": "What is the difference between an 'Interface' and a 'Type Alias' (`type`) in TypeScript?",
+    "options": [
+      "There is no difference; they are exactly the same.",
+      "Interfaces can only describe objects, while Types can describe objects, primitives, unions, and tuples. Interfaces can also be 'merged' if declared multiple times.",
+      "Types are faster to compile than Interfaces.",
+      "Interfaces are used in React; Types are used in Angular."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While they can both describe object shapes, `type` is more flexible for complex unions (e.g., `type Status = 'success' | 'error'`). Interfaces support declaration merging, making them preferred for extending third-party libraries."
+  },
+  {
+    "question": "What is the `any` type in TypeScript?",
+    "options": [
+      "A type that means the variable must be an array.",
+      "An escape hatch that disables all type checking for that specific variable, allowing it to be anything.",
+      "A type used only for strings and numbers.",
+      "A type that requires the variable to be heavily typed."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Using `any` effectively turns off TypeScript for that variable. It should be avoided whenever possible, as it defeats the entire purpose of using a statically typed language."
+  },
+  {
+    "question": "What is a better alternative to `any` if you genuinely don't know what type of data you are receiving (e.g., from an API)?",
+    "options": [
+      "`void`",
+      "`unknown`",
+      "`never`",
+      "`undefined`"
+    ],
+    "correctOptionId": 1,
+    "explanation": "`unknown` is the type-safe counterpart to `any`. It means 'I don't know what this is yet', and TypeScript will force you to check the type (type narrowing) before you can perform operations on it."
+  },
+  {
+    "question": "What are 'Generics' in TypeScript?",
+    "options": [
+      "Generic error messages provided by the compiler.",
+      "A way to create reusable components/functions that can work over a variety of types rather than a single one, while still preserving type safety.",
+      "Variables that are globally scoped.",
+      "A tool to generate documentation."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you write a function to return the first element of an array, using generics `<T>` allows the function to know that if you pass an array of numbers, it returns a number, without having to write separate functions for every type."
+  },
+  {
+    "question": "What does the `?` symbol do when defining a property in a TypeScript interface (e.g., `age?: number;`)?",
+    "options": [
+      "It marks the property as an 'any' type.",
+      "It marks the property as optional, meaning the object is not required to have this property.",
+      "It creates a ternary operator.",
+      "It forces the property to be undefined."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Optional properties are highly useful for configuration objects or APIs where certain fields might not always be present."
+  },
+  {
+    "question": "What does a `tsconfig.json` file do?",
+    "options": [
+      "It stores the user's passwords.",
+      "It specifies the root files and the compiler options required to compile the TypeScript project into JavaScript (e.g., target JS version, strictness levels).",
+      "It lists the npm dependencies of the project.",
+      "It styles the terminal output."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The `tsconfig.json` is the control center for the compiler. It tells `tsc` exactly how strict to be and what flavor of JavaScript (e.g., ES6, ES2020) to output."
+  }
+]

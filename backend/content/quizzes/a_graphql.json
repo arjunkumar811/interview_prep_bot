@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is GraphQL?",
+    "options": [
+      "A relational database language.",
+      "A query language for APIs and a runtime for fulfilling those queries with your existing data.",
+      "A frontend charting library.",
+      "A message queue system."
+    ],
+    "correctOptionId": 1,
+    "explanation": "GraphQL provides a complete and understandable description of the data in your API, giving clients the power to ask for exactly what they need and nothing more."
+  },
+  {
+    "question": "What is the primary problem with REST APIs that GraphQL solves?",
+    "options": [
+      "REST is too fast.",
+      "Over-fetching (getting more data than needed) and Under-fetching (having to make multiple requests to get all needed data).",
+      "REST requires a NoSQL database.",
+      "REST cannot handle JSON."
+    ],
+    "correctOptionId": 1,
+    "explanation": "With GraphQL, the client defines the structure of the response. This eliminates over-fetching (saving bandwidth) and under-fetching (reducing the N+1 problem on the client side)."
+  },
+  {
+    "question": "In GraphQL, what is a 'Schema'?",
+    "options": [
+      "A database table definition.",
+      "A strongly-typed contract that defines the capabilities of the API by specifying the types of data that can be queried and mutated.",
+      "A CSS file.",
+      "A JSON response."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The schema is at the core of any GraphQL server. It defines what data exists, how it's related, and what operations (queries/mutations) a client can perform."
+  },
+  {
+    "question": "What are the three main operation types in GraphQL?",
+    "options": [
+      "GET, POST, PUT",
+      "SELECT, INSERT, UPDATE",
+      "Query, Mutation, Subscription",
+      "Fetch, Modify, Listen"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Queries are used to fetch data (like GET). Mutations are used to modify data (like POST/PUT/DELETE). Subscriptions are used for real-time updates over WebSockets."
+  },
+  {
+    "question": "What is a 'Resolver' in GraphQL?",
+    "options": [
+      "A function that resolves a DNS name.",
+      "A function responsible for populating the data for a single field in your schema.",
+      "A tool to resolve merge conflicts.",
+      "A frontend component."
+    ],
+    "correctOptionId": 1,
+    "explanation": "When a client queries a specific field, the GraphQL server executes the Resolver function associated with that field to fetch the actual data from the database or another API."
+  },
+  {
+    "question": "What is the N+1 problem in the context of GraphQL backends?",
+    "options": [
+      "A versioning issue with the GraphQL spec.",
+      "When a resolver for a list of items (N) triggers an additional database query for a nested field on *each* item, resulting in N+1 total queries.",
+      "When the client sends too many queries at once.",
+      "An error caused by recursive types."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because GraphQL resolvers run per-field, fetching a list of 10 users and their posts might cause 1 query for users, and 10 separate queries for posts, crushing the database."
+  },
+  {
+    "question": "Which tool is commonly used in the Node.js ecosystem to solve the GraphQL N+1 problem?",
+    "options": [
+      "Redis",
+      "DataLoader",
+      "Babel",
+      "Webpack"
+    ],
+    "correctOptionId": 1,
+    "explanation": "DataLoader (created by Facebook) uses batching and caching. Instead of making 10 individual queries for posts, it collects the IDs and makes 1 batch query (e.g., SELECT * FROM posts WHERE user_id IN (...))."
+  },
+  {
+    "question": "How many endpoints does a typical GraphQL API expose?",
+    "options": [
+      "One per database table.",
+      "One for Queries, one for Mutations.",
+      "Exactly one (usually /graphql) that handles all operations via HTTP POST.",
+      "It depends on the REST routes defined."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Unlike REST, which uses multiple URLs for different resources, GraphQL typically exposes a single endpoint that processes the entire query document provided in the POST body."
+  },
+  {
+    "question": "What is Apollo Server?",
+    "options": [
+      "A database specifically designed for GraphQL.",
+      "An open-source, spec-compliant GraphQL server that's compatible with any GraphQL client.",
+      "A frontend framework.",
+      "A web hosting platform."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Apollo Server is the most popular way to build a GraphQL API in Node.js, providing features like schema stitching, federation, and caching out of the box."
+  },
+  {
+    "question": "What does a GraphQL 'Subscription' use under the hood to maintain a persistent connection?",
+    "options": [
+      "HTTP Long Polling",
+      "WebSockets",
+      "TCP raw sockets",
+      "UDP"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because HTTP is stateless and short-lived, Subscriptions (which push continuous real-time events to the client) almost always operate over persistent WebSockets."
+  }
+]

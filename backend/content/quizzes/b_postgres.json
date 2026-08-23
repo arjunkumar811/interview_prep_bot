@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What kind of database is PostgreSQL?",
+    "options": [
+      "Document-Oriented Database",
+      "Object-Relational Database Management System (ORDBMS)",
+      "Key-Value Store",
+      "Graph Database"
+    ],
+    "correctOptionId": 1,
+    "explanation": "PostgreSQL is a powerful, open-source object-relational database system that extends standard SQL with advanced features."
+  },
+  {
+    "question": "Which command is used to connect to a PostgreSQL database from the command line?",
+    "options": [
+      "mysql -u username",
+      "postgres -connect",
+      "psql -U username -d dbname",
+      "pg_connect"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The 'psql' command-line utility is the standard tool to interact with PostgreSQL databases."
+  },
+  {
+    "question": "What is the primary difference between a CHAR and VARCHAR data type in PostgreSQL?",
+    "options": [
+      "CHAR is for numbers; VARCHAR is for text.",
+      "CHAR is fixed-length; VARCHAR is variable-length.",
+      "CHAR can store up to 1GB; VARCHAR is limited to 255 bytes.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "CHAR(n) is fixed-length and pads spaces to reach the length 'n'. VARCHAR(n) is variable-length and only stores the actual characters."
+  },
+  {
+    "question": "Which PostgreSQL feature allows you to store and query JSON data directly?",
+    "options": [
+      "JSONB",
+      "DOC_TYPE",
+      "NOSQL_COL",
+      "BSON"
+    ],
+    "correctOptionId": 0,
+    "explanation": "The JSONB data type allows for efficient storage and querying of JSON data within a PostgreSQL database, essentially acting like a NoSQL hybrid."
+  },
+  {
+    "question": "What is the purpose of a SEQUENCE in PostgreSQL?",
+    "options": [
+      "To automatically back up data on a schedule",
+      "To order the results of a SELECT query",
+      "To generate unique, sequential numeric identifiers (often used for primary keys)",
+      "To join two tables together"
+    ],
+    "correctOptionId": 2,
+    "explanation": "A sequence is a special kind of database object designed for generating unique numeric identifiers, typically used for auto-incrementing primary keys (like SERIAL)."
+  },
+  {
+    "question": "How do you perform a Left Join in SQL?",
+    "options": [
+      "SELECT * FROM A LEFT JOIN B ON A.id = B.id",
+      "SELECT * FROM A JOIN LEFT B",
+      "SELECT LEFT(A, B)",
+      "SELECT * FROM A INNER JOIN B LEFT"
+    ],
+    "correctOptionId": 0,
+    "explanation": "A LEFT JOIN returns all records from the left table (A), and the matched records from the right table (B). If there is no match, the result is NULL on the right side."
+  },
+  {
+    "question": "What is a View in PostgreSQL?",
+    "options": [
+      "A graphical user interface for the database.",
+      "A temporary table that deletes itself after a session.",
+      "A virtual table based on the result-set of an SQL statement.",
+      "A tool for rendering HTML templates."
+    ],
+    "correctOptionId": 2,
+    "explanation": "A view is essentially a saved SQL query that acts like a virtual table, which you can query just like a regular table."
+  },
+  {
+    "question": "What does MVCC stand for in the context of PostgreSQL concurrency?",
+    "options": [
+      "Multi-Version Concurrency Control",
+      "Many Variable Cache Controls",
+      "Multiple View Connection Coordinator",
+      "Master-View Concurrent Cache"
+    ],
+    "correctOptionId": 0,
+    "explanation": "MVCC allows PostgreSQL to handle multiple transactions concurrently without forcing them to wait for locks, improving performance during high concurrency."
+  },
+  {
+    "question": "Which of the following is true about EXPLAIN ANALYZE in PostgreSQL?",
+    "options": [
+      "It only checks the syntax of a query.",
+      "It actually executes the query and shows true execution times and plans.",
+      "It automatically optimizes the query and rewrites it.",
+      "It prevents the query from modifying any data."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Unlike just EXPLAIN (which only estimates), EXPLAIN ANALYZE actually runs the query and displays the actual run times and statistics."
+  },
+  {
+    "question": "What is the default isolation level for transactions in PostgreSQL?",
+    "options": [
+      "Read Uncommitted",
+      "Read Committed",
+      "Repeatable Read",
+      "Serializable"
+    ],
+    "correctOptionId": 1,
+    "explanation": "The default isolation level is Read Committed, which guarantees that a transaction only sees data committed before the query began."
+  }
+]

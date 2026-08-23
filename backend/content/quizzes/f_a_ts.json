@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is a 'Utility Type' in TypeScript?",
+    "options": [
+      "A type used only for utility functions.",
+      "Built-in types (like Partial, Omit, Pick, Record) that facilitate common type transformations, allowing you to derive new types from existing ones without repeating code.",
+      "A third-party library for type checking.",
+      "A type that allows any value."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Utility types are essential for DRY (Don't Repeat Yourself) code. Instead of manually creating a `UserUpdate` interface where all fields are optional, you just use `Partial<User>`."
+  },
+  {
+    "question": "What does the `Omit<Type, Keys>` utility type do?",
+    "options": [
+      "It omits the type check entirely.",
+      "It constructs a type by picking all properties from `Type` and then removing `Keys`.",
+      "It removes optional properties from a type.",
+      "It prevents a class from being inherited."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you have a `User` type with an `id` and `password`, but you need a `UserCreateInput` type without an `id`, you use `Omit<User, 'id'>`."
+  },
+  {
+    "question": "What is a 'Discriminated Union' (or Tagged Union) in TypeScript?",
+    "options": [
+      "A union type that only accepts strings.",
+      "A pattern where a union of types shares a common literal property (the 'discriminant' or 'tag'). A `switch` or `if` statement on that tag allows TypeScript to perfectly narrow the type.",
+      "A type that discriminates against undefined values.",
+      "A way to combine arrays."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Discriminated unions are heavily used in Redux actions. If `type Action = { type: 'ADD', val: number } | { type: 'RESET' }`, checking `action.type === 'ADD'` guarantees `action.val` exists."
+  },
+  {
+    "question": "What is 'Type Narrowing'?",
+    "options": [
+      "Making the compiler run faster by removing types.",
+      "The process where TypeScript's control flow analysis uses conditions (like `typeof`, `instanceof`, or custom type guards) to deduce a more specific type for a variable than its declared type.",
+      "Converting a string to a number.",
+      "Minifying TypeScript files."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you have `let id: string | number`, you can't use `.toUpperCase()`. But if you wrap it in `if (typeof id === 'string') { id.toUpperCase() }`, TypeScript narrows the type to `string` inside the `if` block, making the call safe."
+  },
+  {
+    "question": "What is a 'Type Guard' function?",
+    "options": [
+      "A security feature to stop hackers.",
+      "A function that returns a boolean, but whose return type is annotated as a 'type predicate' (e.g., `value is string`), telling the compiler how to narrow the type if it returns true.",
+      "A firewall for the TypeScript compiler.",
+      "A function that throws an error if the type is wrong."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A custom type guard looks like `function isFish(pet: Fish | Bird): pet is Fish { return (pet as Fish).swim !== undefined; }`. If this returns true, TS knows `pet` is a `Fish`."
+  },
+  {
+    "question": "What is the `never` type used for in TypeScript?",
+    "options": [
+      "To declare a variable that should never be used.",
+      "To represent the type of values that never occur, such as the return type of a function that always throws an error or has an infinite loop.",
+      "As a replacement for `any`.",
+      "To indicate an optional parameter."
+    ],
+    "correctOptionId": 1,
+    "explanation": "`never` is also used for exhaustive checking in switch statements. If a switch statement handles every possible case of a union type, the default case should theoretically be of type `never`."
+  },
+  {
+    "question": "What are 'Mapped Types' in TypeScript?",
+    "options": [
+      "Types that map to an external database schema.",
+      "A way to create a new type by iterating over the keys of an existing type (using `[K in keyof T]`) and applying a transformation to each property's type.",
+      "Types used specifically for Google Maps APIs.",
+      "A tool to map CSS classes to React components."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Mapped types are the engine behind utility types like `Partial`. They allow you to say 'take every key in this interface, and make its value type a string', for example."
+  },
+  {
+    "question": "What does the `infer` keyword do inside a Conditional Type?",
+    "options": [
+      "It guesses the type automatically without checking.",
+      "It allows you to declare a type variable within the condition of a Conditional Type, letting the compiler extract and return a nested type (like extracting the return type of a function).",
+      "It converts an interface to a class.",
+      "It infers the value of a variable at runtime."
+    ],
+    "correctOptionId": 1,
+    "explanation": "`infer` is highly advanced. It's used to build utility types like `ReturnType<T>`. It basically says 'if T is a function that returns X, figure out what X is and give it to me'."
+  },
+  {
+    "question": "What is 'Declaration Merging' in TypeScript?",
+    "options": [
+      "Combining multiple `var` declarations into one.",
+      "The compiler's ability to merge two or more separate declarations declared with the same name into a single definition (most commonly used with `interface`).",
+      "Merging two branches in Git.",
+      "Combining HTML and CSS."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a third-party library exposes a `Window` interface, and you declare your own `Window` interface adding a custom property, TypeScript magically merges them together. (This does not work for `type` aliases)."
+  },
+  {
+    "question": "Why might you use the `satisfies` operator instead of a type assertion (`as Type`)?",
+    "options": [
+      "Because `satisfies` is shorter to type.",
+      "Because `satisfies` validates that an expression matches a type WITHOUT changing or widening the inferred type of that expression, whereas `as` forces the compiler to trust you blindly.",
+      "Because `as` is deprecated.",
+      "Because `satisfies` runs faster in the browser."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you have `const colors = { red: 'red' } satisfies Record<string, string>;`, TS verifies it's a Record, but still remembers that the exact key is `'red'`, whereas `as Record<string, string>` would forget the exact key."
+  }
+]

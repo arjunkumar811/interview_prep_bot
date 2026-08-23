@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Prisma?",
+    "options": [
+      "A frontend CSS framework",
+      "A next-generation Node.js and TypeScript ORM",
+      "A cloud hosting provider",
+      "A NoSQL database"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Prisma is a modern Object-Relational Mapper (ORM) for Node.js and TypeScript that makes database access easy with an auto-generated, type-safe query builder."
+  },
+  {
+    "question": "What is the file extension for Prisma schema files?",
+    "options": [
+      ".prisma",
+      ".schema",
+      ".sql",
+      ".json"
+    ],
+    "correctOptionId": 0,
+    "explanation": "Prisma models and database connections are defined in a file typically named schema.prisma."
+  },
+  {
+    "question": "Which of the following describes the Prisma Client?",
+    "options": [
+      "A GUI tool to view database tables.",
+      "An auto-generated, type-safe query builder tailored to your database schema.",
+      "A migration tool to sync schemas.",
+      "A cloud database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Prisma Client is the auto-generated query builder that you import into your Node.js code to interact with your database."
+  },
+  {
+    "question": "What command is used to generate the Prisma Client after updating the schema?",
+    "options": [
+      "npx prisma generate",
+      "npx prisma build",
+      "npx prisma compile",
+      "npx prisma init"
+    ],
+    "correctOptionId": 0,
+    "explanation": "Running 'npx prisma generate' reads your Prisma schema and generates the TypeScript types and query builder in node_modules."
+  },
+  {
+    "question": "What is Prisma Migrate?",
+    "options": [
+      "A tool to move data from MongoDB to PostgreSQL.",
+      "A tool to deploy Node.js apps to production.",
+      "A database migration tool that translates Prisma schema into SQL migrations.",
+      "A caching layer for Prisma."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Prisma Migrate generates SQL migration files from your Prisma schema and applies them to your database to keep the schema in sync."
+  },
+  {
+    "question": "How do you define a one-to-many relationship in a Prisma schema?",
+    "options": [
+      "Using the @relation() attribute on both sides.",
+      "By creating a join table manually.",
+      "By defining an array field on the 'one' side and a relation scalar field on the 'many' side.",
+      "Relationships are not supported in Prisma."
+    ],
+    "correctOptionId": 2,
+    "explanation": "In Prisma, a 1-to-N relation is defined by adding a list type (e.g., Post[]) on one model, and a scalar foreign key (e.g., authorId) and relation field on the other."
+  },
+  {
+    "question": "What does the @id attribute signify in a Prisma schema?",
+    "options": [
+      "It marks the field as optional.",
+      "It marks the field as a primary key.",
+      "It encrypts the field.",
+      "It creates an index on the field."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The @id attribute designates a field as the primary key of the model."
+  },
+  {
+    "question": "How do you query for a single record by its unique ID using Prisma Client?",
+    "options": [
+      "prisma.user.find({ id: 1 })",
+      "prisma.user.findOne({ where: { id: 1 } })",
+      "prisma.user.findUnique({ where: { id: 1 } })",
+      "prisma.user.get(1)"
+    ],
+    "correctOptionId": 2,
+    "explanation": "findUnique is used to query a single database record by its unique identifier or any other field with a @unique constraint."
+  },
+  {
+    "question": "What does Prisma Studio do?",
+    "options": [
+      "It writes your TypeScript code for you.",
+      "It is a visual database browser/editor for the data in your database.",
+      "It is a web server.",
+      "It generates UML diagrams."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Prisma Studio is a GUI that allows you to easily explore and manipulate the data in your database."
+  },
+  {
+    "question": "What happens when you use 'include' in a Prisma Client query?",
+    "options": [
+      "It imports a JavaScript file.",
+      "It eagerly loads related records (like a SQL JOIN).",
+      "It filters the results.",
+      "It sorts the results."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The 'include' option in a query tells Prisma to fetch relation data (e.g., fetching a User and including all their Posts) in the same query."
+  }
+]

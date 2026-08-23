@@ -1,0 +1,112 @@
+[
+  {
+    "question": "In OAuth 2.0, what is the role of the 'Authorization Server'?",
+    "options": [
+      "It hosts the user's data (like photos or contacts).",
+      "It authenticates the user and issues access tokens to the client application.",
+      "It is the web browser used by the user.",
+      "It is the third-party application requesting access."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The Authorization Server (e.g., Google's login server) verifies the user's identity and issues an Access Token, which the Client application can then use to access the Resource Server."
+  },
+  {
+    "question": "What is the primary purpose of OpenID Connect (OIDC)?",
+    "options": [
+      "To encrypt passwords in a database.",
+      "To provide an identity layer on top of the OAuth 2.0 protocol, allowing clients to verify the identity of the end-user.",
+      "To replace OAuth 2.0 completely.",
+      "To provide a database schema for users."
+    ],
+    "correctOptionId": 1,
+    "explanation": "OAuth 2.0 is strictly for *authorization* (access). OIDC adds *authentication* (identity) by introducing the ID Token, allowing apps to know 'who' logged in."
+  },
+  {
+    "question": "What is an 'ID Token' in OpenID Connect?",
+    "options": [
+      "An opaque string used to access APIs.",
+      "A JSON Web Token (JWT) that contains claims about the authenticated user (like name, email, and authentication time).",
+      "A session cookie stored in the browser.",
+      "A database primary key."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The ID Token is always a JWT. The client application decodes it to get profile information about the user without needing to make an extra API call."
+  },
+  {
+    "question": "What is the OAuth 2.0 'Authorization Code Flow' primarily used for?",
+    "options": [
+      "Single-page applications (SPAs) without a backend.",
+      "Server-side web applications that can securely store a Client Secret.",
+      "IoT devices with no screens.",
+      "Desktop applications."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The Authorization Code Flow involves exchanging a temporary code for a token. It requires a Client Secret, so it must be done on a secure backend server, not exposed in a browser."
+  },
+  {
+    "question": "What does PKCE (Proof Key for Code Exchange) add to the OAuth flow?",
+    "options": [
+      "It encrypts the entire HTTP request.",
+      "It adds cryptographic verification to the Authorization Code Flow, making it secure for public clients (like SPAs and Mobile apps) that cannot store a Client Secret.",
+      "It replaces the Access Token with a PKCE token.",
+      "It allows for infinite session timeouts."
+    ],
+    "correctOptionId": 1,
+    "explanation": "PKCE (pronounced 'pixy') mitigates the risk of authorization code interception. The client generates a secret (code verifier) and sends a hash of it, proving they initiated the flow."
+  },
+  {
+    "question": "What is a 'Refresh Token'?",
+    "options": [
+      "A token used to refresh the web page.",
+      "A long-lived token used to obtain a new Access Token when the current Access Token expires, without requiring the user to log in again.",
+      "A token that forces the database to refresh its cache.",
+      "A temporary token used only for password resets."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Access tokens are deliberately short-lived for security. Refresh tokens are stored securely and used to request new access tokens seamlessly in the background."
+  },
+  {
+    "question": "What happens if an attacker steals a user's Refresh Token?",
+    "options": [
+      "Nothing, refresh tokens are useless without the user's password.",
+      "The attacker can continually generate new Access Tokens and impersonate the user indefinitely until the refresh token is revoked.",
+      "The token automatically self-destructs.",
+      "The attacker can only change the user's password."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Stolen refresh tokens are highly dangerous. This is why techniques like 'Refresh Token Rotation' (issuing a new refresh token every time one is used) are employed."
+  },
+  {
+    "question": "What is 'Refresh Token Rotation'?",
+    "options": [
+      "Encrypting the refresh token with a rotating cipher.",
+      "A security measure where the Authorization Server issues a new Refresh Token every time the old one is used. If an old token is reused, the server revokes all tokens for that user.",
+      "Sharing the refresh token across multiple devices.",
+      "Storing the token on a rotating hard drive."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Rotation ensures that if an attacker steals a refresh token, the moment either the attacker or the legitimate user uses it (and the other party tries to use an older one), the system detects the anomaly and locks the session."
+  },
+  {
+    "question": "In Role-Based Access Control (RBAC), how are permissions assigned?",
+    "options": [
+      "Permissions are assigned directly to individual users.",
+      "Permissions are assigned to Roles, and Roles are assigned to Users.",
+      "Permissions are based on the user's physical location.",
+      "Permissions are hardcoded into the frontend application."
+    ],
+    "correctOptionId": 1,
+    "explanation": "RBAC simplifies management. Instead of giving User A 'read_db' and 'write_db', you create an 'Admin' role with those permissions and assign the role to User A."
+  },
+  {
+    "question": "What is SAML (Security Assertion Markup Language) primarily used for?",
+    "options": [
+      "Styling web pages securely.",
+      "Enterprise Single Sign-On (SSO), allowing users to log into multiple corporate applications using one set of credentials (often using XML).",
+      "Encrypting JWTs.",
+      "Connecting to a database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "SAML is an older, XML-based standard heavily used in enterprise environments (like logging into Workday or Salesforce via corporate credentials), whereas OAuth/OIDC are newer, JSON-based standards preferred for modern web APIs."
+  }
+]

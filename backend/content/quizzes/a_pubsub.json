@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary difference between a Message Queue (like RabbitMQ) and a Pub/Sub system (like Redis Pub/Sub)?",
+    "options": [
+      "Message queues store messages until consumed; Pub/Sub typically broadcasts immediately and does not store messages for offline subscribers.",
+      "Message queues are synchronous; Pub/Sub is asynchronous.",
+      "Pub/Sub guarantees exactly-once delivery; Message queues do not.",
+      "Pub/Sub is only for frontend clients; Message queues are for backend servers."
+    ],
+    "correctOptionId": 0,
+    "explanation": "In classic Pub/Sub (like Redis), if a subscriber is not listening when a message is published, that message is lost. Message queues persist messages until they are explicitly consumed and acknowledged."
+  },
+  {
+    "question": "In the Publish-Subscribe pattern, how do publishers and subscribers interact?",
+    "options": [
+      "The publisher calls the subscriber's API directly.",
+      "They interact via an intermediary broker; they do not need to know about each other's existence.",
+      "The subscriber queries the publisher's database on an interval.",
+      "They communicate via a shared encrypted file on a network drive."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The Pub/Sub pattern enforces loose coupling. Publishers send messages to topics/channels on a broker, and subscribers listen to those channels without any direct connection to the publishers."
+  },
+  {
+    "question": "What is 'Fanout' in messaging?",
+    "options": [
+      "When a server overheats and turns on its cooling fans.",
+      "When a single published message is duplicated and delivered to multiple queues or subscribers simultaneously.",
+      "When a consumer drops a message because it cannot process it.",
+      "When a message is split into smaller chunks."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A fanout exchange (or pattern) broadcasts every message it receives to all connected queues or subscribers, multiplying the message delivery."
+  },
+  {
+    "question": "Which of the following describes 'At-Most-Once' delivery semantics?",
+    "options": [
+      "The message is guaranteed to be delivered and processed exactly one time.",
+      "The message will be delivered, but it might be processed multiple times if a crash occurs.",
+      "The message is sent once; it may be lost, but it will never be delivered twice ('fire and forget').",
+      "The message is saved in a database until a user manually deletes it."
+    ],
+    "correctOptionId": 2,
+    "explanation": "At-most-once has the lowest overhead. A message is transmitted once and no acknowledgement is required, meaning it might be lost if the network or consumer fails."
+  },
+  {
+    "question": "Which of the following describes 'At-Least-Once' delivery semantics?",
+    "options": [
+      "The system guarantees the message arrives exactly once.",
+      "The message might be lost, but it will never be duplicated.",
+      "The system guarantees the message will be delivered, but in failure scenarios, the same message might be delivered multiple times.",
+      "The message is only delivered if the consumer explicitly requests it."
+    ],
+    "correctOptionId": 2,
+    "explanation": "At-least-once relies on acknowledgements. If an ACK is lost, the broker assumes the message wasn't delivered and sends it again, resulting in duplicates."
+  },
+  {
+    "question": "How do you handle duplicate messages in an 'At-Least-Once' delivery system?",
+    "options": [
+      "Configure the broker to never send duplicates.",
+      "Design the consumer's processing logic to be 'Idempotent'.",
+      "Store all messages in RAM permanently.",
+      "Ignore it; duplicates never cause problems."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because the broker might send the same message twice, the consumer must be idempotent—meaning processing the same message multiple times has the same outcome as processing it once (e.g., checking if a transaction ID already exists in the DB)."
+  },
+  {
+    "question": "What is the role of an 'Exchange' in RabbitMQ?",
+    "options": [
+      "It stores the messages on disk.",
+      "It receives messages from producers and routes them to zero or more queues based on binding rules.",
+      "It consumes messages and executes business logic.",
+      "It connects to the frontend browser."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In the AMQP model (used by RabbitMQ), producers do not send messages directly to a queue. They send them to an Exchange, which routes them to queues based on routing keys and bindings."
+  },
+  {
+    "question": "What is a 'Topic Exchange' in RabbitMQ?",
+    "options": [
+      "An exchange that routes messages to all bound queues unconditionally.",
+      "An exchange that routes messages to queues based on a wildcard match between the routing key and the binding pattern (e.g., 'logs.error.*').",
+      "An exchange that stores messages in an SQL database.",
+      "An exchange that only accepts HTTP requests."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A topic exchange allows for complex routing based on wildcard patterns, making it highly flexible for Pub/Sub scenarios where subscribers only want specific subsets of data."
+  },
+  {
+    "question": "How does Redis Pub/Sub differ from Redis Streams?",
+    "options": [
+      "There is no difference.",
+      "Redis Pub/Sub is fire-and-forget (messages are not persisted); Redis Streams is a persistent append-only log that allows consumers to read past messages.",
+      "Redis Streams is for video streaming; Pub/Sub is for text.",
+      "Redis Pub/Sub uses SQL; Redis Streams uses NoSQL."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Redis Pub/Sub does not store messages. If a client is disconnected when a message is published, they miss it. Redis Streams acts like Kafka, storing messages in a log that can be consumed at any time."
+  },
+  {
+    "question": "What is a 'Consumer Group' (commonly used in Kafka and Redis Streams)?",
+    "options": [
+      "A group of users who pay for an app.",
+      "A set of consumers that cooperate to consume data from a topic, ensuring each message is processed by only one consumer in the group.",
+      "A security group that restricts access to the queue.",
+      "A cluster of Redis nodes."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Consumer groups allow you to scale message consumption horizontally. The broker distributes the messages among the consumers in the group so the workload is shared without duplicating processing."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the main premise of Horizontal Scaling?",
+    "options": [
+      "Replacing a server with a faster one.",
+      "Distributing the workload across multiple smaller/commodity servers working together as a cluster.",
+      "Increasing the CPU clock speed of a single server.",
+      "Optimizing database indexing."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Horizontal scaling (scaling out) involves adding more machines to your pool of resources rather than upgrading the existing machine."
+  },
+  {
+    "question": "Which of the following is an absolute prerequisite for scaling web application servers horizontally?",
+    "options": [
+      "The application must be completely stateless (or share state via an external store like Redis).",
+      "The application must use a NoSQL database.",
+      "The application must be written in a compiled language.",
+      "The application must use WebSockets."
+    ],
+    "correctOptionId": 0,
+    "explanation": "If a server holds user session data in its local memory (stateful), sending that user's next request to a different server in the cluster will break their session."
+  },
+  {
+    "question": "What infrastructure component sits in front of a horizontally scaled cluster to distribute traffic?",
+    "options": [
+      "A relational database",
+      "A firewall",
+      "A Load Balancer",
+      "A DNS resolver"
+    ],
+    "correctOptionId": 2,
+    "explanation": "A load balancer (like Nginx, HAProxy, or AWS ALB) receives incoming internet traffic and distributes it across the healthy servers in the cluster."
+  },
+  {
+    "question": "Which of the following is a major advantage of Horizontal Scaling over Vertical Scaling?",
+    "options": [
+      "It requires no code changes ever.",
+      "It provides theoretically infinite scale and inherently improves fault tolerance by removing the single point of failure.",
+      "It is always cheaper to buy 100 small servers than 1 large server.",
+      "It simplifies database transactions."
+    ],
+    "correctOptionId": 1,
+    "explanation": "You can keep adding commodity servers indefinitely. Additionally, if one server in a cluster of 10 dies, the application remains online, whereas a vertically scaled single server dying brings the whole app down."
+  },
+  {
+    "question": "What is the primary challenge when horizontally scaling a relational database (RDBMS)?",
+    "options": [
+      "SQL does not support running on multiple machines.",
+      "Relational databases are designed to enforce ACID properties (specifically consistency and isolation), which requires complex locking and coordination across multiple nodes when sharded.",
+      "Relational databases cannot use load balancers.",
+      "RDBMS storage is limited to 1TB."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Scaling the app layer horizontally is easy (stateless). Scaling the DB layer horizontally (Sharding) is extremely difficult because maintaining ACID compliance across a distributed network is slow and complex."
+  },
+  {
+    "question": "In a microservices architecture, how do you typically scale individual services?",
+    "options": [
+      "You must scale all microservices equally.",
+      "You scale them independently based on their specific workload (e.g., spin up 10 instances of the image processing service, but keep only 2 instances of the user profile service).",
+      "You combine them back into a monolith before scaling.",
+      "You only scale them vertically."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A key benefit of microservices is independent horizontal scalability. You only pay for the extra compute power on the specific services that are under heavy load."
+  },
+  {
+    "question": "What is 'Auto-scaling'?",
+    "options": [
+      "A feature of cars.",
+      "A cloud computing feature that automatically adds or removes compute resources (servers) depending on the actual traffic demand in real-time.",
+      "A script that automatically writes new code.",
+      "A way to automatically increase the size of images."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Auto-scaling groups monitor metrics (like average CPU utilization across the cluster > 70%) and spin up new instances automatically, saving money during low-traffic periods."
+  },
+  {
+    "question": "How does 'Stateless Authentication' (e.g., JWT) aid in horizontal scaling?",
+    "options": [
+      "It prevents hackers from reading the token.",
+      "It allows any server in the cluster to cryptographically verify the user's identity without needing to look up a session ID in a shared database or memory store.",
+      "It forces the user to log in every 5 minutes.",
+      "It encrypts the database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "With a JWT, the token itself contains the user's identity and permissions. Because it's signed, any stateless backend server can verify it independently, drastically reducing database load."
+  },
+  {
+    "question": "What is 'Sticky Sessions' (Session Affinity) and why is it generally considered an anti-pattern for horizontal scaling?",
+    "options": [
+      "It ensures the user stays logged in forever.",
+      "It forces the load balancer to always route a specific user to the exact same backend server. It defeats the purpose of true load balancing and makes deploying updates difficult.",
+      "It prevents users from logging out.",
+      "It makes the database stick to one server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a server holds state and requires sticky sessions, taking that server down for an update will log out all users attached to it. A truly stateless app allows requests to bounce to any server seamlessly."
+  },
+  {
+    "question": "How do distributed caches (like Redis Cluster or Memcached) support horizontal scaling?",
+    "options": [
+      "They replace the need for a load balancer.",
+      "They provide a massive, fast, shared memory pool that all horizontal application servers can access simultaneously, effectively externalizing state.",
+      "They write code for you.",
+      "They act as the primary permanent storage."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Instead of storing session data in Server A's RAM, Server A stores it in Redis. If the user's next request hits Server B, Server B can retrieve the session from the shared Redis cache."
+  }
+]

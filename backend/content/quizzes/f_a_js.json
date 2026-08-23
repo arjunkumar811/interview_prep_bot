@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the difference between `var`, `let`, and `const` regarding scope?",
+    "options": [
+      "`var` is block-scoped; `let` and `const` are globally scoped.",
+      "`var` is function-scoped (or globally scoped if declared outside a function); `let` and `const` are block-scoped (confined to the `{}` they are defined in).",
+      "They all have the exact same scoping rules.",
+      "`const` has no scope."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because `var` ignores block scopes (like `if` statements or `for` loops), it can lead to bugs where variables leak out and overwrite others. `let` and `const` solve this by strictly adhering to block boundaries."
+  },
+  {
+    "question": "What is the 'Temporal Dead Zone' (TDZ) in JavaScript?",
+    "options": [
+      "A period during which garbage collection pauses.",
+      "The period between entering a scope and the actual declaration of a `let` or `const` variable. Attempting to access the variable during this time throws a ReferenceError.",
+      "A timezone bug in the `Date` object.",
+      "The time it takes for an API request to timeout."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Unlike `var` (which is hoisted and initialized with `undefined`), `let` and `const` are hoisted but NOT initialized. You cannot use them before the line of code where they are explicitly declared."
+  },
+  {
+    "question": "How does the `this` keyword behave differently in an Arrow Function (`() => {}`) compared to a regular `function() {}`?",
+    "options": [
+      "Arrow functions do not have a `this` keyword.",
+      "In an arrow function, `this` is lexically bound. It inherits `this` from the enclosing scope at the time the function was defined, rather than being determined by how the function is called.",
+      "Arrow functions always bind `this` to the global `window` object.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is why arrow functions are so popular for callbacks and methods in React classes; you don't have to manually `.bind(this)` to preserve the context."
+  },
+  {
+    "question": "What is 'Prototypal Inheritance' in JavaScript?",
+    "options": [
+      "A feature exclusive to TypeScript.",
+      "A mechanism where objects inherit properties and methods directly from other objects (their prototype), rather than from classes as in classical object-oriented languages.",
+      "Inheriting CSS styles.",
+      "A way to clone DOM elements."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Even when you use the `class` keyword in modern JS, it's just syntactic sugar over prototypal inheritance. Every object has an internal link to another object (its prototype), forming a prototype chain."
+  },
+  {
+    "question": "What is 'Event Delegation' in the DOM?",
+    "options": [
+      "Asking the server to handle events.",
+      "Attaching a single event listener to a parent element to manage events for all of its children, taking advantage of event bubbling.",
+      "Preventing events from bubbling up.",
+      "Delegating event handling to a Web Worker."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Instead of attaching 100 `onClick` listeners to 100 `<li>` elements, you attach one listener to the parent `<ul>`. When an `<li>` is clicked, the event bubbles up to the `<ul>`, where you check `event.target` to see which `<li>` triggered it. This saves massive amounts of memory."
+  },
+  {
+    "question": "What does the `bind()` method do to a function?",
+    "options": [
+      "It executes the function immediately.",
+      "It creates a new function that, when called, has its `this` keyword set to the provided value.",
+      "It binds the function to an HTML button.",
+      "It concatenates two functions."
+    ],
+    "correctOptionId": 1,
+    "explanation": "`bind()` allows you to permanently tie a specific object to the `this` context of a function. (Note: `call()` and `apply()` do something similar, but they execute the function immediately, whereas `bind` returns a new function to be executed later)."
+  },
+  {
+    "question": "What is the primary difference between a `Map` and a plain JavaScript `Object`?",
+    "options": [
+      "`Map` is slower.",
+      "`Object` keys must be strings (or Symbols). A `Map` allows keys of ANY type (including objects, functions, or primitives), maintains insertion order, and has a built-in `.size` property.",
+      "`Map` can only store strings.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Maps are designed specifically for frequent additions and removals of key-value pairs and are generally more performant for complex data structures than plain objects."
+  },
+  {
+    "question": "What is a 'WeakMap'?",
+    "options": [
+      "A Map that cannot store numbers.",
+      "A Map where the keys must be objects, and the references to those objects are 'weak'. If there are no other references to the key object, it can be garbage-collected, preventing memory leaks.",
+      "A Map with a very small capacity.",
+      "A Map that does not support iteration."
+    ],
+    "correctOptionId": 1,
+    "explanation": "WeakMaps are highly specialized. If you attach metadata to a DOM element using a Map, the element can never be garbage-collected even if it's removed from the screen. A WeakMap allows it to be deleted."
+  },
+  {
+    "question": "What does `Promise.all()` do?",
+    "options": [
+      "It executes promises sequentially, one after another.",
+      "It takes an iterable of promises and returns a single Promise that resolves when ALL of the input's promises have resolved. If ANY promise rejects, the entire `Promise.all` immediately rejects.",
+      "It returns the result of the first promise to finish.",
+      "It automatically retries failed promises."
+    ],
+    "correctOptionId": 1,
+    "explanation": "`Promise.all` is used for running independent asynchronous operations in parallel. If you need them to run regardless of failures, `Promise.allSettled()` is used instead."
+  },
+  {
+    "question": "What is a 'Generator Function' (defined with `function*`)?",
+    "options": [
+      "A function that generates random numbers.",
+      "A function that can be paused (using the `yield` keyword) and resumed at a later time, maintaining its state across executions.",
+      "A function used to generate React components.",
+      "A function that generates HTML strings."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Generators return an Iterator object. When you call `.next()`, the function runs until it hits `yield`, returns that value, and pauses until `.next()` is called again. They are powerful for dealing with infinite sequences or complex async flows (like Redux Saga)."
+  }
+]

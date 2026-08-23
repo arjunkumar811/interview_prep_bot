@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Git primarily used for?",
+    "options": [
+      "To deploy applications to a server.",
+      "To track changes in source code during software development, allowing multiple developers to work together non-linearly.",
+      "To write and compile Java code.",
+      "To run unit tests automatically."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Git is a Distributed Version Control System (DVCS) designed to handle everything from small to very large projects with speed and efficiency."
+  },
+  {
+    "question": "What is the difference between Git and GitHub?",
+    "options": [
+      "Git is for front-end; GitHub is for back-end.",
+      "Git is the version control software installed on your computer; GitHub is a cloud-based hosting service that lets you manage Git repositories.",
+      "Git is the paid version of GitHub.",
+      "There is no difference; they are synonymous."
+    ],
+    "correctOptionId": 1,
+    "explanation": "You can use Git entirely offline without ever using GitHub. GitHub (like GitLab or Bitbucket) is simply a remote server to store and share your Git repositories."
+  },
+  {
+    "question": "What does the command `git commit -m \"message\"` do?",
+    "options": [
+      "It sends your code to the remote server.",
+      "It saves your staged changes to the local repository's history with a descriptive message.",
+      "It adds new files to the staging area.",
+      "It merges two branches together."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A commit is like taking a snapshot of your project at a specific point in time. It is saved locally. To send it to a remote server, you must `git push`."
+  },
+  {
+    "question": "What is the 'Staging Area' (or Index) in Git?",
+    "options": [
+      "A server where code is tested before production.",
+      "An intermediate area where you prepare and group related changes before you commit them to the repository.",
+      "The main branch of the repository.",
+      "A folder where deleted files go."
+    ],
+    "correctOptionId": 1,
+    "explanation": "When you modify a file, you must `git add` it to the staging area. Only the files in the staging area are included in your next `git commit`."
+  },
+  {
+    "question": "What does the `git pull` command do?",
+    "options": [
+      "It pushes your local changes to the remote repository.",
+      "It fetches the latest changes from a remote repository and automatically merges them into your current local branch.",
+      "It pulls a specific file from the staging area.",
+      "It creates a new branch."
+    ],
+    "correctOptionId": 1,
+    "explanation": "`git pull` is actually a combination of two commands: `git fetch` (downloads the changes) followed immediately by `git merge` (integrates them into your working copy)."
+  },
+  {
+    "question": "What is a 'Merge Conflict'?",
+    "options": [
+      "When Git's server crashes.",
+      "When two developers have modified the exact same lines in the same file, or one deleted a file while another modified it, and Git cannot automatically determine which version to keep.",
+      "When a developer forgets their password.",
+      "When you try to merge a branch into itself."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Git is very smart at merging files, but if conflicting changes exist, it stops and asks a human to manually resolve the conflict before the merge can proceed."
+  },
+  {
+    "question": "What does `git clone` do?",
+    "options": [
+      "It duplicates a local file.",
+      "It downloads an entire existing remote repository (including all of its history and branches) to your local machine.",
+      "It copies a commit to another branch.",
+      "It creates a backup of the remote server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "`git clone <url>` is how you start working on an existing project. It initializes a local `.git` directory and downloads all the data."
+  },
+  {
+    "question": "What is the purpose of a `.gitignore` file?",
+    "options": [
+      "To ignore error messages during compilation.",
+      "To specify intentionally untracked files (like build artifacts, `node_modules`, or environment files containing secrets) that Git should never commit.",
+      "To block specific users from committing.",
+      "To hide branches from the UI."
+    ],
+    "correctOptionId": 1,
+    "explanation": "You never want to commit generated files or sensitive API keys. Adding their paths to `.gitignore` ensures `git add .` will silently skip them."
+  },
+  {
+    "question": "What does `git checkout -b feature-branch` do?",
+    "options": [
+      "It deletes the feature branch.",
+      "It creates a new branch named 'feature-branch' and immediately switches you to it.",
+      "It checks the branch for errors.",
+      "It pushes the branch to GitHub."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is a shortcut command. It performs `git branch feature-branch` (create) and `git checkout feature-branch` (switch) in one step. (Note: in modern Git, `git switch -c` is also used)."
+  },
+  {
+    "question": "What is a 'Pull Request' (PR)?",
+    "options": [
+      "A standard Git command used in the terminal.",
+      "A feature of platforms like GitHub/GitLab where a developer notifies team members that they have completed a feature and requests that their branch be reviewed and merged into the main branch.",
+      "A request to download a file faster.",
+      "An automated test script."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Pull Requests are not a core feature of the Git software itself; they are a collaboration tool built by hosting platforms to facilitate code review and discussion before merging code."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is a Message Queue?",
+    "options": [
+      "A database table used for storing logs",
+      "An asynchronous service-to-service communication used in serverless and microservices architectures",
+      "A synchronous API call to a third-party service",
+      "A frontend state management tool"
+    ],
+    "correctOptionId": 1,
+    "explanation": "A message queue provides asynchronous communication, allowing sender and receiver to not interact with the queue at the same time."
+  },
+  {
+    "question": "Which of the following is a popular Message Broker?",
+    "options": [
+      "Nginx",
+      "RabbitMQ",
+      "PostgreSQL",
+      "React"
+    ],
+    "correctOptionId": 1,
+    "explanation": "RabbitMQ is one of the most popular open-source message brokers."
+  },
+  {
+    "question": "What is the primary benefit of using a Message Queue?",
+    "options": [
+      "It makes the frontend load faster.",
+      "It converts NoSQL data to SQL.",
+      "It decouples heavy processing, allowing for better scalability and fault tolerance.",
+      "It encrypts passwords automatically."
+    ],
+    "correctOptionId": 2,
+    "explanation": "By offloading heavy tasks to a queue (like sending emails or video processing), the main application can remain responsive, decoupling components."
+  },
+  {
+    "question": "What does a 'Producer' do in a messaging system?",
+    "options": [
+      "Consumes messages from the queue.",
+      "Creates and sends messages to the queue.",
+      "Validates the schema of the database.",
+      "Hosts the frontend application."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A producer (or publisher) is the application that generates data and sends it to the message broker."
+  },
+  {
+    "question": "What does a 'Consumer' do in a messaging system?",
+    "options": [
+      "Listens to the queue and processes messages as they arrive.",
+      "Sends data into the queue.",
+      "Deletes the queue when it gets too full.",
+      "Manages the routing of API requests."
+    ],
+    "correctOptionId": 0,
+    "explanation": "A consumer (or subscriber) attaches to the queue, reads the messages, and executes the required logic."
+  },
+  {
+    "question": "What is 'Pub/Sub'?",
+    "options": [
+      "Public / Subnet networking",
+      "Publish / Subscribe messaging pattern",
+      "A database indexing strategy",
+      "A Node.js module for file uploads"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Publish/Subscribe is a messaging pattern where senders (publishers) categorize published messages into classes without knowledge of which subscribers (if any) there may be."
+  },
+  {
+    "question": "How does Kafka differ fundamentally from RabbitMQ?",
+    "options": [
+      "Kafka is synchronous, RabbitMQ is asynchronous.",
+      "Kafka is primarily an event streaming platform (append-only log), while RabbitMQ is a traditional message queue.",
+      "Kafka only works with Java, RabbitMQ only works with Node.js.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Kafka stores streams of records securely in a distributed, durable, fault-tolerant cluster (log structured), whereas RabbitMQ focuses more on complex routing and ephemeral message queuing."
+  },
+  {
+    "question": "What happens if a Consumer fails to process a message and crashes?",
+    "options": [
+      "The message is lost forever.",
+      "The producer crashes as well.",
+      "The message broker can requeue the message (e.g., using Acknowledgements/NACK) so another consumer can process it.",
+      "The entire queue is deleted."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Most message queues support explicit acknowledgments. If a consumer dies before ACKing, the broker knows it wasn't processed and will deliver it again."
+  },
+  {
+    "question": "What is a 'Dead Letter Queue' (DLQ)?",
+    "options": [
+      "A queue that has been deleted by the admin.",
+      "A holding queue for messages that cannot be processed successfully after multiple attempts.",
+      "A queue that only accepts string data.",
+      "A queue that is offline."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A DLQ is used to isolate messages that can't be processed for some reason (e.g., bad format, max retries reached) so they don't block the main queue."
+  },
+  {
+    "question": "Why is 'Idempotency' critical when designing consumers?",
+    "options": [
+      "Because queues always deliver messages exactly once.",
+      "Because network failures might cause the queue to deliver the same message more than once (At-Least-Once delivery).",
+      "Because it makes the code run faster.",
+      "Because it prevents hackers from reading the queue."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Many systems guarantee 'At-Least-Once' delivery. If a consumer isn't idempotent, processing a duplicate message could cause bugs (like charging a credit card twice)."
+  }
+]

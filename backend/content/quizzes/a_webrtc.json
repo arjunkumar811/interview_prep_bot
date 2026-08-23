@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary use case for WebRTC (Web Real-Time Communication)?",
+    "options": [
+      "Replacing HTTP for downloading large files.",
+      "Providing real-time, peer-to-peer audio, video, and arbitrary data communication directly between browsers without intermediate servers.",
+      "Encrypting standard WebSockets.",
+      "Managing database replication."
+    ],
+    "correctOptionId": 1,
+    "explanation": "WebRTC is a free, open project that provides browsers and mobile applications with Real-Time Communications (RTC) capabilities via simple APIs, focusing on direct peer-to-peer (P2P) connections."
+  },
+  {
+    "question": "What does a 'Signaling Server' do in the context of WebRTC?",
+    "options": [
+      "It routes the actual video and audio traffic between users.",
+      "It stores the recorded video calls.",
+      "It enables peers to discover each other and exchange control messages (Session Description Protocol - SDP) needed to establish the P2P connection.",
+      "It compresses the video streams."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Browsers don't know each other's IP addresses. A signaling server (often built with WebSockets or Socket.io) acts as a middleman solely for the initial handshake to exchange network info."
+  },
+  {
+    "question": "What is the purpose of the STUN (Session Traversal Utilities for NAT) server in WebRTC?",
+    "options": [
+      "To stun malicious packets.",
+      "To allow a client to discover its own public IP address and the type of NAT it is behind, so it can share this with its peer.",
+      "To record the audio of the call.",
+      "To provide a fallback mechanism if P2P fails."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because most computers are behind a router (NAT) and only have local IP addresses (like 192.168.x.x), they cannot be reached from the internet. A STUN server simply replies to a request, telling the client what its public IP is."
+  },
+  {
+    "question": "What happens in WebRTC if a direct P2P connection cannot be established (e.g., due to a strict corporate firewall)?",
+    "options": [
+      "The call fails immediately.",
+      "The browsers switch to HTTP long-polling.",
+      "WebRTC falls back to using a TURN server, which acts as a relay, routing the actual media traffic between the peers.",
+      "The browsers use standard WebSockets instead."
+    ],
+    "correctOptionId": 2,
+    "explanation": "TURN (Traversal Using Relays around NAT) servers are the fallback. If STUN fails, the media traffic is routed through the TURN server. This is expensive and increases latency, but guarantees a connection."
+  },
+  {
+    "question": "What is ICE (Interactive Connectivity Establishment) in WebRTC?",
+    "options": [
+      "A cooling system for servers.",
+      "A framework used by WebRTC to find the best possible path to connect peers (trying direct local IPs first, then STUN, then TURN).",
+      "An encryption algorithm.",
+      "A video codec."
+    ],
+    "correctOptionId": 1,
+    "explanation": "ICE is the magic that figures out how two browsers can connect. It gathers all possible 'candidates' (local IP, STUN IP, TURN IP) and tries them until a connection succeeds."
+  },
+  {
+    "question": "What is the SDP (Session Description Protocol) used for?",
+    "options": [
+      "To describe the UI layout of the video player.",
+      "To negotiate the capabilities of the peers (e.g., supported codecs, audio/video formats, and network transport details) during the signaling phase.",
+      "To compress the video data.",
+      "To authenticate users."
+    ],
+    "correctOptionId": 1,
+    "explanation": "SDP is a text-based format exchanged via the signaling server. Peer A says 'I support VP8 and H264 video', and Peer B replies with what it supports, allowing them to agree on a format."
+  },
+  {
+    "question": "Which underlying transport protocol does WebRTC primarily use for streaming media (audio/video)?",
+    "options": [
+      "TCP (Transmission Control Protocol)",
+      "UDP (User Datagram Protocol)",
+      "HTTP/2",
+      "FTP"
+    ],
+    "correctOptionId": 1,
+    "explanation": "WebRTC relies on UDP (specifically SRTP/SRTCP) for media because in real-time communication, it is better to drop a delayed packet (a tiny glitch in the video) than to pause the entire stream waiting for a retransmission (TCP)."
+  },
+  {
+    "question": "What is the `RTCDataChannel` API used for?",
+    "options": [
+      "To send video data.",
+      "To establish the signaling connection.",
+      "To send arbitrary, low-latency data (text, files, gaming state) bidirectionally between peers using the established P2P connection.",
+      "To record the screen."
+    ],
+    "correctOptionId": 2,
+    "explanation": "While `MediaStream` handles A/V, `RTCDataChannel` allows you to send any binary or text data directly peer-to-peer, similar to WebSockets but without hitting a server."
+  },
+  {
+    "question": "Is WebRTC communication encrypted?",
+    "options": [
+      "No, it is sent in plain text.",
+      "Only if you use a TURN server.",
+      "Yes, WebRTC mandates encryption for all media (via SRTP) and data (via DTLS) streams.",
+      "Encryption is optional and depends on the browser."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Security is built-in. WebRTC will not establish a connection without DTLS (Datagram Transport Layer Security) for data and SRTP for media."
+  },
+  {
+    "question": "What is an SFU (Selective Forwarding Unit) in WebRTC architectures?",
+    "options": [
+      "A router that blocks malicious WebRTC traffic.",
+      "A server used in group video calls (like Zoom/Meet) that receives a single media stream from each participant and forwards it to all other participants, drastically reducing client upload bandwidth compared to a full mesh.",
+      "A database that stores user profiles.",
+      "Another name for a STUN server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In a 10-person P2P 'Mesh' call, a user must upload their video 9 times. With an SFU, they upload it once to the server, and the server forwards it to the 9 others."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary difference between IaaS (Infrastructure as a Service) and PaaS (Platform as a Service)?",
+    "options": [
+      "IaaS manages the OS and runtime for you, PaaS requires you to manage the OS.",
+      "IaaS provides raw computing resources (like VMs), while PaaS provides a managed environment for your code.",
+      "IaaS is for databases, PaaS is for frontend apps.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "AWS EC2 is IaaS (you manage the OS). Heroku or AWS Elastic Beanstalk is PaaS (you just upload your code, they handle the rest)."
+  },
+  {
+    "question": "What is AWS EC2?",
+    "options": [
+      "A managed relational database service.",
+      "A scalable cloud storage service.",
+      "A web service that provides secure, resizable compute capacity in the cloud (Virtual Machines).",
+      "A DNS routing service."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Amazon Elastic Compute Cloud (EC2) provides virtual servers (instances) for running applications on the AWS infrastructure."
+  },
+  {
+    "question": "Which AWS service is commonly used to host static frontend assets (like React builds)?",
+    "options": [
+      "AWS Lambda",
+      "Amazon S3",
+      "Amazon RDS",
+      "AWS Fargate"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Amazon S3 can be configured as a static website host, making it perfect for hosting SPAs like React or Vue."
+  },
+  {
+    "question": "What is Serverless Computing?",
+    "options": [
+      "Running code on the user's browser without any backend.",
+      "An execution model where the cloud provider dynamically manages the allocation and provisioning of servers.",
+      "Using physical hardware instead of virtual machines.",
+      "Storing all data locally on a mobile device."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In serverless computing (like AWS Lambda), developers write code, and the cloud provider handles the servers, scaling automatically based on traffic."
+  },
+  {
+    "question": "What is Nginx primarily used for in a deployment stack?",
+    "options": [
+      "As a primary SQL database.",
+      "As a Node.js runtime environment.",
+      "As a web server and reverse proxy.",
+      "As a CI/CD pipeline tool."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Nginx is widely used as a high-performance web server, reverse proxy, load balancer, and HTTP cache."
+  },
+  {
+    "question": "What is a Reverse Proxy?",
+    "options": [
+      "A server that sits in front of web servers and forwards client requests to those web servers.",
+      "A tool used by clients to hide their IP addresses.",
+      "A database that duplicates data backward in time.",
+      "A firewall for outgoing traffic."
+    ],
+    "correctOptionId": 0,
+    "explanation": "A reverse proxy (like Nginx or HAProxy) intercepts requests from clients and forwards them to the appropriate backend server."
+  },
+  {
+    "question": "Why is PM2 commonly used when deploying Node.js applications?",
+    "options": [
+      "To compile TypeScript to JavaScript.",
+      "To serve as a production process manager that keeps the app alive forever and handles restarts on crashes.",
+      "To route DNS traffic to the server.",
+      "To compress images before serving."
+    ],
+    "correctOptionId": 1,
+    "explanation": "PM2 is a daemon process manager that will help you manage and keep your application online 24/7."
+  },
+  {
+    "question": "What is the purpose of Environment Variables in deployment?",
+    "options": [
+      "To determine the weather conditions of the server room.",
+      "To securely store configuration data (like API keys and DB credentials) separately from the codebase.",
+      "To define the HTML structure of the app.",
+      "To speed up database indexing."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Environment variables are a set of dynamic values that can affect the way running processes will behave, keeping sensitive data out of source control."
+  },
+  {
+    "question": "What does a 'Blue-Green Deployment' strategy aim to achieve?",
+    "options": [
+      "Changing the color theme of the application.",
+      "Minimizing downtime and risk by running two identical production environments and switching traffic between them.",
+      "Deploying only the backend (blue) and frontend (green) separately.",
+      "Encrypting all data in transit."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Blue/Green deployment reduces risk by keeping the old version live (Blue) while deploying the new version (Green). Once Green is tested, traffic is switched over."
+  },
+  {
+    "question": "What is Amazon RDS?",
+    "options": [
+      "Relational Database Service; a managed service that makes it easy to set up, operate, and scale a relational database.",
+      "Remote Deployment Server; a tool for pushing code.",
+      "Rapid DNS System; a fast domain routing service.",
+      "Redis Data Store; a managed Redis cache."
+    ],
+    "correctOptionId": 0,
+    "explanation": "RDS provides cost-efficient and resizable capacity while automating time-consuming administration tasks such as hardware provisioning, database setup, patching, and backups."
+  }
+]

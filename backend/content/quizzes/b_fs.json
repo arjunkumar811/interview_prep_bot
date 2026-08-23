@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Which Node.js core module is used to interact with the File System?",
+    "options": [
+      "file",
+      "os",
+      "fs",
+      "path"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The 'fs' (file system) module provides an API for interacting with the file system in a manner closely modeled around standard POSIX functions."
+  },
+  {
+    "question": "What is the difference between fs.readFile() and fs.readFileSync()?",
+    "options": [
+      "fs.readFile is for text files; fs.readFileSync is for binary files.",
+      "fs.readFile is asynchronous and non-blocking; fs.readFileSync is synchronous and blocks the event loop.",
+      "fs.readFileSync is faster for large files.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "fs.readFile operates asynchronously, allowing Node.js to continue processing other requests. fs.readFileSync halts the entire process until the file is read."
+  },
+  {
+    "question": "Which method is used to write data to a file, replacing the file if it already exists?",
+    "options": [
+      "fs.appendFile()",
+      "fs.updateFile()",
+      "fs.writeFile()",
+      "fs.createFile()"
+    ],
+    "correctOptionId": 2,
+    "explanation": "fs.writeFile() asynchronously writes data to a file, replacing the file if it already exists."
+  },
+  {
+    "question": "What happens if you use fs.appendFile() on a file that does not exist?",
+    "options": [
+      "It throws an error.",
+      "It creates the file and writes the data to it.",
+      "It returns a null value.",
+      "It crashes the Node.js process."
+    ],
+    "correctOptionId": 1,
+    "explanation": "fs.appendFile() asynchronously appends data to a file. If the file does not exist, it is automatically created."
+  },
+  {
+    "question": "Which Node.js module is used to handle file paths across different operating systems?",
+    "options": [
+      "fs",
+      "url",
+      "directory",
+      "path"
+    ],
+    "correctOptionId": 3,
+    "explanation": "The 'path' module provides utilities for working with file and directory paths, ensuring compatibility between Windows and POSIX systems."
+  },
+  {
+    "question": "What is the purpose of 'Streams' when dealing with large files in Node.js?",
+    "options": [
+      "To load the entire file into memory before processing.",
+      "To read or write files piece by piece, preventing memory exhaustion.",
+      "To encrypt the file during transfer.",
+      "To compress the file."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Streams allow you to read or write data in chunks instead of loading the whole file into memory, which is essential for processing large files."
+  },
+  {
+    "question": "What is Multer?",
+    "options": [
+      "A database ORM.",
+      "A frontend library for creating forms.",
+      "A Node.js middleware for handling multipart/form-data, primarily used for uploading files.",
+      "A utility to delete files."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Multer is a popular Express middleware used specifically for handling multipart/form-data, which is necessary for file uploads."
+  },
+  {
+    "question": "Why is it generally considered a bad practice to store user-uploaded images directly on the application server's hard drive?",
+    "options": [
+      "It makes horizontal scaling difficult and risks data loss if the server fails.",
+      "It is slower than a SQL database.",
+      "Images take up less space in RAM.",
+      "It violates HTML standards."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Storing files on the app server makes it stateful. If you add a second server, it won't have access to those files. Cloud storage (like AWS S3) is preferred."
+  },
+  {
+    "question": "What is AWS S3 primarily used for in modern backend applications?",
+    "options": [
+      "Hosting a relational database.",
+      "Running Node.js code.",
+      "Object storage for static assets like images, videos, and documents.",
+      "Managing WebSocket connections."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Amazon S3 (Simple Storage Service) is an object storage service designed to store and retrieve any amount of data, commonly used for user uploads."
+  },
+  {
+    "question": "How can you generate a temporary, secure URL to allow a user to download a private file from S3?",
+    "options": [
+      "Change the S3 bucket to public.",
+      "Generate a Pre-Signed URL using the AWS SDK.",
+      "Send the file directly via an email attachment.",
+      "Store the file in a public GitHub repo."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Pre-signed URLs grant temporary access to objects in S3, allowing users to securely download or upload files without exposing the bucket to the public."
+  }
+]

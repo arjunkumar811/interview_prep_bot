@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Which of the following describes the philosophy behind the React Testing Library (RTL)?",
+    "options": [
+      "It tests the internal state and implementation details of components.",
+      "The more your tests resemble the way your software is used, the more confidence they can give you.",
+      "It tests components by interacting with the database.",
+      "It completely replaces Jest."
+    ],
+    "correctOptionId": 1,
+    "explanation": "RTL encourages testing the UI exactly how a user interacts with it (e.g., finding a button by its text and clicking it) rather than checking if an internal state variable `isOpen` changed from false to true."
+  },
+  {
+    "question": "In React Testing Library, what is the best query to use to find an element that a user would interact with?",
+    "options": [
+      "getByTestId",
+      "getByRole",
+      "getByClass",
+      "getById"
+    ],
+    "correctOptionId": 1,
+    "explanation": "`getByRole` (e.g., `getByRole('button', { name: 'Submit' })`) is the most preferred query because it ensures your component is accessible (a screen reader would find it the same way)."
+  },
+  {
+    "question": "What is the difference between `getBy...`, `queryBy...`, and `findBy...` in React Testing Library?",
+    "options": [
+      "There is no difference.",
+      "`getBy` throws an error if not found. `queryBy` returns null if not found (good for checking absence). `findBy` returns a Promise (good for async/waiting).",
+      "`getBy` is for CSS, `queryBy` is for XPath, `findBy` is for IDs.",
+      "`getBy` works in Jest, `queryBy` works in Mocha, `findBy` works in Cypress."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Understanding these three variants is crucial. If you want to assert an element is NOT on the screen, use `expect(screen.queryByText('Error')).toBeNull()`. Using `getByText` would throw an error and crash the test."
+  },
+  {
+    "question": "How do you test user interactions (like typing in an input) using React Testing Library?",
+    "options": [
+      "By manually setting the `value` property on the DOM element.",
+      "By using the `@testing-library/user-event` library, which simulates real browser events (like keydown, keypress, input).",
+      "By changing the React state directly.",
+      "Interactions cannot be tested."
+    ],
+    "correctOptionId": 1,
+    "explanation": "`userEvent.type(inputElement, 'Hello')` is much more accurate than `fireEvent.change` because it fires the exact sequence of events a real user's keyboard would."
+  },
+  {
+    "question": "What is a 'Snapshot Test'?",
+    "options": [
+      "A test that takes a screenshot of the browser window.",
+      "A test that captures a serialized string representation of your rendered component and saves it to a file. Future test runs compare the new output to the saved 'snapshot' to detect unexpected UI changes.",
+      "A test for a camera application.",
+      "A fast, immediate test."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Snapshot tests (often used in Jest) are great for ensuring the UI doesn't change unexpectedly. If it does change on purpose, you update the snapshot."
+  },
+  {
+    "question": "Which tool is considered the industry standard for End-to-End (E2E) testing modern web applications?",
+    "options": [
+      "Jest",
+      "Cypress (or Playwright)",
+      "Mocha",
+      "Jasmine"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Cypress and Playwright actually spin up a real browser (like Chrome), navigate to URLs, click elements, and assert that the application behaves correctly from the perspective of a real user."
+  },
+  {
+    "question": "Why is 'Mocking' essential when unit testing frontend components that fetch data?",
+    "options": [
+      "Because the frontend cannot connect to databases.",
+      "To prevent the tests from making actual network requests to the backend API, making the tests fast, deterministic, and independent of network stability.",
+      "To test how the backend handles errors.",
+      "Because fetch is disabled in Jest."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If your test hits a real API, it might fail because the API is down, not because your component is broken. You mock the `fetch` function to instantly return dummy data instead."
+  },
+  {
+    "question": "What is Mock Service Worker (MSW)?",
+    "options": [
+      "A server built in Node.js.",
+      "An API mocking library that uses Service Workers to intercept actual network requests in the browser or Node, allowing you to mock responses without modifying your application code or mocking `fetch` directly.",
+      "A tool to test Web Workers.",
+      "A database proxy."
+    ],
+    "correctOptionId": 1,
+    "explanation": "MSW is highly popular because it intercepts the HTTP requests at the network level. Your React component still thinks it's making a real `fetch()` call, making the test much more authentic."
+  },
+  {
+    "question": "What is the Arrange-Act-Assert (AAA) pattern in testing?",
+    "options": [
+      "A method for sorting test files.",
+      "A standard structure for writing tests: Set up the conditions (Arrange), perform the action being tested (Act), and verify the outcome (Assert).",
+      "A testing library.",
+      "A security standard."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Following AAA makes tests highly readable. First you render the component (Arrange), then you click a button (Act), then you expect text to appear (Assert)."
+  },
+  {
+    "question": "What does a test coverage metric of 100% guarantee?",
+    "options": [
+      "That the application is completely bug-free.",
+      "That every line of code was executed during the test suite, but it does NOT guarantee that the logic is perfectly correct or that all edge cases were tested.",
+      "That the application is secure.",
+      "That no refactoring is needed."
+    ],
+    "correctOptionId": 1,
+    "explanation": "High coverage is good, but 100% coverage is often a vanity metric. You can execute a line of code without writing a proper assertion for its outcome."
+  }
+]

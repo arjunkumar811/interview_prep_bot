@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is an API (Application Programming Interface)?",
+    "options": [
+      "A graphical user interface for a database.",
+      "A set of rules and protocols that allows different software applications to communicate with each other.",
+      "A programming language used for the backend.",
+      "A type of physical internet connection."
+    ],
+    "correctOptionId": 1,
+    "explanation": "An API is a contract between a provider and a consumer. The frontend (consumer) uses the backend's API to request data or trigger actions."
+  },
+  {
+    "question": "Which browser API is the modern standard for making asynchronous network requests to a server?",
+    "options": [
+      "XMLHttpRequest (XHR)",
+      "The Fetch API",
+      "The Network API",
+      "The Request API"
+    ],
+    "correctOptionId": 1,
+    "explanation": "While XMLHttpRequest was the original way to perform AJAX (Asynchronous JavaScript and XML), the Fetch API is the modern, Promise-based standard."
+  },
+  {
+    "question": "What is the primary difference between `fetch()` and libraries like `axios`?",
+    "options": [
+      "`fetch` is faster.",
+      "`fetch` requires manual conversion of the response body to JSON (e.g., `res.json()`) and doesn't reject the Promise on HTTP error statuses (like 404 or 500). `axios` handles these automatically.",
+      "`axios` only works in Node.js, not browsers.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Many developers prefer `axios` because it automatically transforms JSON data and throws errors for non-2xx HTTP responses, making error handling simpler than raw `fetch()`."
+  },
+  {
+    "question": "What is a RESTful API?",
+    "options": [
+      "An API that sleeps to conserve server resources.",
+      "An architectural style for designing networked applications, relying on stateless, client-server communication, usually over HTTP, manipulating 'resources' via standard methods (GET, POST, etc.).",
+      "An API that strictly uses XML.",
+      "An API that uses WebSockets for real-time communication."
+    ],
+    "correctOptionId": 1,
+    "explanation": "REST (Representational State Transfer) is the most common way to build web APIs. In REST, a URL represents a resource (e.g., `/users/1`), and the HTTP method defines the action (GET to read, DELETE to remove)."
+  },
+  {
+    "question": "Which HTTP method is used to update an existing resource comprehensively?",
+    "options": [
+      "POST",
+      "PUT",
+      "PATCH",
+      "UPDATE"
+    ],
+    "correctOptionId": 1,
+    "explanation": "PUT is used to completely replace an existing resource. PATCH is used to apply partial modifications to a resource. POST is used to create a new resource."
+  },
+  {
+    "question": "What is CORS (Cross-Origin Resource Sharing)?",
+    "options": [
+      "A way to share database credentials securely.",
+      "A browser security mechanism that restricts a webpage from making requests to a different domain than the one that served the webpage, unless the server explicitly allows it.",
+      "A method for caching API responses.",
+      "A tool to optimize images."
+    ],
+    "correctOptionId": 1,
+    "explanation": "By default, if your frontend is on `localhost:3000` and it calls an API on `localhost:8000`, the browser will block the request. The backend must send CORS headers (e.g., `Access-Control-Allow-Origin: *`) to permit it."
+  },
+  {
+    "question": "What is a 'Preflight Request' in CORS?",
+    "options": [
+      "A request to download the airplane flight manifest.",
+      "An initial HTTP `OPTIONS` request sent by the browser before the actual request (e.g., a POST or a request with custom headers) to verify that the server will accept the actual request.",
+      "A request to check if the user is online.",
+      "A request to load the CSS file."
+    ],
+    "correctOptionId": 1,
+    "explanation": "For complex requests, the browser asks for permission first. If the server's response to the OPTIONS request indicates that the action is allowed, the browser then sends the real request."
+  },
+  {
+    "question": "When fetching data in a React component, why is the fetch call usually placed inside a `useEffect` hook?",
+    "options": [
+      "Because `fetch` is a synchronous function.",
+      "To ensure the data is fetched after the component mounts, and to prevent an infinite loop of fetching if state updates trigger a re-render.",
+      "Because it is required by the React compiler.",
+      "To make the fetch call run faster."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you call `fetch` directly in the main body of a functional component, it will run every time the component renders. If the fetch updates state, it triggers a re-render, causing an infinite loop. `useEffect` with an empty dependency array `[]` ensures it runs only once."
+  },
+  {
+    "question": "What does HTTP status code 401 mean?",
+    "options": [
+      "Not Found (The URL doesn't exist).",
+      "Unauthorized (The client must authenticate itself to get the requested response).",
+      "Forbidden (The client is authenticated, but does not have permission).",
+      "Internal Server Error."
+    ],
+    "correctOptionId": 1,
+    "explanation": "401 usually means 'You are not logged in' (or your token expired). 403 means 'You are logged in, but you aren't an admin, so you can't view this'."
+  },
+  {
+    "question": "What is GraphQL in the context of frontend data fetching?",
+    "options": [
+      "A graph database used on the frontend.",
+      "An alternative to REST that allows the frontend client to specify exactly what data it needs in a single query, preventing over-fetching and under-fetching.",
+      "A charting library.",
+      "A tool for creating UML diagrams."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Instead of hitting `/users/1` and getting 50 fields back, and then hitting `/users/1/posts` to get their posts (REST), GraphQL allows the client to send a single query asking precisely for `name` and `recentPosts`."
+  }
+]

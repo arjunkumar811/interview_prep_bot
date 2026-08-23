@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Vertical Scaling (Scaling Up)?",
+    "options": [
+      "Adding more servers to a network.",
+      "Increasing the capacity of a single machine by adding more CPU, RAM, or faster storage (e.g., SSDs).",
+      "Moving data from a relational database to a NoSQL database.",
+      "Optimizing the application code to run faster."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Vertical scaling means taking your existing server and making it 'bigger' or more powerful to handle increased load."
+  },
+  {
+    "question": "What is a primary advantage of Vertical Scaling?",
+    "options": [
+      "It provides infinite scalability.",
+      "It requires virtually no changes to the application code or architecture.",
+      "It automatically creates backups of the data.",
+      "It eliminates the single point of failure."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because you are simply running the exact same application on a more powerful machine, you don't have to worry about complex distributed systems logic (like load balancing or distributed state)."
+  },
+  {
+    "question": "What is the biggest limitation of Vertical Scaling?",
+    "options": [
+      "It requires a complete rewrite of the database.",
+      "There is a hard physical and financial ceiling (you can only buy a server with so much RAM/CPU).",
+      "It is slower than horizontal scaling.",
+      "It requires a load balancer."
+    ],
+    "correctOptionId": 1,
+    "explanation": "At a certain point, the most powerful server in the world will not be enough to handle the traffic of a massively popular application, forcing a transition to horizontal scaling."
+  },
+  {
+    "question": "How does Vertical Scaling impact System Availability?",
+    "options": [
+      "It inherently increases availability by adding redundancy.",
+      "It does not improve availability and maintains a Single Point of Failure (if that one powerful server dies, the whole app goes down).",
+      "It guarantees 100% uptime.",
+      "It automatically routes traffic to a backup server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A vertically scaled system is still just one machine. It offers no redundancy."
+  },
+  {
+    "question": "In modern cloud environments (like AWS EC2), how is Vertical Scaling typically achieved?",
+    "options": [
+      "By physically mailing RAM to the data center.",
+      "By stopping the instance, changing the Instance Type (e.g., from t3.micro to t3.large), and restarting it.",
+      "By modifying the source code.",
+      "By deploying a Docker container."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Cloud providers make vertical scaling trivial via virtualization. You can upgrade the virtual hardware with a few clicks, though it usually requires a short period of downtime (reboot)."
+  },
+  {
+    "question": "When is Vertical Scaling highly recommended over Horizontal Scaling?",
+    "options": [
+      "For massive global web applications like Facebook.",
+      "When the application relies heavily on complex relational database transactions (RDBMS), as sharding a relational DB is extremely difficult.",
+      "When you need 99.999% uptime.",
+      "When serving static assets."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Relational databases (like PostgreSQL or MySQL) are much easier to scale vertically. You simply give the database server more RAM and CPU until it absolutely cannot keep up anymore."
+  },
+  {
+    "question": "What is a 'Mainframe' in the context of Vertical Scaling?",
+    "options": [
+      "A small Raspberry Pi cluster.",
+      "The ultimate example of vertical scaling: massive, ultra-reliable, highly powerful single computers traditionally used by banks for bulk data processing.",
+      "A frontend framework.",
+      "A type of NoSQL database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Before the era of distributed cloud computing, massive organizations bought mainframes—incredibly expensive, monolithic computers—to handle their immense workloads."
+  },
+  {
+    "question": "Can an application be scaled both vertically and horizontally?",
+    "options": [
+      "No, you must choose one or the other.",
+      "Yes, you can have a cluster (horizontal) of highly powerful servers (vertical) working together.",
+      "Yes, but only if you use a specific programming language.",
+      "No, it violates cloud computing principles."
+    ],
+    "correctOptionId": 1,
+    "explanation": "They are not mutually exclusive. A common pattern is to vertically scale database nodes as high as reasonably affordable, and then horizontally scale the stateless application servers."
+  },
+  {
+    "question": "Why does Vertical Scaling often suffer from diminishing returns?",
+    "options": [
+      "Because older code runs slower on new hardware.",
+      "Because software often hits concurrency bottlenecks (like lock contention or single-threaded limits) that prevent it from utilizing 64 or 128 CPU cores effectively.",
+      "Because RAM gets slower as it gets larger.",
+      "Because the internet connection caps out."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Just throwing 128 cores at an application doesn't mean it will run 128x faster if the underlying software architecture relies heavily on single-threaded event loops (like Node.js, without clustering) or database locks."
+  },
+  {
+    "question": "How does the cost of Vertical Scaling generally scale at the extreme high end?",
+    "options": [
+      "Linearly (a server twice as powerful costs twice as much).",
+      "Exponentially (a server twice as powerful might cost 5x or 10x as much due to the premium on cutting-edge hardware).",
+      "It becomes cheaper.",
+      "It is free in the cloud."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Commodity hardware (horizontal) is cheap. The absolute fastest, highest-capacity server processors and massive RAM sticks carry a massive price premium."
+  }
+]

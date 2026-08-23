@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What does CSS stand for?",
+    "options": [
+      "Computer Style Sheets",
+      "Creative Style Sheets",
+      "Cascading Style Sheets",
+      "Colorful Style Sheets"
+    ],
+    "correctOptionId": 2,
+    "explanation": "CSS stands for Cascading Style Sheets. The term 'Cascading' refers to the algorithm that determines which styles are applied when multiple rules target the same element."
+  },
+  {
+    "question": "Which of the following is the correct CSS syntax to change the background color of a page to red?",
+    "options": [
+      "body {background-color: red;}",
+      "body {bg-color: red;}",
+      "{body:color=red;}",
+      "<body style='background-color:red;'>"
+    ],
+    "correctOptionId": 0,
+    "explanation": "The correct syntax selects the 'body' tag and applies the 'background-color' property with the value 'red' inside curly braces."
+  },
+  {
+    "question": "What is the 'Box Model' in CSS?",
+    "options": [
+      "A layout mode for creating 3D boxes.",
+      "A fundamental concept that describes how elements are structured, consisting of margins, borders, padding, and the actual content.",
+      "A CSS framework like Bootstrap.",
+      "A method for storing CSS variables."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Every element in web design is a rectangular box. The CSS box model wraps around HTML elements and consists of margins, borders, padding, and the actual content."
+  },
+  {
+    "question": "In the CSS box model, what is the difference between Padding and Margin?",
+    "options": [
+      "Padding is outside the border; Margin is inside the border.",
+      "Padding is the space between the content and the border; Margin is the space outside the border, pushing other elements away.",
+      "Padding adds color; Margin does not.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Padding increases the size of the element itself (inside the border). Margin pushes other elements away (outside the border)."
+  },
+  {
+    "question": "What does the `box-sizing: border-box;` property do?",
+    "options": [
+      "It adds a border to all boxes.",
+      "It tells the browser to account for any border and padding in the values you specify for an element's width and height.",
+      "It removes the margin from all elements.",
+      "It converts a block element to an inline element."
+    ],
+    "correctOptionId": 1,
+    "explanation": "By default (content-box), if you set width to 100px and padding to 10px, the total width is 120px. With border-box, the total width remains 100px, and the content shrinks."
+  },
+  {
+    "question": "Which CSS property is used to create a Flexbox container?",
+    "options": [
+      "display: flex;",
+      "layout: flexbox;",
+      "align: flex;",
+      "position: flex;"
+    ],
+    "correctOptionId": 0,
+    "explanation": "Applying 'display: flex;' to a container element enables a flexible layout context for all of its direct children."
+  },
+  {
+    "question": "In Flexbox, which property aligns items along the main axis?",
+    "options": [
+      "align-items",
+      "justify-content",
+      "flex-direction",
+      "align-content"
+    ],
+    "correctOptionId": 1,
+    "explanation": "'justify-content' aligns items horizontally (assuming row direction), while 'align-items' aligns them vertically."
+  },
+  {
+    "question": "What is the primary difference between CSS Grid and Flexbox?",
+    "options": [
+      "Grid is older and deprecated; Flexbox is new.",
+      "Flexbox is strictly for 1-dimensional layouts (rows OR columns); CSS Grid is for 2-dimensional layouts (rows AND columns).",
+      "Flexbox uses less code.",
+      "Grid only works for images."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Flexbox excels at laying out items in a single line. Grid excels at dividing a page into major regions or laying out complex, grid-based designs."
+  },
+  {
+    "question": "Which of the following selectors targets an element with the ID 'header'?",
+    "options": [
+      ".header",
+      "*header",
+      "#header",
+      "header"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The '#' symbol is used to select elements by their ID attribute. The '.' symbol is used for classes."
+  },
+  {
+    "question": "What is 'Specificity' in CSS?",
+    "options": [
+      "The exact pixel width of an element.",
+      "The rule used by browsers to determine which CSS property values are the most relevant to an element and, therefore, will be applied.",
+      "The specific version of CSS being used.",
+      "A tool for minifying CSS files."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Specificity resolves conflicts. If you write `p { color: blue; }` and `.text { color: red; }`, the class selector (`.text`) has higher specificity, so the paragraph will be red."
+  }
+]

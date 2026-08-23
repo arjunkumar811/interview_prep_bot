@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary problem that the 'Saga Pattern' attempts to solve in a microservices architecture?",
+    "options": [
+      "Routing traffic to the fastest microservice.",
+      "Managing distributed transactions across multiple microservices without using tight coupling or distributed locks.",
+      "Preventing DDoS attacks on API gateways.",
+      "Managing frontend state."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because microservices usually have their own databases, a traditional ACID transaction can't span across them. A Saga manages distributed transactions through a sequence of local transactions."
+  },
+  {
+    "question": "In a Saga pattern, what happens if a local transaction fails in the middle of the sequence?",
+    "options": [
+      "The database automatically rolls back all previous transactions.",
+      "The system stops and waits for manual human intervention.",
+      "The Saga executes a series of 'Compensating Transactions' to undo the changes made by the preceding local transactions.",
+      "The error is ignored, and the process continues."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Compensating transactions are the cornerstone of Sagas. If step 3 fails, the Saga must trigger compensating actions for step 2 and step 1 to maintain data consistency."
+  },
+  {
+    "question": "What are the two main ways to coordinate a Saga?",
+    "options": [
+      "Synchronous and Asynchronous",
+      "Choreography and Orchestration",
+      "Database and In-Memory",
+      "TCP and UDP"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Choreography relies on events (services react to each other). Orchestration relies on a central controller (an orchestrator) that commands the services."
+  },
+  {
+    "question": "What is the 'Circuit Breaker' pattern?",
+    "options": [
+      "A pattern to turn off the server at night to save electricity.",
+      "A pattern that prevents an application from repeatedly trying to execute an operation that's likely to fail, protecting failing dependencies from being overwhelmed.",
+      "A pattern for encrypting network traffic.",
+      "A pattern for breaking monolithic databases into smaller ones."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Just like an electrical circuit breaker, if a remote service is failing (e.g., timing out), the breaker 'trips' and immediately returns an error instead of making the call, giving the broken service time to recover."
+  },
+  {
+    "question": "In the Circuit Breaker pattern, what does the 'Half-Open' state mean?",
+    "options": [
+      "The circuit is broken, and no traffic is allowed.",
+      "The circuit is closed, and all traffic is allowed.",
+      "The circuit breaker allows a limited number of test requests to pass through to see if the underlying problem has been resolved.",
+      "The service is being actively monitored by an admin."
+    ],
+    "correctOptionId": 2,
+    "explanation": "After a timeout period in the 'Open' state, the breaker transitions to 'Half-Open'. If the test requests succeed, it closes the circuit. If they fail, it trips back to 'Open'."
+  },
+  {
+    "question": "What is the 'API Gateway' pattern?",
+    "options": [
+      "A single entry point that sits between clients and microservices, handling routing, composition, and edge functions (like auth and rate limiting).",
+      "A database schema for storing API keys.",
+      "A pattern for making outgoing requests to third-party APIs.",
+      "A frontend pattern for fetching data."
+    ],
+    "correctOptionId": 0,
+    "explanation": "An API gateway abstracts the microservice architecture from the client. It provides a unified API, routes requests to the correct services, and can aggregate multiple responses."
+  },
+  {
+    "question": "What is the 'BFF' (Backend for Frontend) pattern?",
+    "options": [
+      "A backend that only serves HTML pages.",
+      "A variation of the API Gateway pattern where a specific gateway is created for each specific type of client (e.g., one for Web, one for Mobile).",
+      "A pattern where the frontend directly connects to the database.",
+      "A backend written entirely in JavaScript."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Mobile apps and Web apps often need different data payloads. A BFF allows each client to have an API tailored to its specific needs without bloating a single, monolithic API Gateway."
+  },
+  {
+    "question": "What does CQRS stand for?",
+    "options": [
+      "Command Query Responsibility Segregation",
+      "Centralized Query and Request System",
+      "Control Quality Response Service",
+      "Client Query Request Server"
+    ],
+    "correctOptionId": 0,
+    "explanation": "CQRS is an architectural pattern that separates the models used for reading data (Queries) from the models used for updating data (Commands)."
+  },
+  {
+    "question": "What is the primary benefit of the CQRS pattern?",
+    "options": [
+      "It simplifies the database structure.",
+      "It allows you to scale read and write workloads independently and optimize the database schemas for each specific task.",
+      "It eliminates the need for caching.",
+      "It prevents SQL injection."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In complex applications, reads often vastly outnumber writes. CQRS allows you to have a highly normalized database for writes, and a denormalized, heavily indexed (or even NoSQL) database for fast reads."
+  },
+  {
+    "question": "What is 'Event Sourcing'?",
+    "options": [
+      "A pattern where state changes are logged as a sequence of events, rather than just storing the current state in a database.",
+      "A pattern for sourcing third-party APIs.",
+      "A method of finding errors in the event loop.",
+      "A way to trigger frontend animations."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Instead of storing 'Account Balance: $100', Event Sourcing stores 'Deposited $50, Deposited $50'. The current state is derived by replaying the events. This provides a perfect audit trail and allows for 'time travel'."
+  }
+]

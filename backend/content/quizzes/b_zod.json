@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Zod?",
+    "options": [
+      "A database ORM like Prisma.",
+      "A TypeScript-first schema declaration and validation library.",
+      "A CSS-in-JS framework.",
+      "A testing framework for Node.js."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Zod is designed to declare a schema for your data and then parse/validate incoming data against that schema, ensuring runtime type safety."
+  },
+  {
+    "question": "Which of the following best describes the relationship between Zod and TypeScript?",
+    "options": [
+      "Zod replaces TypeScript entirely.",
+      "Zod only works in pure JavaScript.",
+      "Zod eliminates duplicated type declarations by inferring static TypeScript types directly from the schema.",
+      "TypeScript types compile into Zod schemas automatically."
+    ],
+    "correctOptionId": 2,
+    "explanation": "With Zod, you declare a validator once, and Zod will automatically infer the static TypeScript type (using z.infer)."
+  },
+  {
+    "question": "How do you create a basic string schema in Zod?",
+    "options": [
+      "z.String()",
+      "z.string()",
+      "new ZodString()",
+      "z.type('string')"
+    ],
+    "correctOptionId": 1,
+    "explanation": "In Zod, primitives are defined using lowercase methods on the imported 'z' object, like z.string()."
+  },
+  {
+    "question": "What is the difference between schema.parse() and schema.safeParse() in Zod?",
+    "options": [
+      "parse() is asynchronous; safeParse() is synchronous.",
+      "parse() throws an error if validation fails; safeParse() returns an object containing a success boolean and the data or error.",
+      "parse() only checks strings; safeParse() checks all types.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "safeParse() is preferred when you want to handle validation errors gracefully without using try/catch blocks."
+  },
+  {
+    "question": "How do you extract the inferred TypeScript type from a Zod schema?",
+    "options": [
+      "type MyType = typeof schema;",
+      "type MyType = schema.Type;",
+      "type MyType = z.infer<typeof schema>;",
+      "type MyType = Extract<schema>;"
+    ],
+    "correctOptionId": 2,
+    "explanation": "z.infer<typeof schema> allows you to extract the TypeScript type that matches your Zod schema, keeping your types and runtime validation in sync."
+  },
+  {
+    "question": "How do you make a field optional in a Zod object schema?",
+    "options": [
+      "z.string().optional()",
+      "z.string()?",
+      "z.optional(z.string())",
+      "z.string().allowNull()"
+    ],
+    "correctOptionId": 0,
+    "explanation": "Chaining .optional() to a Zod type allows it to be undefined."
+  },
+  {
+    "question": "What does z.object({ ... }).strict() do?",
+    "options": [
+      "It prevents the object from being modified (Object.freeze).",
+      "It fails the validation if the parsed object contains any unrecognized keys.",
+      "It strictly checks if the keys are in alphabetical order.",
+      "It forces all properties to be required."
+    ],
+    "correctOptionId": 1,
+    "explanation": "By default, Zod objects strip out unrecognized keys. Using .strict() changes this behavior to throw an error instead."
+  },
+  {
+    "question": "How do you define an array of numbers in Zod?",
+    "options": [
+      "z.array(z.number())",
+      "z.number().array()",
+      "z.list(z.number())",
+      "Both A and B"
+    ],
+    "correctOptionId": 3,
+    "explanation": "Zod supports both z.array(z.number()) and z.number().array() to define an array of a specific type."
+  },
+  {
+    "question": "What is a common use case for Zod in an Express application?",
+    "options": [
+      "Parsing JSON bodies (replacing body-parser).",
+      "Validating incoming request payloads (req.body, req.query) against a defined schema before processing the request.",
+      "Connecting to the database.",
+      "Generating HTML templates."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Zod is widely used in Express middleware to validate incoming data to ensure it matches the expected structure before it reaches the controller logic."
+  },
+  {
+    "question": "How do you add custom error messages to a Zod schema?",
+    "options": [
+      "z.string().message('Custom error')",
+      "z.string({ required_error: 'Name is required', invalid_type_error: 'Name must be a string' })",
+      "z.string().error('Custom error')",
+      "Custom error messages are not supported in Zod."
+    ],
+    "correctOptionId": 1,
+    "explanation": "You can pass an options object to Zod primitives to define custom error messages for required and type errors."
+  }
+]

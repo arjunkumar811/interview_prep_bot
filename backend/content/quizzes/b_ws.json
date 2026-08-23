@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is WebSockets?",
+    "options": [
+      "A JavaScript library for frontend routing.",
+      "A communications protocol providing full-duplex communication channels over a single TCP connection.",
+      "A database standard for real-time querying.",
+      "An alternative to HTTP that only supports one-way communication."
+    ],
+    "correctOptionId": 1,
+    "explanation": "WebSockets allow for persistent, full-duplex (two-way) communication between a client and a server over a single TCP connection."
+  },
+  {
+    "question": "Which HTTP status code is used for the WebSocket handshake (Protocol Upgrade)?",
+    "options": [
+      "200 OK",
+      "101 Switching Protocols",
+      "301 Moved Permanently",
+      "426 Upgrade Required"
+    ],
+    "correctOptionId": 1,
+    "explanation": "To establish a WebSocket connection, the client sends an HTTP Upgrade request, and the server responds with a 101 Switching Protocols."
+  },
+  {
+    "question": "How does WebSocket differ from HTTP Long-Polling?",
+    "options": [
+      "Long-polling keeps a persistent TCP connection; WebSocket creates a new connection for every message.",
+      "WebSocket is unidirectional; Long-polling is bidirectional.",
+      "WebSocket keeps a single open connection for bidirectional messaging; Long-polling requires the client to constantly open new HTTP requests.",
+      "There is no difference."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Long-polling simulates real-time by keeping an HTTP request open until data is ready, then requires a new request. WebSockets use a single, truly persistent connection."
+  },
+  {
+    "question": "What is Socket.IO?",
+    "options": [
+      "A hardware component for servers.",
+      "A native browser API that replaces WebSockets.",
+      "A JavaScript library that enables real-time, bidirectional communication, using WebSockets with fallbacks.",
+      "A database specifically designed for WebSockets."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Socket.IO is a library that builds on top of WebSockets, providing extra features like automatic reconnections, broadcasting, and fallbacks to long-polling if WebSockets fail."
+  },
+  {
+    "question": "In a Node.js WebSocket server, how do you broadcast a message to all connected clients?",
+    "options": [
+      "socket.emit('message', data)",
+      "socket.sendAll(data)",
+      "You must manually iterate over an array of all connected clients and send the message to each.",
+      "server.broadcast(data)"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Using raw 'ws', you must iterate over the server.clients Set and send the message to each. (Socket.IO simplifies this with io.emit)."
+  },
+  {
+    "question": "What is the correct URI scheme for a secure WebSocket connection?",
+    "options": [
+      "https://",
+      "wss://",
+      "ws://",
+      "sws://"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Just as HTTP uses 'http' and 'https', WebSockets use 'ws' for unencrypted and 'wss' (WebSocket Secure) for encrypted connections."
+  },
+  {
+    "question": "Why is scaling WebSockets horizontally more difficult than scaling REST APIs?",
+    "options": [
+      "Because WebSockets require more CPU power.",
+      "Because WebSockets are stateful; clients maintain a persistent connection to a specific server instance.",
+      "Because load balancers do not support WebSockets.",
+      "Because WebSockets cannot send JSON data."
+    ],
+    "correctOptionId": 1,
+    "explanation": "REST is stateless, so any server can handle any request. WebSockets are stateful, so if a user is connected to Server A, Server B doesn't know about them."
+  },
+  {
+    "question": "How do you solve the challenge of broadcasting messages across multiple WebSocket server instances?",
+    "options": [
+      "Use a sticky session in the load balancer.",
+      "Store all messages in a SQL database.",
+      "Use a Pub/Sub mechanism (like Redis Pub/Sub) to share events between servers.",
+      "It is impossible to broadcast across multiple instances."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Using a Pub/Sub broker (like Redis Adapter in Socket.IO) allows Server A to publish an event to Redis, which Server B then receives and broadcasts to its clients."
+  },
+  {
+    "question": "What does 'Sticky Sessions' mean in the context of load balancing WebSockets?",
+    "options": [
+      "The server refuses to disconnect a client.",
+      "The load balancer routes all requests from a specific client to the same server instance.",
+      "The browser saves the session ID in local storage.",
+      "The WebSocket connection is kept alive indefinitely."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Sticky sessions (or session affinity) ensure that once a client connects to a specific server behind a load balancer, all subsequent requests (like the HTTP upgrade) go to the same server."
+  },
+  {
+    "question": "What is a common security vulnerability with WebSockets?",
+    "options": [
+      "Cross-Site WebSocket Hijacking (CSWSH)",
+      "SQL Injection directly into the socket object",
+      "Buffer Overflow in the browser console",
+      "Insecure Direct Object Reference (IDOR) on the TCP layer"
+    ],
+    "correctOptionId": 0,
+    "explanation": "CSWSH is similar to CSRF. An attacker can trick a user's browser into opening a WebSocket connection to the vulnerable site using the user's authenticated session cookies."
+  }
+]

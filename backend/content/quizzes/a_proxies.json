@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is a Forward Proxy?",
+    "options": [
+      "A server that sits in front of a group of web servers and forwards client requests to them.",
+      "A server that sits in front of a group of client machines and forwards their outbound requests to the internet.",
+      "A database that duplicates data forward in time.",
+      "A JavaScript function that intercepts object calls."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A forward proxy (often just called a proxy) acts on behalf of clients, hiding their identities from the internet and often caching outbound requests or filtering content (like a corporate network proxy)."
+  },
+  {
+    "question": "What is a Reverse Proxy?",
+    "options": [
+      "A server that sits in front of one or more web servers, intercepting requests from clients and forwarding them to the appropriate backend server.",
+      "A server that undoes recent database changes.",
+      "A client-side script that intercepts HTTP responses.",
+      "A tool used to mask a client's IP address."
+    ],
+    "correctOptionId": 0,
+    "explanation": "A reverse proxy acts on behalf of the servers, protecting them from direct internet exposure, handling load balancing, SSL termination, and caching."
+  },
+  {
+    "question": "Which of the following is NOT a typical function of a Reverse Proxy?",
+    "options": [
+      "Load Balancing",
+      "SSL Termination",
+      "Hiding the client's IP address from the internet",
+      "Caching static content"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Hiding a client's IP from the internet is the job of a Forward Proxy (like a VPN). A Reverse Proxy hides the *backend server's* IP from the client."
+  },
+  {
+    "question": "What does 'SSL Termination' mean in the context of a reverse proxy?",
+    "options": [
+      "The proxy blocks all HTTPS traffic.",
+      "The proxy handles the computationally heavy SSL decryption and passes unencrypted HTTP traffic to the backend servers.",
+      "The proxy forces the backend servers to use SSL.",
+      "The proxy revokes invalid SSL certificates."
+    ],
+    "correctOptionId": 1,
+    "explanation": "SSL Termination offloads the burden of encrypting/decrypting HTTPS traffic from the backend application servers to the reverse proxy, which is heavily optimized for it."
+  },
+  {
+    "question": "Which software is widely considered the industry standard for a high-performance Reverse Proxy and web server?",
+    "options": [
+      "Apache Tomcat",
+      "Nginx",
+      "Node.js",
+      "Redis"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Nginx (pronounced 'Engine-X') is famous for its high performance, stability, rich feature set, and low resource consumption as a reverse proxy."
+  },
+  {
+    "question": "Why would you use a Reverse Proxy to cache content?",
+    "options": [
+      "To prevent SQL injection attacks.",
+      "To serve static files or frequently requested dynamic data instantly without hitting the backend application server.",
+      "To store user passwords securely.",
+      "To convert XML to JSON."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Caching at the reverse proxy layer drastically reduces the load on backend servers and databases, resulting in much faster response times for clients."
+  },
+  {
+    "question": "In Nginx, which directive is used to forward requests to a backend Node.js server?",
+    "options": [
+      "forward_to",
+      "proxy_pass",
+      "backend_route",
+      "send_request"
+    ],
+    "correctOptionId": 1,
+    "explanation": "The 'proxy_pass' directive inside an Nginx location block tells Nginx to forward the incoming request to the specified backend URL (e.g., proxy_pass http://localhost:3000;)."
+  },
+  {
+    "question": "What is Envoy?",
+    "options": [
+      "A frontend JavaScript framework.",
+      "An open-source edge and service proxy designed for cloud-native applications and service meshes.",
+      "A managed database service by AWS.",
+      "A type of message queue."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Envoy (created by Lyft) is a high-performance C++ distributed proxy designed for single services and applications, heavily used in modern microservice architectures (Service Mesh)."
+  },
+  {
+    "question": "What happens to the original Client IP address when a request passes through a Reverse Proxy?",
+    "options": [
+      "It is preserved exactly as is.",
+      "It is replaced by the Reverse Proxy's IP address.",
+      "It is encrypted into a hash.",
+      "It is completely discarded."
+    ],
+    "correctOptionId": 1,
+    "explanation": "At the TCP layer, the backend server sees the connection coming from the proxy's IP. To pass the original client IP, proxies add special HTTP headers."
+  },
+  {
+    "question": "Which HTTP header is standardly used by reverse proxies to pass the original client's IP address to the backend server?",
+    "options": [
+      "X-Original-IP",
+      "Client-IP-Address",
+      "X-Forwarded-For",
+      "Source-IP"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The X-Forwarded-For (XFF) HTTP header field is a common method for identifying the originating IP address of a client connecting to a web server through an HTTP proxy."
+  }
+]

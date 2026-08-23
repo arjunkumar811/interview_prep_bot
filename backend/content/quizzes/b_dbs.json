@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What does SQL stand for?",
+    "options": [
+      "Structured Query Language",
+      "Standard Query Language",
+      "Simple Query Language",
+      "Sequential Query Language"
+    ],
+    "correctOptionId": 0,
+    "explanation": "SQL stands for Structured Query Language, the standard language for relational database management systems."
+  },
+  {
+    "question": "Which of the following is a key characteristic of NoSQL databases?",
+    "options": [
+      "They always use strict tables and schemas.",
+      "They are generally designed to scale vertically.",
+      "They offer flexible, schema-less data models.",
+      "They exclusively use SQL for querying data."
+    ],
+    "correctOptionId": 2,
+    "explanation": "NoSQL databases (like MongoDB) provide a mechanism for storage and retrieval of data that is modeled in means other than the tabular relations used in relational databases."
+  },
+  {
+    "question": "In a relational database, what is a Primary Key?",
+    "options": [
+      "A key used to encrypt the database table",
+      "A unique identifier for each record in a table",
+      "The first column in any database table",
+      "A foreign key from another table"
+    ],
+    "correctOptionId": 1,
+    "explanation": "A primary key is a specific choice of a minimal set of attributes that uniquely specify a tuple (row) in a relation (table)."
+  },
+  {
+    "question": "What is the main purpose of Database Normalization?",
+    "options": [
+      "To increase data redundancy and improve read speed",
+      "To organize data to reduce redundancy and improve data integrity",
+      "To format database output for web pages",
+      "To convert a NoSQL database into a SQL database"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Normalization is the process of structuring a relational database in accordance with a series of so-called normal forms to reduce data redundancy and improve data integrity."
+  },
+  {
+    "question": "ACID properties are fundamental to database transactions. What does the 'A' stand for?",
+    "options": [
+      "Availability",
+      "Atomicity",
+      "Accuracy",
+      "Aggregation"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Atomicity ensures that a transaction is treated as a single, indivisible logical unit of work. Either all of it executes, or none of it does."
+  },
+  {
+    "question": "Which of the following describes the 'Consistency' property in ACID?",
+    "options": [
+      "Data must be highly available across global regions.",
+      "A transaction must take the database from one valid state to another valid state.",
+      "All reads must return the most recent write immediately.",
+      "Data formats must remain consistent across different tables."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Consistency ensures that a database remains in a valid state following any transaction, adhering to all defined rules, constraints, and cascades."
+  },
+  {
+    "question": "What is an Index in a database?",
+    "options": [
+      "A copy of the database for backup purposes",
+      "A data structure that improves the speed of data retrieval operations",
+      "The starting ID for a primary key column",
+      "A log of all recent queries"
+    ],
+    "correctOptionId": 1,
+    "explanation": "An index is a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space."
+  },
+  {
+    "question": "Which of the following is an example of a Document-Oriented NoSQL database?",
+    "options": [
+      "PostgreSQL",
+      "Redis",
+      "MongoDB",
+      "Neo4j"
+    ],
+    "correctOptionId": 2,
+    "explanation": "MongoDB is a widely used document-oriented database that stores data in JSON-like documents."
+  },
+  {
+    "question": "What is the primary use case for a Key-Value store database like Redis?",
+    "options": [
+      "Executing complex joins across multiple tables",
+      "Storing unstructured text documents for full-text search",
+      "High-speed caching and session management",
+      "Managing deep relationships in social networks"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Key-value stores are highly optimized for simple read/write operations, making them ideal for caching, session storage, and leaderboards."
+  },
+  {
+    "question": "What does a Foreign Key do?",
+    "options": [
+      "It allows external users to access the database.",
+      "It uniquely identifies a record in the same table.",
+      "It establishes a link between data in two tables.",
+      "It automatically encrypts the data."
+    ],
+    "correctOptionId": 2,
+    "explanation": "A foreign key is a column or group of columns in a relational database table that provides a link between data in two tables, enforcing referential integrity."
+  }
+]

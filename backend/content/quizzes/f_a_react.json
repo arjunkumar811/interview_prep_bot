@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary difference between `useMemo` and `useCallback` in React?",
+    "options": [
+      "There is no difference; they are aliases.",
+      "`useMemo` memoizes (caches) the *result* of a calculation, whereas `useCallback` memoizes the *function definition* itself.",
+      "`useMemo` is for primitive values; `useCallback` is for objects.",
+      "`useMemo` runs asynchronously; `useCallback` runs synchronously."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you want to prevent an expensive math calculation from running on every render, use `useMemo`. If you want to prevent a child component from re-rendering because a function reference changed, pass it a function wrapped in `useCallback`."
+  },
+  {
+    "question": "When should you use `React.memo()`?",
+    "options": [
+      "On every single component to guarantee maximum performance.",
+      "To wrap a functional component so that it only re-renders when its *props* change, preventing unnecessary re-renders triggered by its parent component.",
+      "To memoize a specific variable inside a component.",
+      "To cache API responses."
+    ],
+    "correctOptionId": 1,
+    "explanation": "By default, when a parent renders, all its children render. `React.memo` stops this default behavior for the child, checking if `prevProps === nextProps` before deciding to render. (Overusing it can actually hurt performance due to the cost of the comparison)."
+  },
+  {
+    "question": "What is a 'Higher-Order Component' (HOC) in React?",
+    "options": [
+      "A component that sits at the very top of the DOM tree.",
+      "A pattern (not an API) where a function takes a component and returns a new, enhanced component (e.g., adding authentication checks).",
+      "A component written in TypeScript.",
+      "A component that manages global state."
+    ],
+    "correctOptionId": 1,
+    "explanation": "HOCs were the standard way to share cross-cutting concerns (like `withRouter` or `connect` in Redux) before Hooks were introduced. They act like wrappers around existing components."
+  },
+  {
+    "question": "What problem do React Hooks (introduced in React 16.8) primarily solve?",
+    "options": [
+      "They allow React to run on the server.",
+      "They allow functional components to use state and lifecycle features, eliminating the need for verbose Class components and solving issues with sharing stateful logic.",
+      "They replace the need for CSS.",
+      "They make the Virtual DOM faster."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Hooks like `useState` and `useEffect` revolutionized React by making components simpler to write and making it much easier to extract and reuse logic via Custom Hooks."
+  },
+  {
+    "question": "What is the primary difference between `useEffect` and `useLayoutEffect`?",
+    "options": [
+      "`useEffect` is for fetching data; `useLayoutEffect` is for styling.",
+      "`useEffect` runs asynchronously *after* the browser paints the screen. `useLayoutEffect` runs synchronously *before* the browser paints, blocking the visual update until it finishes.",
+      "`useLayoutEffect` is deprecated.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Use `useEffect` 99% of the time to keep the UI fast. Only use `useLayoutEffect` if you are measuring DOM elements (like scroll position) and need to change the UI based on that measurement *before* the user sees a flicker."
+  },
+  {
+    "question": "What is the purpose of the `useRef` Hook?",
+    "options": [
+      "To force a component to re-render.",
+      "To create a mutable object that persists for the full lifetime of the component, which does NOT trigger a re-render when its value changes (often used to store DOM references or previous state).",
+      "To fetch references from a database.",
+      "To share state globally."
+    ],
+    "correctOptionId": 1,
+    "explanation": "`useState` is for data that the user *sees* (changing it updates the UI). `useRef` is for data the component needs to *remember* under the hood without wasting time updating the screen."
+  },
+  {
+    "question": "What does the `forwardRef` API do?",
+    "options": [
+      "It forwards an email to an admin.",
+      "It allows a React component to take a `ref` it receives as a prop and forward it to a child DOM element it renders, enabling the parent to directly access the child's DOM node.",
+      "It prevents a component from rendering.",
+      "It forces the component to use Redux."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a Parent renders a `<CustomInput />`, the Parent cannot easily focus the input. By wrapping `CustomInput` in `forwardRef`, the Parent can pass a ref down and call `ref.current.focus()`."
+  },
+  {
+    "question": "What is a 'Custom Hook'?",
+    "options": [
+      "A hook created by the React team.",
+      "A normal JavaScript function whose name starts with 'use' (e.g., `useWindowSize`) and that calls other Hooks, allowing you to extract and reuse stateful logic across multiple components.",
+      "A hook used to style components.",
+      "A hook that accesses the Redux store."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Custom hooks are purely a convention. They are the standard way to share logic (like fetching data, subscribing to events, or managing a complex form) without duplicating code."
+  },
+  {
+    "question": "What are 'Error Boundaries' in React?",
+    "options": [
+      "CSS borders that highlight errors.",
+      "Special Class components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of crashing the whole application.",
+      "Functions that validate user input.",
+      "Hooks that catch API errors."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a single component throws an error during rendering, React historically unmounted the whole screen (White Screen of Death). Error Boundaries act like a `try/catch` block for React components."
+  },
+  {
+    "question": "Why is it an anti-pattern to call a Hook conditionally (e.g., inside an `if` statement)?",
+    "options": [
+      "Because it slows down the compiler.",
+      "Because React relies on the exact order in which Hooks are called on every render to associate the local state with the correct Hook. Changing the order breaks this internal mapping.",
+      "Because `if` statements are banned in React.",
+      "Because it causes an infinite loop."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is a fundamental rule of Hooks. If you have `useState` followed by an `if` condition that contains a `useEffect`, and that `if` condition fails on the next render, React will get completely confused about which hook is which."
+  }
+]

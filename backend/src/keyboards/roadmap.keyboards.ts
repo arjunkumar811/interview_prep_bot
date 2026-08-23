@@ -58,3 +58,12 @@ export const getLessonCompletionKeyboard = (moduleId: string, roadmapId: string,
 export const getErrorKeyboard = () => {
   return Markup.inlineKeyboard([[Markup.button.callback('🔄 Restart', 'restart')]]);
 };
+
+export const getQuizCompletionKeyboard = (moduleId: string, roadmapId: string, levelId: string, nextModule?: ModuleConstant) => {
+  const rows = [];
+  if (nextModule) {
+    rows.push([Markup.button.callback(`▶️ Next: ${nextModule.name}`, `module:${nextModule.id}`)]);
+  }
+  rows.push([Markup.button.callback('⬅ Back to Modules', `back:level:${roadmapId}:${levelId}`), Markup.button.callback('🔄 Restart', 'restart')]);
+  return Markup.inlineKeyboard(rows);
+};

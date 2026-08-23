@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What does CI/CD stand for?",
+    "options": [
+      "Continuous Integration / Continuous Deployment (or Delivery)",
+      "Code Integration / Code Deployment",
+      "Constant Iteration / Constant Delivery",
+      "Continuous Infrastructure / Continuous Data"
+    ],
+    "correctOptionId": 0,
+    "explanation": "CI/CD stands for Continuous Integration (merging code changes frequently and automatically testing them) and Continuous Deployment or Delivery (automating the release process)."
+  },
+  {
+    "question": "Which of the following is the primary goal of Continuous Integration (CI)?",
+    "options": [
+      "To automatically deploy code to production every minute.",
+      "To detect integration errors as quickly as possible by automatically building and testing code on every commit.",
+      "To replace human QA testers completely.",
+      "To write the code automatically."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The main goal of CI is to find and address bugs quicker, improve software quality, and reduce the time it takes to validate and release new software updates."
+  },
+  {
+    "question": "What is the difference between Continuous Delivery and Continuous Deployment?",
+    "options": [
+      "They are exactly the same thing.",
+      "Continuous Delivery automatically deploys to production; Continuous Deployment requires manual approval.",
+      "Continuous Delivery ensures code is *ready* to deploy, but requires manual approval for production; Continuous Deployment automates the release to production.",
+      "Delivery is for frontend; Deployment is for backend."
+    ],
+    "correctOptionId": 2,
+    "explanation": "In Continuous Delivery, the deployment to production requires human intervention (a button click). In Continuous Deployment, every change that passes all stages of your production pipeline is released to your customers without human intervention."
+  },
+  {
+    "question": "Which of the following is a popular CI/CD tool?",
+    "options": [
+      "MongoDB",
+      "React",
+      "GitHub Actions",
+      "Redis"
+    ],
+    "correctOptionId": 2,
+    "explanation": "GitHub Actions is a popular platform that allows you to automate your build, test, and deployment pipelines directly from your GitHub repository."
+  },
+  {
+    "question": "What is a 'Pipeline' in the context of CI/CD?",
+    "options": [
+      "A database connection string.",
+      "A set of automated processes that allow developers and Ops professionals to reliably and efficiently compile, build, and deploy their code.",
+      "The physical cable connecting servers.",
+      "A script that runs on the client's browser."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A CI/CD pipeline automates the steps required to take code from version control to the end-user."
+  },
+  {
+    "question": "Why is writing automated tests essential for a successful CI/CD pipeline?",
+    "options": [
+      "Because GitHub Actions charges you if you don't have tests.",
+      "Because without tests, a CI/CD pipeline would blindly deploy broken code to production.",
+      "Because automated tests make the code run faster in production.",
+      "Automated tests are not required for CI/CD."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The core premise of CI/CD relies on a safety net of automated tests (unit, integration, E2E) that gatekeep broken code from reaching production."
+  },
+  {
+    "question": "What is an 'Artifact' in a CI/CD pipeline?",
+    "options": [
+      "A bug discovered during testing.",
+      "The final deployable package (like a compiled binary, Docker image, or zipped folder) produced by a build process.",
+      "A deprecated piece of code.",
+      "The server where the code is deployed."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A build artifact is the byproduct of the build process, which is then stored and eventually deployed to testing or production environments."
+  },
+  {
+    "question": "What does 'Infrastructure as Code' (IaC) mean?",
+    "options": [
+      "Writing your frontend and backend in the same language.",
+      "Managing and provisioning computing infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.",
+      "Using a database to store application code.",
+      "Writing CSS using JavaScript."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Tools like Terraform or AWS CloudFormation allow you to define your infrastructure (servers, load balancers, databases) using code, making it version-controllable and repeatable."
+  },
+  {
+    "question": "In a typical GitOps workflow, what triggers a deployment?",
+    "options": [
+      "A cron job running every hour.",
+      "A manual SSH login to the server.",
+      "A change (like a pull request merge) to a specific branch in the Git repository.",
+      "A user visiting the website."
+    ],
+    "correctOptionId": 2,
+    "explanation": "GitOps uses Git repositories as a single source of truth to deliver infrastructure as code. A push to the 'main' branch usually triggers the CI/CD pipeline to deploy the changes."
+  },
+  {
+    "question": "Which YAML file is typically used to configure a GitHub Actions workflow?",
+    "options": [
+      ".github/workflows/main.yml",
+      "github.json",
+      "actions.config",
+      "ci-cd.yaml"
+    ],
+    "correctOptionId": 0,
+    "explanation": "GitHub Actions workflows are defined using YAML files placed in the .github/workflows directory of your repository."
+  }
+]

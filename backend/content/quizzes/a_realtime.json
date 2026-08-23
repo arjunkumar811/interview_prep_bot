@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Which of the following technologies provides the lowest latency for bidirectional real-time communication?",
+    "options": [
+      "HTTP Short Polling",
+      "HTTP Long Polling",
+      "Server-Sent Events (SSE)",
+      "WebSockets"
+    ],
+    "correctOptionId": 3,
+    "explanation": "WebSockets maintain an open, full-duplex TCP connection, eliminating HTTP overhead for every message, providing the lowest latency for back-and-forth communication."
+  },
+  {
+    "question": "If you only need the server to push real-time updates to the client (e.g., a stock ticker), which technology is the most lightweight and native to HTTP?",
+    "options": [
+      "WebSockets",
+      "Server-Sent Events (SSE)",
+      "GraphQL Subscriptions",
+      "gRPC-Web"
+    ],
+    "correctOptionId": 1,
+    "explanation": "SSE is designed specifically for unidirectional server-to-client communication over standard HTTP, making it simpler to implement and proxy than WebSockets."
+  },
+  {
+    "question": "What is a major challenge when scaling real-time WebSocket applications horizontally?",
+    "options": [
+      "WebSockets require too much RAM.",
+      "Because connections are persistent and stateful, a broadcast message received by Server A cannot directly reach a user connected to Server B.",
+      "Load balancers cannot handle WebSockets.",
+      "WebSockets are not supported by modern browsers."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Statefulness is the enemy of simple horizontal scaling. You must introduce a Pub/Sub backplane (like Redis) so servers can share messages with each other."
+  },
+  {
+    "question": "In a real-time chat application, what is the role of a 'Presence' system?",
+    "options": [
+      "To ensure the database is present.",
+      "To track and display which users are currently online, offline, or busy in real-time.",
+      "To track the physical location of the server.",
+      "To authenticate the user."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Presence systems often rely on heartbeats (pings) from clients. If a client disconnects unexpectedly, the server detects the missing heartbeat and updates their status to offline."
+  },
+  {
+    "question": "How can you implement a reliable Presence system in a distributed environment?",
+    "options": [
+      "By storing online status in a local variable on the server.",
+      "By updating a SQL database every second.",
+      "By using a fast, distributed in-memory store like Redis (using Expiring Keys or sorted sets) to track active heartbeats.",
+      "By asking the load balancer."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Updating a SQL database for every heartbeat of a million users would crush it. Redis handles high-frequency, ephemeral data (like presence) perfectly."
+  },
+  {
+    "question": "What is 'Operational Transformation' (OT) or 'Conflict-free Replicated Data Types' (CRDT)?",
+    "options": [
+      "Algorithms used to secure WebSockets.",
+      "Algorithms used in real-time collaborative applications (like Google Docs) to resolve conflicts when multiple users edit the same document simultaneously.",
+      "Methods for load balancing real-time traffic.",
+      "Techniques for migrating databases in real-time."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If User A types 'H' at position 1 and User B types 'i' at position 1, the server must intelligently merge these concurrent operations so everyone sees 'Hi'."
+  },
+  {
+    "question": "Why is UDP sometimes preferred over TCP for real-time multiplayer gaming?",
+    "options": [
+      "UDP is more secure.",
+      "UDP guarantees delivery.",
+      "TCP's guarantee of ordered delivery causes 'head-of-line blocking'. If one packet drops, the game freezes waiting for it to be retransmitted. UDP just drops it and keeps playing.",
+      "UDP can send larger packets."
+    ],
+    "correctOptionId": 2,
+    "explanation": "In a fast-paced game, if an enemy's position packet from 500ms ago is dropped, you don't care about getting it retransmitted; you only care about their *current* position. UDP is faster for this."
+  },
+  {
+    "question": "What is the primary use case for WebRTC?",
+    "options": [
+      "Replacing standard HTTP requests.",
+      "Real-time, peer-to-peer audio, video, and data communication directly between browsers without needing the data to pass through a central server.",
+      "Querying a GraphQL API.",
+      "Storing data on the client."
+    ],
+    "correctOptionId": 1,
+    "explanation": "WebRTC allows Browser A to send a video stream directly to Browser B, drastically reducing server costs and latency compared to routing it through a central server."
+  },
+  {
+    "question": "Even though WebRTC is peer-to-peer, why does it still require a server initially?",
+    "options": [
+      "To store the video files.",
+      "To perform 'Signaling', where the peers exchange network information (IPs, ports, session descriptions) so they can find and connect to each other.",
+      "To encrypt the video stream.",
+      "To convert video formats."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Browsers don't inherently know each other's IP addresses. A signaling server (usually using WebSockets) acts as a meeting point for them to exchange contact info before establishing the direct P2P connection."
+  },
+  {
+    "question": "What happens in WebRTC if two peers cannot connect directly due to strict NATs or Firewalls?",
+    "options": [
+      "The connection fails permanently.",
+      "They switch to HTTP Long-Polling.",
+      "They use a TURN server, which acts as a relay, routing the media traffic between them.",
+      "They use an API Gateway."
+    ],
+    "correctOptionId": 2,
+    "explanation": "If a direct connection (using STUN) fails, the peers fall back to a TURN (Traversal Using Relays around NAT) server, which simply forwards the packets between them."
+  }
+]

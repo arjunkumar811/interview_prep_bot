@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Vertical Scaling (Scaling Up)?",
+    "options": [
+      "Adding more servers to your infrastructure.",
+      "Adding more resources (CPU, RAM) to an existing server.",
+      "Optimizing database queries to be faster.",
+      "Migrating from a monolithic architecture to microservices."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Vertical scaling means increasing the capacity of a single machine, such as upgrading a server from 8GB to 32GB of RAM."
+  },
+  {
+    "question": "What is Horizontal Scaling (Scaling Out)?",
+    "options": [
+      "Replacing an old server with a newer model.",
+      "Adding more resources (CPU, RAM) to a single server.",
+      "Adding more machines/servers to your resource pool to share the load.",
+      "Reducing the size of the database."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Horizontal scaling involves distributing the workload across multiple servers, often managed by a load balancer."
+  },
+  {
+    "question": "Which component is strictly necessary when implementing Horizontal Scaling for a web application?",
+    "options": [
+      "A relational database",
+      "A Load Balancer",
+      "A GraphQL API",
+      "Docker containers"
+    ],
+    "correctOptionId": 1,
+    "explanation": "A load balancer is required to route incoming traffic across the multiple servers you've added."
+  },
+  {
+    "question": "What does it mean for an application to be 'Stateless'?",
+    "options": [
+      "It doesn't use a database.",
+      "It doesn't keep track of any user session data in the server's local memory.",
+      "It only serves static HTML files.",
+      "It cannot handle user authentication."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In a stateless architecture, every request must contain all the information necessary to understand it, and the server relies on external stores (like Redis) for session data."
+  },
+  {
+    "question": "Why is 'Statelessness' important for horizontal scaling?",
+    "options": [
+      "Because it makes the code run faster.",
+      "Because if a server fails, or if a user is routed to a different server, the app won't lose their session data.",
+      "Because stateless apps use less bandwidth.",
+      "Statelessness is only important for vertical scaling."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If servers are stateless, any server can handle any request, making it easy to add or remove servers on the fly."
+  },
+  {
+    "question": "What is the primary function of a Content Delivery Network (CDN) in scaling?",
+    "options": [
+      "To load balance database queries.",
+      "To cache and serve static assets (images, CSS, JS) from geographically distributed servers closer to the user.",
+      "To execute backend Node.js code faster.",
+      "To manage Docker containers."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A CDN offloads static asset traffic from your main application servers and delivers it faster to users globally."
+  },
+  {
+    "question": "What does 'Auto-scaling' refer to in cloud computing?",
+    "options": [
+      "Automatically rewriting slow code.",
+      "Automatically compressing images before sending them.",
+      "Dynamically adjusting the number of active servers based on current traffic/load.",
+      "Automatically upgrading the database version."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Auto-scaling groups monitor metrics (like CPU usage) and automatically spin up or shut down server instances to match demand."
+  },
+  {
+    "question": "What is 'Database Sharding'?",
+    "options": [
+      "Encrypting a database so hackers can't read it.",
+      "Partitioning a single logical database across multiple physical database servers.",
+      "Taking hourly backups of a database.",
+      "Creating a read-replica of a database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Sharding is a horizontal scaling technique for databases where data is split into smaller chunks (shards) that are distributed across multiple nodes."
+  },
+  {
+    "question": "What is a 'Read Replica'?",
+    "options": [
+      "A backup server that only turns on if the main server dies.",
+      "A read-only copy of the primary database that handles read queries, reducing load on the primary.",
+      "A cache stored in the user's browser.",
+      "A simulated user used for load testing."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Read replicas are used to scale out read-heavy workloads. The primary database handles writes and asynchronously syncs them to the read replicas."
+  },
+  {
+    "question": "What is a major limitation of Vertical Scaling?",
+    "options": [
+      "It requires completely rewriting your application code.",
+      "You cannot use a load balancer.",
+      "There is a physical limit to how much RAM/CPU a single machine can have.",
+      "It forces you to use microservices."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Vertical scaling has a hard hardware ceiling (you can only buy a server so big), and it creates a single point of failure."
+  }
+]

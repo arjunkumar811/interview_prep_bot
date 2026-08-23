@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary difference between Authentication and Authorization?",
+    "options": [
+      "Authentication verifies identity; Authorization verifies access rights.",
+      "Authentication verifies access rights; Authorization verifies identity.",
+      "They mean exactly the same thing.",
+      "Authentication is for APIs; Authorization is for web pages."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Authentication asks 'Who are you?' while Authorization asks 'What are you allowed to do?'"
+  },
+  {
+    "question": "What does JWT stand for?",
+    "options": [
+      "JavaScript Web Token",
+      "JSON Web Token",
+      "Java Web Transfer",
+      "JSON Web Transfer"
+    ],
+    "correctOptionId": 1,
+    "explanation": "JWT stands for JSON Web Token, an open standard for securely transmitting information as a JSON object."
+  },
+  {
+    "question": "What are the three parts of a JSON Web Token?",
+    "options": [
+      "Header, Body, Footer",
+      "Header, Payload, Signature",
+      "Algorithm, Data, Hash",
+      "ID, Claims, Secret"
+    ],
+    "correctOptionId": 1,
+    "explanation": "A JWT consists of a Header (algorithm type), Payload (claims/data), and Signature (to verify authenticity)."
+  },
+  {
+    "question": "Can the payload of a standard JWT be read by anyone if intercepted?",
+    "options": [
+      "Yes, because it is only Base64Url encoded, not encrypted.",
+      "No, because it is encrypted with the secret key.",
+      "Yes, but only if they have the secret key.",
+      "No, because the browser prevents reading it."
+    ],
+    "correctOptionId": 0,
+    "explanation": "A standard JWT is digitally signed but not encrypted. The payload is Base64Url encoded and can be easily decoded by anyone."
+  },
+  {
+    "question": "What is OAuth 2.0 primarily used for?",
+    "options": [
+      "Encrypting database passwords",
+      "Delegated authorization (e.g., 'Log in with Google')",
+      "Storing session data in the browser",
+      "Validating email addresses"
+    ],
+    "correctOptionId": 1,
+    "explanation": "OAuth 2.0 is an authorization framework that enables third-party applications to obtain limited access to an HTTP service."
+  },
+  {
+    "question": "What is the purpose of hashing a password (e.g., using bcrypt) before storing it?",
+    "options": [
+      "To make the database smaller",
+      "To allow the user to retrieve their original password if forgotten",
+      "To prevent attackers from knowing the actual password if the database is breached",
+      "To speed up database queries"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Hashing is a one-way function. If a database is breached, the attacker only gets the hash, protecting the user's actual password."
+  },
+  {
+    "question": "What is a 'Salt' in the context of password hashing?",
+    "options": [
+      "A secret key used to decrypt the password",
+      "Random data added to the password before hashing to defend against rainbow table attacks",
+      "A technique to slow down the hashing algorithm",
+      "An expiration time for the password"
+    ],
+    "correctOptionId": 1,
+    "explanation": "A salt is random data appended to a password before it is hashed. It ensures that identical passwords have different hashes."
+  },
+  {
+    "question": "Which of the following is a common security vulnerability related to session cookies?",
+    "options": [
+      "Cross-Site Request Forgery (CSRF)",
+      "SQL Injection",
+      "Denial of Service (DoS)",
+      "Buffer Overflow"
+    ],
+    "correctOptionId": 0,
+    "explanation": "CSRF exploits the fact that browsers automatically send cookies (including session cookies) with requests to a domain."
+  },
+  {
+    "question": "How can you mitigate XSS (Cross-Site Scripting) attacks when storing JWTs?",
+    "options": [
+      "Store them in Local Storage",
+      "Store them in an HttpOnly, Secure cookie",
+      "Store them in Session Storage",
+      "Encrypt the JWT payload"
+    ],
+    "correctOptionId": 1,
+    "explanation": "An HttpOnly cookie cannot be accessed by client-side JavaScript, effectively preventing XSS attacks from stealing the token."
+  },
+  {
+    "question": "What is SSO?",
+    "options": [
+      "Secure Session Object",
+      "Single Sign-On",
+      "Server Side Operations",
+      "Standard Security Options"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Single Sign-On (SSO) is an authentication scheme that allows a user to log in with a single ID and password to several related systems."
+  }
+]

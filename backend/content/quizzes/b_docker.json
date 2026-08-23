@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Docker?",
+    "options": [
+      "A virtual machine manager like VirtualBox.",
+      "An open-source platform that enables developers to build, deploy, run, update, and manage containers.",
+      "A cloud hosting provider like AWS.",
+      "A database management system."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Docker uses OS-level virtualization to deliver software in packages called containers, which are isolated from one another and bundle their own software, libraries, and configuration files."
+  },
+  {
+    "question": "What is the primary difference between a Docker Container and a Virtual Machine (VM)?",
+    "options": [
+      "Containers are much larger than VMs.",
+      "VMs share the host OS kernel, while Containers have their own OS kernel.",
+      "Containers share the host OS kernel, while VMs require a full Guest OS.",
+      "There is no difference."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Containers are lightweight because they share the host machine's OS kernel, avoiding the overhead of running a full Guest OS for every application (which VMs require)."
+  },
+  {
+    "question": "What is a Dockerfile?",
+    "options": [
+      "A text file that contains all the commands, in order, needed to build a given image.",
+      "A database backup file.",
+      "A configuration file for Kubernetes.",
+      "A binary file that runs the container."
+    ],
+    "correctOptionId": 0,
+    "explanation": "A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image."
+  },
+  {
+    "question": "Which Dockerfile instruction is used to set the base image?",
+    "options": [
+      "START",
+      "FROM",
+      "BASE",
+      "INIT"
+    ],
+    "correctOptionId": 1,
+    "explanation": "The FROM instruction initializes a new build stage and sets the Base Image for subsequent instructions."
+  },
+  {
+    "question": "What does the 'docker build' command do?",
+    "options": [
+      "It starts a new container.",
+      "It pushes an image to a registry.",
+      "It creates a Docker image from a Dockerfile.",
+      "It deletes old containers."
+    ],
+    "correctOptionId": 2,
+    "explanation": "The docker build command builds Docker images from a Dockerfile and a 'context' (a set of files)."
+  },
+  {
+    "question": "What is a Docker Image?",
+    "options": [
+      "A running instance of a container.",
+      "A read-only template that contains a set of instructions for creating a container.",
+      "A graphical representation of the server.",
+      "A snapshot of the host machine's RAM."
+    ],
+    "correctOptionId": 1,
+    "explanation": "An image is an immutable (read-only) file that contains the source code, libraries, dependencies, tools, and other files needed for an application to run."
+  },
+  {
+    "question": "Which command is used to start a new container from an image?",
+    "options": [
+      "docker start",
+      "docker up",
+      "docker run",
+      "docker exec"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The 'docker run' command creates a new container from an image and starts it. ('docker start' is used to restart an existing, stopped container)."
+  },
+  {
+    "question": "What is the purpose of Docker Compose?",
+    "options": [
+      "To compose email notifications.",
+      "To orchestrate and run multi-container Docker applications using a YAML file.",
+      "To write Dockerfiles faster.",
+      "To manage cloud infrastructure."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Docker Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application's services."
+  },
+  {
+    "question": "How do you expose a port from a Docker container to the host machine?",
+    "options": [
+      "Using the -p or --publish flag with docker run.",
+      "Using the -e flag with docker run.",
+      "By editing the host machine's firewall.",
+      "Containers automatically expose all ports."
+    ],
+    "correctOptionId": 0,
+    "explanation": "The -p flag (e.g., -p 8080:80) maps a network port on the container (80) to a port on the host machine (8080)."
+  },
+  {
+    "question": "What is Docker Hub?",
+    "options": [
+      "A GUI tool for managing local containers.",
+      "A cloud-based registry service where you can link to code repositories, build your images, and test them.",
+      "The networking layer of Docker.",
+      "A type of container."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Docker Hub is the world's largest library and community for container images (a public registry)."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What does HTML stand for?",
+    "options": [
+      "Hyper Text Markup Language",
+      "Home Tool Markup Language",
+      "Hyperlinks and Text Markup Language",
+      "Hyper Tool Markup Language"
+    ],
+    "correctOptionId": 0,
+    "explanation": "HTML stands for Hyper Text Markup Language. It is the standard markup language for creating Web pages."
+  },
+  {
+    "question": "Choose the correct HTML element for the largest heading:",
+    "options": [
+      "<h6>",
+      "<head>",
+      "<h1>",
+      "<heading>"
+    ],
+    "correctOptionId": 2,
+    "explanation": "<h1> defines the most important (largest) heading in HTML."
+  },
+  {
+    "question": "What is the correct HTML element for inserting a line break?",
+    "options": [
+      "<lb>",
+      "<br>",
+      "<break>",
+      "<hr>"
+    ],
+    "correctOptionId": 1,
+    "explanation": "The <br> tag inserts a single line break. (<hr> inserts a horizontal rule/line)."
+  },
+  {
+    "question": "What is the correct HTML for adding a background color?",
+    "options": [
+      "<body bg=\"yellow\">",
+      "<background>yellow</background>",
+      "<body style=\"background-color:yellow;\">",
+      "<body style=\"bg-color:yellow;\">"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The 'style' attribute specifies an inline style for an element. The CSS property is 'background-color'."
+  },
+  {
+    "question": "Choose the correct HTML element to define important text:",
+    "options": [
+      "<b>",
+      "<strong>",
+      "<important>",
+      "<i>"
+    ],
+    "correctOptionId": 1,
+    "explanation": "<strong> defines text with strong importance (typically displayed bold). Semantic HTML prefers <strong> over <b>."
+  },
+  {
+    "question": "What is the correct HTML for creating a hyperlink?",
+    "options": [
+      "<a name=\"http://example.com\">example.com</a>",
+      "<a url=\"http://example.com\">example.com</a>",
+      "<a>http://example.com</a>",
+      "<a href=\"http://example.com\">example.com</a>"
+    ],
+    "correctOptionId": 3,
+    "explanation": "The <a> tag defines a hyperlink, which is used to link from one page to another. The 'href' attribute specifies the destination URL."
+  },
+  {
+    "question": "Which character is used to indicate an end tag?",
+    "options": [
+      "^",
+      "<",
+      "/",
+      "*"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The forward slash (/) is used to indicate an end tag, e.g., </p>."
+  },
+  {
+    "question": "How can you open a link in a new tab/browser window?",
+    "options": [
+      "<a href=\"url\" target=\"_blank\">",
+      "<a href=\"url\" new>",
+      "<a href=\"url\" target=\"new\">",
+      "<a href=\"url\" window=\"new\">"
+    ],
+    "correctOptionId": 0,
+    "explanation": "Setting the 'target' attribute to '_blank' opens the linked document in a new window or tab."
+  },
+  {
+    "question": "Which of these elements are all <table> elements?",
+    "options": [
+      "<table><tr><tt>",
+      "<thead><body><tr>",
+      "<table><tr><td>",
+      "<table><head><tfoot>"
+    ],
+    "correctOptionId": 2,
+    "explanation": "<table> defines the table, <tr> defines a table row, and <td> defines a table data cell."
+  },
+  {
+    "question": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+    "options": [
+      "longdesc",
+      "alt",
+      "title",
+      "src"
+    ],
+    "correctOptionId": 1,
+    "explanation": "The 'alt' attribute provides alternative text for an image if the user for some reason cannot view it (e.g., screen readers, slow connection, broken link)."
+  }
+]

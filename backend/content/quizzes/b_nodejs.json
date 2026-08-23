@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Node.js?",
+    "options": [
+      "A frontend JavaScript framework",
+      "A JavaScript runtime built on Chrome's V8 engine",
+      "A relational database",
+      "A programming language"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Node.js is a runtime environment that allows you to run JavaScript on the server side, built on Chrome's V8 JavaScript engine."
+  },
+  {
+    "question": "Which module in Node.js is used to handle file operations?",
+    "options": [
+      "http",
+      "path",
+      "fs",
+      "events"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The 'fs' (file system) module provides an API for interacting with the file system."
+  },
+  {
+    "question": "By default, Node.js uses which of the following architectures?",
+    "options": [
+      "Multi-threaded, synchronous",
+      "Single-threaded, event-driven, non-blocking I/O",
+      "Multi-threaded, event-driven",
+      "Single-threaded, blocking I/O"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Node.js operates on a single-thread event loop using non-blocking I/O calls, making it highly scalable and efficient."
+  },
+  {
+    "question": "What is the purpose of 'package.json' in a Node.js project?",
+    "options": [
+      "To store the actual code of the application",
+      "To configure the database connection",
+      "To hold metadata relevant to the project and manage dependencies",
+      "To compile TypeScript code to JavaScript"
+    ],
+    "correctOptionId": 2,
+    "explanation": "package.json is the core of any Node.js project, storing essential metadata and a list of project dependencies (packages)."
+  },
+  {
+    "question": "Which global object in Node.js can be used to read environment variables?",
+    "options": [
+      "window.env",
+      "system.env",
+      "global.environment",
+      "process.env"
+    ],
+    "correctOptionId": 3,
+    "explanation": "The 'process.env' property returns an object containing the user environment, often used for configuration settings like database URIs."
+  },
+  {
+    "question": "What does NPM stand for?",
+    "options": [
+      "Node Package Manager",
+      "Node Programming Module",
+      "New Package Manager",
+      "Node Process Manager"
+    ],
+    "correctOptionId": 0,
+    "explanation": "NPM stands for Node Package Manager. It is the default package manager for the Node.js JavaScript runtime environment."
+  },
+  {
+    "question": "Which of the following is true about 'require()' in Node.js?",
+    "options": [
+      "It is used to import CSS files.",
+      "It is a built-in function to include external modules.",
+      "It makes HTTP requests to an API.",
+      "It is a new ES6 feature for importing."
+    ],
+    "correctOptionId": 1,
+    "explanation": "require() is a built-in Node.js function used to include/import external modules or JSON files that exist in separate files."
+  },
+  {
+    "question": "What is an EventEmitter in Node.js?",
+    "options": [
+      "A module that helps create HTTP servers",
+      "A class that facilitates communication between objects in Node",
+      "A tool for catching syntax errors",
+      "A database trigger mechanism"
+    ],
+    "correctOptionId": 1,
+    "explanation": "The EventEmitter class allows objects to emit named events that cause Function objects ('listeners') to be called."
+  },
+  {
+    "question": "How can you exit a Node.js process programmatically?",
+    "options": [
+      "window.close()",
+      "process.exit()",
+      "node.stop()",
+      "app.quit()"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Calling process.exit() forces the process to terminate as quickly as possible, optionally with an exit code."
+  },
+  {
+    "question": "What is a 'Stream' in Node.js?",
+    "options": [
+      "An array of strings",
+      "A method to stream video to a browser only",
+      "An object that lets you read data from a source or write data to a destination in continuous fashion",
+      "A third-party package for logging"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Streams are collections of data that might not be available all at once and don't have to fit in memory, making them perfect for large data."
+  }
+]

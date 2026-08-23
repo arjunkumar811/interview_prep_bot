@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Client-Side Routing in a Single Page Application (SPA)?",
+    "options": [
+      "Routing internet traffic to the fastest server.",
+      "A technique where JavaScript intercepts URL changes in the browser, preventing a full page reload, and dynamically updates the UI to show the new 'page' content.",
+      "Routing database queries to read replicas.",
+      "A feature of CSS Grid."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In an SPA, the browser only downloads the HTML page once. When the user clicks a link, the router catches it, changes the URL, and mounts the new React component instantly without requesting a new HTML file."
+  },
+  {
+    "question": "Which underlying browser API makes modern Client-Side Routing (like React Router) possible without using hash fragments (#)?",
+    "options": [
+      "The Fetch API",
+      "The HTML5 History API (specifically pushState and replaceState)",
+      "The Web Storage API",
+      "The Geolocation API"
+    ],
+    "correctOptionId": 1,
+    "explanation": "The History API allows JavaScript to change the URL displayed in the address bar (e.g., from `/home` to `/about`) without triggering a server request."
+  },
+  {
+    "question": "In React Router, what is the purpose of the `<BrowserRouter>` component?",
+    "options": [
+      "To download a new web browser.",
+      "To wrap the entire application and enable the routing context, keeping the UI in sync with the URL.",
+      "To render specific routes.",
+      "To style the navigation bar."
+    ],
+    "correctOptionId": 1,
+    "explanation": "You typically wrap your top-level `<App />` component in a `<BrowserRouter>`. It listens to the History API and provides routing information to all nested components."
+  },
+  {
+    "question": "What is the primary difference between using an `<a>` tag and React Router's `<Link>` component?",
+    "options": [
+      "The `<a>` tag is faster.",
+      "The `<Link>` component intercepts the click, prevents the default browser behavior (a full page refresh), and updates the URL via the History API.",
+      "The `<a>` tag cannot handle external URLs.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you use an `<a>` tag in a React app, clicking it will cause the browser to send a request to the server and reload the entire React app, defeating the purpose of an SPA."
+  },
+  {
+    "question": "How do you define a Route in React Router that renders a specific component when the URL matches a path?",
+    "options": [
+      "<Route path='/about' element={<About />} />",
+      "<Link to='/about'><About /></Link>",
+      "<Component route='/about' render={About} />",
+      "<Path match='/about' run={<About />} />"
+    ],
+    "correctOptionId": 0,
+    "explanation": "The `<Route>` component defines a mapping between a URL path and a React element. When the browser URL matches '/about', it renders the `<About />` component."
+  },
+  {
+    "question": "What is a 'Dynamic Segment' (or URL Parameter) in routing?",
+    "options": [
+      "A route that changes its styling dynamically.",
+      "A variable part of a URL path, indicated by a colon (e.g., `/users/:userId`), allowing a single route to handle multiple URLs (like `/users/123`).",
+      "A route that fetches data from an API.",
+      "A route that is only accessible to admins."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Dynamic segments allow you to build templates. When a user visits `/users/123`, the router extracts '123' as a parameter that the component can use to fetch that specific user's data."
+  },
+  {
+    "question": "Which React Router Hook is used to extract dynamic parameters from the URL?",
+    "options": [
+      "useHistory",
+      "useLocation",
+      "useParams",
+      "useRoute"
+    ],
+    "correctOptionId": 2,
+    "explanation": "If your route is `/users/:userId`, calling `const { userId } = useParams();` inside the component will give you the value extracted from the URL."
+  },
+  {
+    "question": "What does the `useNavigate` Hook (or `useHistory` in older versions) do?",
+    "options": [
+      "It provides a function that allows you to programmatically navigate the user to a new URL (e.g., redirecting them after a successful login).",
+      "It displays the user's browsing history.",
+      "It navigates the user back to the home page automatically.",
+      "It fetches navigation data from the server."
+    ],
+    "correctOptionId": 0,
+    "explanation": "While `<Link>` is used for user clicks, `useNavigate` is used for programmatic navigation inside functions (e.g., `navigate('/dashboard')`)."
+  },
+  {
+    "question": "What is a 'Protected Route' or 'Private Route'?",
+    "options": [
+      "A route that is encrypted using HTTPS.",
+      "A custom routing component that checks if a user is authenticated. If they are, it renders the component; if not, it redirects them to a login page.",
+      "A route that cannot be deleted from the codebase.",
+      "A route that prevents the user from clicking the back button."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Client-side routing doesn't have built-in authentication. You create a wrapper component that intercepts the render and checks the global state (e.g., checking for a JWT) before allowing access to a private dashboard."
+  },
+  {
+    "question": "Why do SPAs (like React apps) often require a specific configuration on the backend web server (like Nginx or Apache) to handle routing?",
+    "options": [
+      "To make the server run faster.",
+      "Because if a user directly visits a deep link (e.g., `yoursite.com/about`), the server will look for an `about.html` file and return a 404 error. The server must be configured to return `index.html` for all routes.",
+      "To enable HTTPS.",
+      "To store the React code in a database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is a common gotcha. The React Router only works *after* the JavaScript has loaded. If a user hits a sub-route directly, the server must be told 'Ignore the path, just send them the main index.html, and let React handle the rest'."
+  }
+]

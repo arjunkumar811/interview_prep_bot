@@ -1,6 +1,7 @@
 import { Context } from 'telegraf';
 import { RoadmapNavigationService } from '../services/roadmapNavigation.service';
 import { contentService } from '../services/content.service';
+import { quizService } from '../services/quiz.service';
 import {
   getRoadmapSelectionKeyboard,
   getLevelSelectionKeyboard,
@@ -8,6 +9,7 @@ import {
   getModuleDetailKeyboard,
   getLessonCompletionKeyboard,
   getErrorKeyboard,
+  getQuizCompletionKeyboard,
 } from '../keyboards/roadmap.keyboards';
 
 const roadmapService = new RoadmapNavigationService();
@@ -171,7 +173,49 @@ export const handleLearn = async (ctx: Context) => {
 };
 
 export const handleQuiz = async (ctx: Context) => {
-  await ctx.reply('Quizzes coming soon!', getErrorKeyboard());
+  const cbQuery = ctx.callbackQuery as any;
+  if (!cbQuery || !cbQuery.data) return;
+
+  const [, moduleId] = cbQuery.data.split(':');
+
+  try {
+    const questions = quizService.getQuizByModuleId(moduleId);
+
+    if (questions.length === 0) {
+      await ctx.reply('Quiz coming soon for this topic!', getErrorKeyboard());
+      return;
+    }
+
+    await ctx.answerCbQuery('Starting Quiz...');
+    await ctx.reply(`🧠 Starting Quiz... Good luck!`);
+
+    for (const q of questions) {
+      await ctx.replyWithPoll(q.question, q.options, {
+        type: 'quiz',
+        correct_option_id: q.correctOptionId,
+        explanation: q.explanation,
+        is_anonymous: false
+      });
+      // Delay to ensure sequential delivery
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+
+    // Send the completion keyboard
+    const moduleInfo = roadmapService.getModuleDetails(moduleId);
+    const siblings = roadmapService.getModulesByLevel(moduleInfo.roadmapId, moduleInfo.levelId);
+    const currentIndex = siblings.findIndex(m => m.id === moduleId);
+    const nextModule = currentIndex >= 0 && currentIndex < siblings.length - 1 ? siblings[currentIndex + 1] : undefined;
+    
+    const endKeyboard = getQuizCompletionKeyboard(moduleId, moduleInfo.roadmapId, moduleInfo.levelId, nextModule);
+    
+    // Slight delay so the complete message appears after polls
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    await ctx.reply('✅ Quiz Finished! What would you like to do next?', endKeyboard);
+
+  } catch (error) {
+    console.error('Failed to load quiz:', error);
+    await ctx.reply('Error loading the quiz.', getErrorKeyboard());
+  }
 };
 
 async function streamHtmlMessage(ctx: any, html: string) {

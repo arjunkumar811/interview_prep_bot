@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is a Monorepo?",
+    "options": [
+      "A repository that only contains a single microservice.",
+      "A software development strategy where code for many projects is stored in the same repository.",
+      "A database that stores all data in a single table.",
+      "A server that handles all incoming traffic."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A monorepo (mono repository) stores the source code for multiple distinct projects or applications in a single version-controlled repository."
+  },
+  {
+    "question": "Which of the following is a major advantage of using a Monorepo?",
+    "options": [
+      "It reduces the size of the Git repository.",
+      "It simplifies sharing code and internal libraries across multiple projects.",
+      "It prevents developers from making commits.",
+      "It automatically scales the application horizontally."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because all projects are in one place, you can easily extract shared logic (like UI components or utilities) into internal packages and consume them across projects without publishing to npm."
+  },
+  {
+    "question": "What is a potential downside of a Monorepo?",
+    "options": [
+      "It makes code sharing impossible.",
+      "The repository size can become massive, making cloning and pulling slow.",
+      "You cannot use Git with a monorepo.",
+      "It forces you to use a monolithic architecture for deployment."
+    ],
+    "correctOptionId": 1,
+    "explanation": "As more projects are added, the repo grows. For massive companies (like Google), special tools are required just to manage the Git performance."
+  },
+  {
+    "question": "What does a tool like Turborepo or Nx primarily provide in a Monorepo setup?",
+    "options": [
+      "Database management.",
+      "Intelligent build system capabilities, like caching and task orchestration, to speed up CI/CD.",
+      "Automated code formatting.",
+      "Cloud hosting."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Tools like Turborepo understand the dependency graph of your packages and aggressively cache build outputs so you never build the same code twice."
+  },
+  {
+    "question": "What is a 'Polyrepo' (or Multirepo)?",
+    "options": [
+      "A repository written in multiple languages.",
+      "The standard practice of putting each distinct project or service into its own separate Git repository.",
+      "A repository that syncs with multiple cloud providers.",
+      "A database that uses multiple read replicas."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Polyrepo is the traditional approach where an organization has dozens or hundreds of repositories, one for every microservice or library."
+  },
+  {
+    "question": "How do workspaces (like npm workspaces, yarn workspaces, or pnpm workspaces) help in a Monorepo?",
+    "options": [
+      "They provide a graphical UI for the repository.",
+      "They allow you to manage multiple packages within a single root package, hoisting shared dependencies to save disk space.",
+      "They automatically deploy the code to production.",
+      "They enforce code style rules."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Workspaces are features in package managers that help link internal packages together and hoist common dependencies to the root node_modules to avoid duplication."
+  },
+  {
+    "question": "In a Turborepo configuration (turbo.json), what does the 'dependsOn' array do?",
+    "options": [
+      "It lists the external npm packages required.",
+      "It defines the task execution order (e.g., build depends on the build of its dependencies).",
+      "It specifies which database to connect to.",
+      "It configures the Git branch dependencies."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The dependsOn array tells the build system the sequence in which tasks must run, ensuring a shared library is built before the app that consumes it."
+  },
+  {
+    "question": "Does using a Monorepo mean you must deploy a Monolithic application?",
+    "options": [
+      "Yes, monorepos and monoliths are exactly the same concept.",
+      "No, monorepo is a code organization strategy; you can still deploy independent microservices from a monorepo.",
+      "Yes, because all code is in one repository, it must run on one server.",
+      "No, but it forces you to use serverless functions."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Monorepo != Monolith. A monorepo manages source code. You can easily build and deploy 50 separate, independent microservices from a single monorepo."
+  },
+  {
+    "question": "What is 'Hoisting' in the context of monorepo package managers?",
+    "options": [
+      "Uploading the code to the cloud.",
+      "Moving common dependencies to the root node_modules directory so they can be shared across packages.",
+      "Elevating a developer's permissions.",
+      "Restarting the server automatically."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Hoisting extracts shared dependencies from the individual packages and installs them once at the root, saving time and disk space."
+  },
+  {
+    "question": "Why is caching critical in a Monorepo CI/CD pipeline?",
+    "options": [
+      "To save money on database queries.",
+      "Because running tests and builds for every single project on every commit would be incredibly slow and expensive.",
+      "To make the website load faster for users.",
+      "To prevent unauthorized access to the code."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you have 50 projects in a repo, but a PR only changes one, a smart tool like Turborepo will use cached results for the other 49, vastly speeding up CI times."
+  }
+]

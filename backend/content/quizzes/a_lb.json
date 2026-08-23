@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary function of a Load Balancer?",
+    "options": [
+      "To compress images before sending them to the client.",
+      "To efficiently distribute incoming network traffic across a group of backend servers.",
+      "To prevent SQL injection attacks.",
+      "To act as a primary database for user sessions."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A load balancer acts as the 'traffic cop' sitting in front of your servers, routing client requests across all servers capable of fulfilling those requests."
+  },
+  {
+    "question": "What is a Layer 4 Load Balancer?",
+    "options": [
+      "A load balancer that operates at the Application layer, inspecting HTTP headers.",
+      "A load balancer that operates at the Transport layer, making routing decisions based purely on IP addresses and TCP/UDP ports.",
+      "A load balancer that only works with 4 servers.",
+      "A physical hardware router."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Layer 4 load balancers don't look at the content of the message (like HTTP headers or URLs). They just look at the network info (IP and Port) and forward the packets."
+  },
+  {
+    "question": "What is a Layer 7 Load Balancer?",
+    "options": [
+      "A load balancer that operates at the Application layer, making routing decisions based on content like HTTP URLs, headers, and cookies.",
+      "A load balancer that is 7 times faster than Layer 4.",
+      "A load balancer that operates purely on MAC addresses.",
+      "A database read replica."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Because it operates at Layer 7, it can inspect the actual HTTP request. For example, it can route requests to '/images' to Server A, and '/api' to Server B."
+  },
+  {
+    "question": "Which of the following is an advantage of a Layer 4 load balancer over a Layer 7 load balancer?",
+    "options": [
+      "It can route based on the requested URL.",
+      "It can inject cookies into the response.",
+      "It requires less compute power and adds less latency because it doesn't inspect the data payload.",
+      "It automatically decrypts SSL traffic."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Layer 4 is 'dumb' but very fast. It just shuffles TCP packets without needing to decrypt or read the HTTP payload."
+  },
+  {
+    "question": "What is the 'Round Robin' load balancing algorithm?",
+    "options": [
+      "Requests are distributed sequentially to each server in a list, starting over when it reaches the end.",
+      "Requests are sent to the server with the fewest active connections.",
+      "Requests are sent to the server with the fastest response time.",
+      "A random server is chosen for every request."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Round Robin simply goes down the list of servers one by one. It assumes all servers have equal capacity."
+  },
+  {
+    "question": "What is the 'Least Connections' load balancing algorithm?",
+    "options": [
+      "The load balancer routes traffic to the server that is geographically closest to the client.",
+      "The load balancer routes traffic to the server with the fewest active connections at that moment.",
+      "The load balancer uses a hash of the client's IP to determine the server.",
+      "The load balancer randomly assigns traffic."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Least Connections is smarter than Round Robin because it accounts for servers that might be bogged down with long-running requests."
+  },
+  {
+    "question": "What is 'IP Hash' load balancing?",
+    "options": [
+      "The load balancer hashes the server's IP address.",
+      "The load balancer uses a hash of the client's IP address to ensure that a specific client always connects to the same backend server.",
+      "The load balancer encrypts the IP addresses to prevent DDoS attacks.",
+      "It is an algorithm that blocks malicious IPs."
+    ],
+    "correctOptionId": 1,
+    "explanation": "IP Hashing guarantees that a particular user (based on their IP) will consistently hit the same backend server, which is a way to achieve 'sticky sessions' without cookies."
+  },
+  {
+    "question": "What does a Load Balancer do if a backend server crashes?",
+    "options": [
+      "It crashes as well.",
+      "It returns a 500 Error to all clients permanently.",
+      "It detects the failure via 'Health Checks' and stops sending traffic to that server until it recovers.",
+      "It automatically reboots the broken server."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Load balancers constantly ping backend servers (Health Checks). If a server fails the check, it is removed from the rotation."
+  },
+  {
+    "question": "What is AWS ELB (Elastic Load Balancing)?",
+    "options": [
+      "A software library for Node.js.",
+      "A fully managed load balancing service provided by AWS that automatically distributes incoming application traffic.",
+      "A physical router you install in your office.",
+      "A type of database index."
+    ],
+    "correctOptionId": 1,
+    "explanation": "AWS ELB handles the heavy lifting of load balancing in the cloud. It comes in flavors like Application Load Balancer (Layer 7) and Network Load Balancer (Layer 4)."
+  },
+  {
+    "question": "How can you prevent the Load Balancer itself from becoming a Single Point of Failure (SPOF)?",
+    "options": [
+      "By not using a load balancer.",
+      "By deploying multiple load balancers in a cluster (Active-Passive or Active-Active mode) and using DNS routing or Anycast.",
+      "By putting the load balancer behind the database.",
+      "By using a Layer 4 load balancer instead of Layer 7."
+    ],
+    "correctOptionId": 1,
+    "explanation": "To ensure high availability, you must have redundant load balancers. If the active one fails, the passive one takes over its IP address instantly via protocols like VRRP."
+  }
+]

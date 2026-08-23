@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is a Unit Test?",
+    "options": [
+      "A test that verifies the entire system from the user interface down to the database.",
+      "A test that focuses on the smallest testable part of an application, usually a single function or method, in isolation.",
+      "A test performed by a dedicated QA team before release.",
+      "A test to ensure the server hardware is functioning."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Unit tests are the foundation of a testing strategy. They isolate a specific block of code (a 'unit') and ensure it behaves exactly as intended, mocking out any external dependencies."
+  },
+  {
+    "question": "What is an Integration Test?",
+    "options": [
+      "A test that verifies how different modules or services work together when combined.",
+      "A test that checks if the application's CSS is rendering correctly.",
+      "A test that only checks a single isolated function.",
+      "A test that measures the application's load capacity."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Integration tests ensure that the various parts of your application (e.g., the API route, the service logic, and the database) communicate with each other correctly."
+  },
+  {
+    "question": "What is an End-to-End (E2E) Test?",
+    "options": [
+      "A test that measures how fast a function executes from start to finish.",
+      "A test that validates the software system along with its integration with external interfaces, mimicking a real user scenario from start to finish (e.g., using Cypress or Playwright).",
+      "A test written exclusively by the end user.",
+      "A test that checks the physical network cable connection."
+    ],
+    "correctOptionId": 1,
+    "explanation": "E2E tests simulate a real user opening a browser, clicking buttons, filling out forms, and verifying the expected result happens on the screen and in the database."
+  },
+  {
+    "question": "What does the 'Testing Pyramid' suggest?",
+    "options": [
+      "You should have more E2E tests than Unit tests because E2E tests cover more ground.",
+      "You should have a large base of fast, reliable Unit tests, a smaller number of Integration tests, and an even smaller number of slow, brittle E2E tests at the top.",
+      "Testing is a pyramid scheme and should be avoided.",
+      "You should only write tests for the frontend."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Unit tests are cheap, fast, and easy to maintain. E2E tests are expensive, slow, and prone to flakiness. A healthy test suite is heavy on the bottom (Unit) and light on top (E2E)."
+  },
+  {
+    "question": "What is a 'Mock' in testing?",
+    "options": [
+      "A fake user account used for testing.",
+      "An object or function that simulates the behavior of a real component (like a database or an external API) in a controlled way.",
+      "A sarcastic comment left in the code.",
+      "A tool used to generate random test data."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you are unit-testing a function that calls a third-party payment API, you don't want to actually charge a credit card during the test. You 'mock' the API call to simply return a success response."
+  },
+  {
+    "question": "What is Test-Driven Development (TDD)?",
+    "options": [
+      "Writing tests after the code is fully complete to ensure it works.",
+      "A software development process relying on a very short development cycle: write a failing test first, write the minimum amount of code to pass the test, then refactor.",
+      "A testing framework for Node.js.",
+      "Having a dedicated tester drive the development process."
+    ],
+    "correctOptionId": 1,
+    "explanation": "TDD flips the traditional process. You define the expected behavior in a test *before* writing the implementation. This often leads to highly modular, testable code."
+  },
+  {
+    "question": "What is 'Code Coverage'?",
+    "options": [
+      "The percentage of your source code that is executed when your test suite runs.",
+      "The amount of documentation written for your code.",
+      "A metric defining how secure your code is.",
+      "The percentage of code that is free of bugs."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Tools like Istanbul/NYC track which lines, branches, and functions are hit during testing. While 100% coverage doesn't guarantee bug-free code, a high percentage indicates a well-tested application."
+  },
+  {
+    "question": "What is a 'Flaky Test'?",
+    "options": [
+      "A test written in a dynamically typed language.",
+      "A test that exhibits both a passing and a failing result with the exact same code, often due to timing issues or reliance on external state.",
+      "A test that tests UI styling.",
+      "A test that is missing assertions."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Flaky tests are dangerous because developers eventually stop trusting the test suite. They are common in E2E testing where elements might load slightly slower on one run than another."
+  },
+  {
+    "question": "Which of the following is a popular testing framework for JavaScript/Node.js?",
+    "options": [
+      "JUnit",
+      "PyTest",
+      "Jest",
+      "RSpec"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Jest (created by Facebook) is a widely used JavaScript testing framework known for its zero-config setup, speed, and built-in mocking capabilities."
+  },
+  {
+    "question": "What is 'Load Testing'?",
+    "options": [
+      "Testing if the application loads correctly in the browser.",
+      "Testing the application's behavior under an expected, specific expected load (e.g., 1000 concurrent users) to ensure it performs adequately.",
+      "Testing the maximum load a database can hold before crashing.",
+      "Testing the speed of the CI/CD pipeline."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Load testing (using tools like JMeter, Artillery, or k6) proves that your system can handle the traffic you anticipate without degrading performance."
+  }
+]

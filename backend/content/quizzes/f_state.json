@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is State Management in a frontend application?",
+    "options": [
+      "Managing the server's database schema.",
+      "The process of managing the data (state) that powers the application's UI, ensuring the UI stays in sync with data changes across different components.",
+      "Managing the CSS styling of the application.",
+      "Managing the routing of URLs."
+    ],
+    "correctOptionId": 1,
+    "explanation": "State is the memory of an application. If a user opens a sidebar, adds an item to a cart, or logs in, that 'state' must be managed and shared across the relevant components so they render correctly."
+  },
+  {
+    "question": "What is 'Local State' in React?",
+    "options": [
+      "State stored in the browser's Local Storage.",
+      "State that is managed within a single component and is only accessible to that component (and its children via props).",
+      "State managed by a Redux store.",
+      "State that is hardcoded into the HTML."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Using `useState` inside a component creates local state. If a toggle button opens a dropdown, only that component needs to know if the dropdown is open. Global state is not necessary here."
+  },
+  {
+    "question": "When should you 'Lift State Up' in React?",
+    "options": [
+      "When you want to save data to the server.",
+      "When two or more sibling components need to share and sync the same state data.",
+      "When a component becomes too large.",
+      "When you are using Redux."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If Component A (Search Bar) and Component B (Results List) need to share the search query, you move (lift) the state up to their closest common parent component and pass the state down as props."
+  },
+  {
+    "question": "What problem does the React Context API solve?",
+    "options": [
+      "It makes the application run faster.",
+      "It solves 'prop drilling' by providing a way to share data globally across the component tree without having to manually pass props down through every single level.",
+      "It provides built-in routing.",
+      "It replaces the need for a backend server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Context is great for truly global data like the current authenticated user, theme (light/dark mode), or language locale, which many deeply nested components might need to read."
+  },
+  {
+    "question": "What is Redux?",
+    "options": [
+      "A database system.",
+      "A predictable state container (global state management library) for JavaScript apps, often used with React for managing complex, highly interactive state.",
+      "A CSS framework.",
+      "A tool for fetching APIs."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Redux keeps the state of your entire application in a single, immutable object tree (the Store). Changes to the state are made strictly by dispatching actions."
+  },
+  {
+    "question": "In Redux (or `useReducer`), what is the role of a 'Reducer'?",
+    "options": [
+      "To compress the size of the state object.",
+      "A pure function that takes the current state and an 'action' object, and returns the *new* state based on that action.",
+      "To reduce the number of components on the page.",
+      "To fetch data from the backend."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Reducers are the logic centers. For example, if the current state is `{count: 0}` and the action is `{type: 'INCREMENT'}`, the reducer returns `{count: 1}`."
+  },
+  {
+    "question": "Why must Redux Reducers be 'Pure Functions'?",
+    "options": [
+      "Because they are written in pure JavaScript.",
+      "To ensure predictability and enable time-travel debugging. They must not mutate the existing state directly, but rather return a brand new copy of the state object.",
+      "Because they cannot contain strings.",
+      "Because impure functions are banned in React."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a reducer modifies the state directly (e.g., `state.count = 1`), React might not detect the change because the object reference is the same, causing the UI to not re-render. Returning a new object (`{...state, count: 1}`) guarantees a re-render."
+  },
+  {
+    "question": "What is Redux Toolkit (RTK)?",
+    "options": [
+      "A premium, paid version of Redux.",
+      "The official, opinionated, batteries-included toolset for efficient Redux development, designed to reduce boilerplate and simplify store setup.",
+      "A set of UI components for Redux.",
+      "A totally different state manager that replaces Redux."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Traditional Redux required a massive amount of boilerplate (action creators, switch statements, manual immutability). RTK uses 'slices' and Immer under the hood to make writing Redux logic much simpler."
+  },
+  {
+    "question": "What is Zustand (or Jotai/Recoil)?",
+    "options": [
+      "Backend frameworks.",
+      "Modern, lightweight alternatives to Redux that provide a simpler, hook-based API for global state management with less boilerplate.",
+      "CSS animation libraries.",
+      "Testing frameworks."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While Redux is powerful, it can be overkill for small-to-medium apps. Zustand has gained massive popularity for being incredibly simple, fast, and unopinionated compared to Redux."
+  },
+  {
+    "question": "Which tool is best suited for managing 'Server State' (data fetched from an API, caching, loading states, and refetching)?",
+    "options": [
+      "useState",
+      "Redux",
+      "React Query (TanStack Query) or SWR",
+      "Context API"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Historically, developers used Redux to store API data. However, Server State is fundamentally different from UI State. React Query specializes in fetching, caching, synchronizing and updating server state automatically."
+  }
+]

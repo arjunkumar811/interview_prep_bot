@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What does 'Resiliency' mean in the context of system design?",
+    "options": [
+      "The speed at which a system processes requests.",
+      "The ability of a system to recover from failures and continue to function, perhaps in a degraded state, rather than crashing completely.",
+      "The amount of data a system can store.",
+      "The level of encryption used in the system."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Resiliency is about embracing failure. Instead of trying to prevent all failures (which is impossible), a resilient system is designed to handle them gracefully."
+  },
+  {
+    "question": "What is a 'Single Point of Failure' (SPOF)?",
+    "options": [
+      "A bug in the code that causes a single function to fail.",
+      "A part of a system that, if it fails, will stop the entire system from working.",
+      "The exact moment a server crashes.",
+      "A user who forgets their password."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Removing SPOFs is the first step in building a resilient system. For example, if you have 10 web servers but only 1 database, the database is a SPOF."
+  },
+  {
+    "question": "How do you eliminate a Single Point of Failure?",
+    "options": [
+      "By writing perfect code.",
+      "By introducing Redundancy (having multiple instances of the same component).",
+      "By using a single, massive server.",
+      "By encrypting the network."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Redundancy (e.g., using a Master-Slave database setup, or a cluster of load balancers) ensures that if one component dies, a backup is ready to take its place."
+  },
+  {
+    "question": "What is the purpose of a 'Health Check'?",
+    "options": [
+      "To monitor the physical temperature of the server.",
+      "A mechanism used by load balancers or orchestrators to continuously ping a service to verify it is alive and capable of handling traffic.",
+      "To check if the user's internet connection is fast enough.",
+      "To scan the codebase for viruses."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a health check fails, the load balancer stops routing traffic to that instance, ensuring users don't receive error pages from a dead server."
+  },
+  {
+    "question": "What is a 'Retry Pattern' with 'Exponential Backoff'?",
+    "options": [
+      "Retrying a failed request repeatedly as fast as possible until it succeeds.",
+      "Retrying a failed request with progressively longer delays between each attempt (e.g., wait 1s, then 2s, then 4s, then 8s).",
+      "Backing up the database exponentially.",
+      "Giving up immediately after the first failure."
+    ],
+    "correctOptionId": 1,
+    "explanation": "When a downstream service is struggling, instantly bombarding it with retries will only crush it further (a retry storm). Exponential backoff gives the struggling service breathing room to recover."
+  },
+  {
+    "question": "Why is 'Jitter' added to Exponential Backoff?",
+    "options": [
+      "To make the code run faster.",
+      "To add randomness to the retry intervals, preventing the 'thundering herd' problem where all failing clients retry at the exact same moment.",
+      "To test the server's stress limits.",
+      "To encrypt the retry request."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If 100 clients fail at T=0, and all wait exactly 2 seconds, they will all hit the server again at T=2. Adding jitter (randomness) smears the retries over a time window, smoothing the load."
+  },
+  {
+    "question": "What is the 'Bulkhead Pattern'?",
+    "options": [
+      "Storing data in large bulk files.",
+      "Partitioning system resources (like thread pools or connection pools) so that a failure or resource exhaustion in one part of the system doesn't bring down the rest.",
+      "A pattern for encrypting headers.",
+      "A method of scaling a database horizontally."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Named after the watertight compartments (bulkheads) in a ship. If one service is slow and eats up all threads, a bulkhead ensures it only exhausts *its* dedicated thread pool, leaving other services unaffected."
+  },
+  {
+    "question": "What does it mean for a system to 'Fail Fast'?",
+    "options": [
+      "The system crashes as quickly as possible without trying to recover.",
+      "The system immediately returns an error if it knows it cannot succeed, rather than hanging or waiting for a long timeout.",
+      "The system bypasses security checks to speed up processing.",
+      "The system deletes all data upon detecting a failure."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Failing fast prevents resource exhaustion. If a database is down, it's better to instantly return a 500 error than to let a thread hang for 30 seconds waiting for a connection timeout."
+  },
+  {
+    "question": "What is 'Graceful Degradation'?",
+    "options": [
+      "When a server slowly shuts down to save power.",
+      "When a system experiences a partial failure, it disables non-critical features to keep core functionality working, rather than crashing entirely.",
+      "When a user is downgraded to a free tier.",
+      "When image resolution is lowered to save bandwidth."
+    ],
+    "correctOptionId": 1,
+    "explanation": "For example, if Netflix's 'Recommendation Engine' goes down, they gracefully degrade by showing a hardcoded 'Popular Movies' list, ensuring the user can still watch videos."
+  },
+  {
+    "question": "What is 'Chaos Engineering' (e.g., Chaos Monkey)?",
+    "options": [
+      "Writing disorganized, chaotic code to confuse hackers.",
+      "The practice of intentionally injecting failures (like killing servers or dropping network packets) into a production system to prove that its resiliency mechanisms work.",
+      "A pattern for generating random IDs.",
+      "A type of NoSQL database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Pioneered by Netflix, Chaos Engineering validates that your automated failovers, circuit breakers, and redundancy actually work in the real world before a real outage happens."
+  }
+]

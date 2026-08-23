@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Apache Kafka fundamentally designed as?",
+    "options": [
+      "A relational database management system.",
+      "A traditional message queue that deletes messages after they are read.",
+      "A distributed event streaming platform based on an append-only commit log.",
+      "A caching layer for web applications."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Kafka is designed as a distributed commit log. Unlike traditional message queues, it stores streams of records securely and durably, allowing them to be replayed."
+  },
+  {
+    "question": "In Kafka, what is a 'Topic'?",
+    "options": [
+      "A physical server in the cluster.",
+      "A category or feed name to which records are published.",
+      "A query used to filter data.",
+      "A user who consumes messages."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A topic is a logical channel or category where producers write data and consumers read data."
+  },
+  {
+    "question": "How does Kafka scale a Topic to handle massive amounts of data?",
+    "options": [
+      "By adding more RAM to the server.",
+      "By compressing the messages.",
+      "By breaking the Topic down into smaller 'Partitions' distributed across multiple brokers.",
+      "By deleting older messages instantly."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Partitions are the fundamental unit of scaling in Kafka. A single topic can have many partitions, allowing multiple consumers to read from the topic in parallel."
+  },
+  {
+    "question": "What is an 'Offset' in Kafka?",
+    "options": [
+      "The time delay between a message being sent and received.",
+      "A unique, sequential ID assigned to each message as it arrives in a partition.",
+      "The physical memory address of a message.",
+      "The network latency of a broker."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The offset is a simple integer. Kafka maintains this offset for each message in a partition, and consumers use it to track their exact reading position in the log."
+  },
+  {
+    "question": "How does Kafka guarantee message ordering?",
+    "options": [
+      "Kafka guarantees global ordering across all partitions in a topic.",
+      "Kafka only guarantees ordering of messages within a single Partition.",
+      "Kafka does not guarantee ordering at all.",
+      "Kafka orders messages alphabetically."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because a topic is split into partitions, global ordering is impossible without sacrificing performance. However, messages sent to the *same partition* are strictly ordered."
+  },
+  {
+    "question": "If a producer wants to ensure that all messages belonging to a specific user are processed in exact order, what should they do?",
+    "options": [
+      "Send all messages with the same 'Key' (e.g., the User ID).",
+      "Use only one broker in the cluster.",
+      "Set the Kafka partition count to 1.",
+      "Encrypt the messages."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Kafka uses the message Key to determine the partition. Messages with the same key are always routed to the same partition, guaranteeing they are processed in order."
+  },
+  {
+    "question": "What happens if a Consumer Group has more consumers than there are partitions in a topic?",
+    "options": [
+      "Kafka automatically creates more partitions.",
+      "The extra consumers will crash.",
+      "The extra consumers will sit idle and receive no messages.",
+      "All consumers will read the same messages in parallel."
+    ],
+    "correctOptionId": 2,
+    "explanation": "A partition can only be consumed by ONE consumer within a specific Consumer Group. Therefore, max concurrency for a topic is limited by its number of partitions."
+  },
+  {
+    "question": "What is the role of ZooKeeper (traditionally) or KRaft in a Kafka cluster?",
+    "options": [
+      "To store the actual message payloads.",
+      "To provide a web UI for Kafka.",
+      "To manage cluster metadata, leader election, and keep track of which brokers hold which partitions.",
+      "To encrypt the data on disk."
+    ],
+    "correctOptionId": 2,
+    "explanation": "ZooKeeper acts as the centralized coordinator for the cluster. (Note: Kafka is actively moving to KRaft, a built-in consensus protocol that replaces ZooKeeper)."
+  },
+  {
+    "question": "Unlike RabbitMQ, how are messages removed from Kafka?",
+    "options": [
+      "They are deleted immediately after a consumer reads them.",
+      "They are never deleted.",
+      "They are deleted by consumers sending a DELETE HTTP request.",
+      "They are deleted automatically based on a configured retention policy (e.g., after 7 days or when a size limit is reached)."
+    ],
+    "correctOptionId": 3,
+    "explanation": "Kafka retains all published messages—whether they have been consumed or not—for a configurable retention period, allowing consumers to 'rewind' and replay data."
+  },
+  {
+    "question": "What is 'Log Compaction' in Kafka?",
+    "options": [
+      "Zipping the log files to save disk space.",
+      "A mechanism that ensures Kafka retains only the *last* known value for each message key within the log.",
+      "Deleting all logs older than 24 hours.",
+      "Converting text logs to binary."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Log compaction is useful for state restoration. If you only care about the *current* state of an object (e.g., a user profile), Kafka can delete older messages with the same key to save space."
+  }
+]

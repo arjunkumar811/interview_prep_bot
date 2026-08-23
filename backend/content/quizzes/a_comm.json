@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Which of the following is a key characteristic of the TCP protocol?",
+    "options": [
+      "It is connectionless.",
+      "It provides reliable, ordered, and error-checked delivery of a stream of octets.",
+      "It does not guarantee delivery of packets.",
+      "It is primarily used for streaming real-time video where packet loss is acceptable."
+    ],
+    "correctOptionId": 1,
+    "explanation": "TCP (Transmission Control Protocol) is connection-oriented and ensures that all packets arrive intact and in the correct order."
+  },
+  {
+    "question": "What is the primary advantage of UDP over TCP?",
+    "options": [
+      "It guarantees delivery of every packet.",
+      "It is much faster because it has less overhead (no handshakes, no acknowledgements).",
+      "It automatically orders packets upon arrival.",
+      "It is inherently more secure than TCP."
+    ],
+    "correctOptionId": 1,
+    "explanation": "UDP (User Datagram Protocol) sacrifices reliability for speed, making it ideal for use cases like gaming, voice, and video streaming."
+  },
+  {
+    "question": "What happens during the TCP 'Three-Way Handshake'?",
+    "options": [
+      "SYN, SYN-ACK, ACK",
+      "ACK, SYN, SYN-ACK",
+      "REQ, RES, ACK",
+      "PING, PONG, ACK"
+    ],
+    "correctOptionId": 0,
+    "explanation": "The client sends a SYN (synchronize), the server replies with a SYN-ACK, and the client confirms with an ACK (acknowledge) to establish a connection."
+  },
+  {
+    "question": "What does HTTP/2 introduce over HTTP/1.1 to improve performance?",
+    "options": [
+      "It requires a new TCP connection for every request.",
+      "It introduces multiplexing over a single TCP connection.",
+      "It removes the need for SSL/TLS certificates.",
+      "It replaces JSON with a binary XML format."
+    ],
+    "correctOptionId": 1,
+    "explanation": "HTTP/2 multiplexing allows multiple requests and responses to be sent simultaneously over a single TCP connection, eliminating head-of-line blocking."
+  },
+  {
+    "question": "What is 'Server-Sent Events' (SSE)?",
+    "options": [
+      "A bidirectional communication protocol.",
+      "A unidirectional mechanism where the server can push updates to the client over a single HTTP connection.",
+      "A method for the client to constantly ping the server.",
+      "A UDP-based streaming technology."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Unlike WebSockets (which are bidirectional), SSE is a unidirectional (server-to-client) technology over standard HTTP, ideal for news feeds or stock tickers."
+  },
+  {
+    "question": "What does QUIC (the foundation of HTTP/3) use under the hood instead of TCP?",
+    "options": [
+      "IPsec",
+      "SCTP",
+      "UDP",
+      "ICMP"
+    ],
+    "correctOptionId": 2,
+    "explanation": "QUIC uses UDP to reduce latency (by removing the TCP handshake overhead) while implementing its own reliability and congestion control mechanisms on top."
+  },
+  {
+    "question": "In the OSI model, at which layer do HTTP and WebSockets operate?",
+    "options": [
+      "Layer 3 (Network Layer)",
+      "Layer 4 (Transport Layer)",
+      "Layer 7 (Application Layer)",
+      "Layer 2 (Data Link Layer)"
+    ],
+    "correctOptionId": 2,
+    "explanation": "HTTP, WebSockets, FTP, and SMTP all operate at Layer 7, the Application Layer, which provides network services directly to applications."
+  },
+  {
+    "question": "At which OSI layer do TCP and UDP operate?",
+    "options": [
+      "Layer 3 (Network Layer)",
+      "Layer 4 (Transport Layer)",
+      "Layer 7 (Application Layer)",
+      "Layer 1 (Physical Layer)"
+    ],
+    "correctOptionId": 1,
+    "explanation": "TCP and UDP are Transport Layer (Layer 4) protocols responsible for end-to-end communication and data transfer."
+  },
+  {
+    "question": "What is 'Head-of-Line (HOL) Blocking' in HTTP/1.1?",
+    "options": [
+      "When a large or slow request blocks subsequent requests from being sent over the same TCP connection.",
+      "When a firewall blocks the first packet of a connection.",
+      "When the server runs out of memory processing headers.",
+      "When the DNS resolution fails."
+    ],
+    "correctOptionId": 0,
+    "explanation": "In HTTP/1.1 pipelining, responses must be returned in the order they were requested. If the first request takes a long time, all subsequent requests are blocked waiting for it."
+  },
+  {
+    "question": "Why is HTTP/3 (QUIC) resistant to IP spoofing and connection migration issues (like switching from Wi-Fi to Cellular)?",
+    "options": [
+      "It uses an encrypted tunnel via a VPN.",
+      "It identifies connections using a unique Connection ID rather than the source IP and Port.",
+      "It requires a new TCP handshake every time the network changes.",
+      "It relies entirely on the MAC address."
+    ],
+    "correctOptionId": 1,
+    "explanation": "QUIC uses a Connection ID. If a user's IP address changes (e.g., leaving Wi-Fi and moving to cellular data), the connection is maintained seamlessly without a new handshake."
+  }
+]

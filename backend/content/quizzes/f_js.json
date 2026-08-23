@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is JavaScript primarily used for on the web?",
+    "options": [
+      "To define the structure of a webpage.",
+      "To style the visual layout of a webpage.",
+      "To add interactivity and complex behavior to a webpage.",
+      "To securely store passwords in a database."
+    ],
+    "correctOptionId": 2,
+    "explanation": "While HTML provides structure and CSS provides styling, JavaScript is the programming language that makes web pages interactive (e.g., handling clicks, fetching data, animating elements)."
+  },
+  {
+    "question": "Which of the following is the correct way to declare a variable whose value cannot be reassigned in modern JavaScript?",
+    "options": [
+      "var myVar = 10;",
+      "let myVar = 10;",
+      "const myVar = 10;",
+      "static myVar = 10;"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The 'const' keyword declares a block-scoped variable that cannot be reassigned a new value. 'let' is for variables that can change, and 'var' is the older, function-scoped declaration."
+  },
+  {
+    "question": "What is the result of `typeof null` in JavaScript?",
+    "options": [
+      "\"null\"",
+      "\"undefined\"",
+      "\"object\"",
+      "\"boolean\""
+    ],
+    "correctOptionId": 2,
+    "explanation": "This is a famous, long-standing bug in JavaScript. `typeof null` returns 'object', even though null is a primitive value, not an object."
+  },
+  {
+    "question": "What is the difference between `==` and `===` in JavaScript?",
+    "options": [
+      "`==` compares values and types; `===` only compares values.",
+      "`==` performs type coercion before comparing; `===` compares both value and type strictly without coercion.",
+      "`==` is used for strings; `===` is used for numbers.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The strict equality operator (`===`) is almost always preferred. `1 == '1'` is true (because JS converts the string to a number), but `1 === '1'` is false."
+  },
+  {
+    "question": "What does a 'Closure' refer to in JavaScript?",
+    "options": [
+      "Closing an HTML tag.",
+      "A function bundled together with references to its surrounding state (the lexical environment), allowing a function to access variables from an enclosing scope even after the outer function has finished executing.",
+      "A method for hiding code from the user.",
+      "The end of a for-loop."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Closures are a fundamental concept. They allow functions to 'remember' the environment in which they were created, which is essential for data privacy and callbacks."
+  },
+  {
+    "question": "What is the 'Event Loop' in JavaScript?",
+    "options": [
+      "A loop that iterates over DOM elements.",
+      "The mechanism that allows Node.js and browsers to perform non-blocking I/O operations by offloading operations to the system kernel and processing callbacks in a single thread.",
+      "A specific type of while-loop.",
+      "A library for handling mouse clicks."
+    ],
+    "correctOptionId": 1,
+    "explanation": "JavaScript is single-threaded. The event loop continuously checks if the Call Stack is empty; if it is, it pushes the first callback from the Task Queue onto the Call Stack for execution."
+  },
+  {
+    "question": "What is a 'Promise' in JavaScript?",
+    "options": [
+      "A guarantee that a function will never throw an error.",
+      "An object representing the eventual completion (or failure) of an asynchronous operation and its resulting value.",
+      "A keyword used to declare synchronous functions.",
+      "A method to delay code execution by exactly 1 second."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Promises replaced 'Callback Hell'. A Promise is in one of three states: pending, fulfilled, or rejected, allowing you to chain `.then()` and `.catch()` methods cleanly."
+  },
+  {
+    "question": "What is 'Hoisting' in JavaScript?",
+    "options": [
+      "Moving an HTML element to the top of the page.",
+      "JavaScript's default behavior of moving declarations (but not initializations) to the top of the current scope before code execution.",
+      "A feature of the V8 engine to speed up calculations.",
+      "Uploading files to a server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because of hoisting, you can call a function before it is declared in the code (if declared with the `function` keyword). Note that `let` and `const` variables are hoisted but enter a 'Temporal Dead Zone' and cannot be accessed."
+  },
+  {
+    "question": "What does the `this` keyword refer to in standard JavaScript?",
+    "options": [
+      "It always refers to the window object.",
+      "It always refers to the function itself.",
+      "Its value is determined by how a function is called (the execution context).",
+      "It refers to the previous variable declared."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Unlike most other languages, `this` is dynamic in standard JS functions. If `obj.method()` is called, `this` is `obj`. Arrow functions (`() => {}`), however, capture `this` lexically from their surrounding scope."
+  },
+  {
+    "question": "Which array method creates a new array populated with the results of calling a provided function on every element in the calling array?",
+    "options": [
+      "filter()",
+      "forEach()",
+      "reduce()",
+      "map()"
+    ],
+    "correctOptionId": 3,
+    "explanation": "`map()` transforms an array. `filter()` removes items. `reduce()` boils an array down to a single value. `forEach()` just loops over items without returning a new array."
+  }
+]

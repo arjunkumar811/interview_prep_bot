@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary purpose of Rate Limiting in an API?",
+    "options": [
+      "To increase the speed of the API.",
+      "To control the rate of traffic sent or received by a network interface controller, protecting the service from being overwhelmed (e.g., DDoS or brute-force attacks).",
+      "To compress data before sending it to the client.",
+      "To limit the amount of money spent on cloud hosting."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Rate limiting restricts the number of requests a user or IP can make in a given time period, ensuring fair usage and protecting the server from abuse."
+  },
+  {
+    "question": "Which HTTP status code is standardly returned when a client exceeds their rate limit?",
+    "options": [
+      "403 Forbidden",
+      "400 Bad Request",
+      "429 Too Many Requests",
+      "503 Service Unavailable"
+    ],
+    "correctOptionId": 2,
+    "explanation": "HTTP 429 Too Many Requests is the standard response code to indicate that the user has sent too many requests in a given amount of time."
+  },
+  {
+    "question": "How does the 'Token Bucket' algorithm work?",
+    "options": [
+      "It drops all packets that arrive after the bucket is full.",
+      "Tokens are added to a bucket at a fixed rate. A request consumes a token. If the bucket is empty, the request is rejected or delayed.",
+      "It stores tokens in a database and deletes them after an hour.",
+      "It allows unlimited requests until a manual switch is flipped."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The Token Bucket algorithm allows for bursts of traffic (up to the bucket capacity) but enforces a long-term average rate (the rate at which tokens are added)."
+  },
+  {
+    "question": "How does the 'Leaky Bucket' algorithm differ from the 'Token Bucket'?",
+    "options": [
+      "Leaky Bucket does not allow bursts; it processes requests at a strictly constant rate, dropping overflows.",
+      "Leaky Bucket is used for memory management, not rate limiting.",
+      "Token Bucket drops requests; Leaky Bucket never drops requests.",
+      "They are exactly the same algorithm."
+    ],
+    "correctOptionId": 0,
+    "explanation": "While Token Bucket allows a burst of requests if tokens have accumulated, Leaky Bucket strictly enforces a constant processing rate, smoothing out bursty traffic."
+  },
+  {
+    "question": "What is the 'Fixed Window Counter' algorithm?",
+    "options": [
+      "It tracks the number of requests in a fixed time window (e.g., 00:00 to 00:01). If the limit is reached, requests are dropped until the next window starts.",
+      "It counts requests across a rolling time frame.",
+      "It fixes the window size of the browser.",
+      "It only allows requests from fixed IP addresses."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Fixed Window is simple (e.g., 100 requests per minute), but it suffers from the 'burst at the edge' problem, where a user could send 100 requests at 00:00:59 and another 100 at 00:01:00."
+  },
+  {
+    "question": "How does the 'Sliding Window Log' algorithm solve the burst problem of the Fixed Window?",
+    "options": [
+      "It logs the timestamp of *every* single request and calculates the exact number of requests in the rolling time window (e.g., the last 60 seconds from *now*).",
+      "It increases the limit dynamically.",
+      "It completely blocks the user after the first violation.",
+      "It averages out the requests over a year."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Sliding Window Log is highly accurate as it tracks individual request timestamps, but it is memory-intensive because it stores every timestamp."
+  },
+  {
+    "question": "Why is Redis commonly used to implement distributed rate limiting?",
+    "options": [
+      "Because it is a relational database.",
+      "Because its in-memory, single-threaded atomic operations (like INCR and EXPIRE) make it extremely fast and safe for distributed counters.",
+      "Because it automatically blocks IPs.",
+      "Because it runs on the client side."
+    ],
+    "correctOptionId": 1,
+    "explanation": "When you have multiple web servers behind a load balancer, they must share the rate limit counters. Redis provides fast, atomic, centralized state for these counters."
+  },
+  {
+    "question": "What is 'Throttling' in the context of API management?",
+    "options": [
+      "Deleting user accounts that spam the API.",
+      "Slowing down the processing of requests (or adding them to a queue) instead of immediately rejecting them with a 429 error.",
+      "Compressing the API response.",
+      "Speeding up the database queries."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While rate limiting usually blocks requests, throttling tries to gracefully handle spikes by delaying the processing of excess requests."
+  },
+  {
+    "question": "Which HTTP headers are typically included in a response to inform the client about their rate limits?",
+    "options": [
+      "X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset",
+      "Rate-Max, Rate-Current",
+      "Warning-Limit, Warning-Reset",
+      "API-Limit, API-Used"
+    ],
+    "correctOptionId": 0,
+    "explanation": "These standard headers tell the client their total capacity, how many requests they have left, and the timestamp when the bucket/window will reset."
+  },
+  {
+    "question": "How should rate limiting be applied to prevent abuse effectively?",
+    "options": [
+      "Only by IP Address.",
+      "Only by User ID.",
+      "Usually a combination of factors: IP Address (for unauthenticated users) and User ID / API Key (for authenticated users).",
+      "Only on the frontend client."
+    ],
+    "correctOptionId": 2,
+    "explanation": "IP limiting protects against bots but can accidentally block an entire office sharing a NAT. User ID limiting protects against individual malicious accounts. Combining them is best practice."
+  }
+]

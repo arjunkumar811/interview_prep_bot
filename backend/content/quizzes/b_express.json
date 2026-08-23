@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Express.js?",
+    "options": [
+      "A database management system",
+      "A fast, unopinionated, minimalist web framework for Node.js",
+      "A frontend styling framework",
+      "A testing library"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Express.js is the most popular web framework for Node.js, providing a robust set of features for web and mobile applications."
+  },
+  {
+    "question": "How do you define a route for a GET request in Express?",
+    "options": [
+      "app.route('/path', callback)",
+      "app.get('/path', callback)",
+      "app.request('GET', '/path', callback)",
+      "app.receive('/path', callback)"
+    ],
+    "correctOptionId": 1,
+    "explanation": "app.get() routes HTTP GET requests to the specified path with the specified callback functions."
+  },
+  {
+    "question": "Which of the following represents middleware in Express?",
+    "options": [
+      "app.use((req, res, next) => { ... })",
+      "app.middleware((req, res) => { ... })",
+      "app.set('middleware', (req, res) => { ... })",
+      "app.hook((req, res) => { ... })"
+    ],
+    "correctOptionId": 0,
+    "explanation": "app.use() mounts the specified middleware function or functions at the specified path."
+  },
+  {
+    "question": "What is the purpose of the 'next' parameter in Express middleware?",
+    "options": [
+      "To skip to the next route completely",
+      "To pass control to the next middleware function in the stack",
+      "To restart the server",
+      "To end the response immediately"
+    ],
+    "correctOptionId": 1,
+    "explanation": "The next function is a callback that, when invoked, executes the middleware succeeding the current middleware."
+  },
+  {
+    "question": "How do you access URL parameters in Express (e.g., /users/:id)?",
+    "options": [
+      "req.query.id",
+      "req.params.id",
+      "req.body.id",
+      "req.url.id"
+    ],
+    "correctOptionId": 1,
+    "explanation": "req.params is an object containing properties mapped to the named route 'parameters'."
+  },
+  {
+    "question": "How do you send a JSON response in Express?",
+    "options": [
+      "res.json({ key: 'value' })",
+      "res.sendJSON({ key: 'value' })",
+      "res.render({ key: 'value' })",
+      "res.type('json').send({ key: 'value' })"
+    ],
+    "correctOptionId": 0,
+    "explanation": "res.json() sends a JSON response. It converts the parameter to a JSON string using JSON.stringify()."
+  },
+  {
+    "question": "Which middleware is commonly used to parse incoming JSON payloads in Express?",
+    "options": [
+      "express.json()",
+      "express.parse()",
+      "express.payload()",
+      "bodyParser.jsonParser()"
+    ],
+    "correctOptionId": 0,
+    "explanation": "express.json() is a built-in middleware function in Express based on body-parser to parse JSON payloads."
+  },
+  {
+    "question": "What does app.listen() do?",
+    "options": [
+      "Listens for database connections",
+      "Binds and listens for connections on the specified host and port",
+      "Logs incoming requests to the console",
+      "Sets the environment to production"
+    ],
+    "correctOptionId": 1,
+    "explanation": "app.listen() binds and listens for connections on the specified host and port, effectively starting the server."
+  },
+  {
+    "question": "How do you serve static files (like images, CSS) in Express?",
+    "options": [
+      "app.use(express.static('public'))",
+      "app.serve('public')",
+      "app.files('public')",
+      "app.static('public')"
+    ],
+    "correctOptionId": 0,
+    "explanation": "express.static is a built-in middleware function used to serve static files such as images, CSS, and JS files."
+  },
+  {
+    "question": "What happens if a route handler does not call next() and does not send a response?",
+    "options": [
+      "Express throws an error automatically",
+      "The client receives a 404 response",
+      "The request will be left hanging and eventually time out",
+      "The next route is called automatically"
+    ],
+    "correctOptionId": 2,
+    "explanation": "If you don't send a response (e.g., res.send()) or call next(), the request will hang and eventually the browser/client will time out."
+  }
+]

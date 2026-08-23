@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Redis primarily used for?",
+    "options": [
+      "As a primary relational database",
+      "As an in-memory data structure store, used as a database, cache, and message broker",
+      "As a frontend web server",
+      "As a CSS preprocessor"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Redis is an open source, in-memory data structure store that is often used for high-performance caching, session management, and pub/sub messaging."
+  },
+  {
+    "question": "Where does Redis store its data by default to achieve high performance?",
+    "options": [
+      "On an SSD drive",
+      "In the cloud",
+      "In the main memory (RAM)",
+      "In a relational table"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Redis is an in-memory database, which means it reads and writes data directly to RAM, making it incredibly fast compared to disk-based databases."
+  },
+  {
+    "question": "Which of the following data structures is NOT supported by Redis?",
+    "options": [
+      "Strings",
+      "Hashes",
+      "Lists",
+      "Nested SQL Tables"
+    ],
+    "correctOptionId": 3,
+    "explanation": "Redis supports Strings, Hashes, Lists, Sets, Sorted Sets, Bitmaps, and HyperLogLogs, but not relational SQL tables."
+  },
+  {
+    "question": "What is the Time To Live (TTL) in Redis?",
+    "options": [
+      "The amount of time the Redis server can stay online.",
+      "A value that dictates how long a key should exist before being automatically deleted.",
+      "The latency between the client and the server.",
+      "A configuration for background backups."
+    ],
+    "correctOptionId": 1,
+    "explanation": "TTL determines how long a key-value pair will remain in the cache before Redis automatically expires and deletes it."
+  },
+  {
+    "question": "Which Redis command is used to set a string value with an expiration time?",
+    "options": [
+      "SETEX",
+      "EXPIRESET",
+      "SETTTL",
+      "PUTEXPIRE"
+    ],
+    "correctOptionId": 0,
+    "explanation": "The SETEX command sets the value of a key and its expiration time (in seconds) in one atomic operation."
+  },
+  {
+    "question": "How does Redis handle persistence?",
+    "options": [
+      "It doesn't; all data is lost on reboot.",
+      "It writes every single operation to a remote server.",
+      "Through RDB (snapshots) and AOF (Append Only File).",
+      "By converting data to SQL formats on disk."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Redis can persist data to disk using RDB (taking point-in-time snapshots) and AOF (logging every write operation received by the server)."
+  },
+  {
+    "question": "What does the Redis PUBLISH command do?",
+    "options": [
+      "Publishes a new web page.",
+      "Posts a message to a given channel in the Pub/Sub system.",
+      "Makes a key public to all connected clients.",
+      "Sends a message to an external message queue like Kafka."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In Redis Pub/Sub, the PUBLISH command sends a message to all clients subscribed to a specific channel."
+  },
+  {
+    "question": "What is the typical use case for a Redis Sorted Set (ZSET)?",
+    "options": [
+      "Storing encrypted passwords.",
+      "Building a real-time leaderboard (e.g., gaming scores).",
+      "Storing binary image files.",
+      "Handling complex relational joins."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Sorted Sets are perfect for leaderboards because every element is associated with a floating-point score, allowing Redis to automatically sort them in $O(log(N))$ time."
+  },
+  {
+    "question": "What happens in Redis when the memory limit is reached?",
+    "options": [
+      "The server immediately crashes.",
+      "It switches to using the hard drive as memory.",
+      "It triggers the configured eviction policy (e.g., LRU) to remove old data.",
+      "It stops accepting read requests."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Redis relies on a maxmemory-policy configuration (like Least Recently Used - LRU) to decide which keys to evict when it hits its memory limit."
+  },
+  {
+    "question": "Which command is used to increment the integer value of a key by 1?",
+    "options": [
+      "ADD",
+      "PLUS",
+      "INCR",
+      "STEP"
+    ],
+    "correctOptionId": 2,
+    "explanation": "The INCR command atomically increments the number stored at a key by one, which is very useful for counters and rate limiting."
+  }
+]

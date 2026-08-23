@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary purpose of Database Replication?",
+    "options": [
+      "To compress the database files to save disk space.",
+      "To copy and maintain database objects (like tables) in multiple databases that make up a distributed database system.",
+      "To automatically delete old data.",
+      "To convert a SQL database into a NoSQL database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Replication involves sharing information so as to ensure consistency between redundant resources, primarily to improve reliability, fault-tolerance, or accessibility."
+  },
+  {
+    "question": "In a Single-Leader (Master-Slave) replication architecture, what happens to Write operations?",
+    "options": [
+      "Writes can be sent to any node in the cluster.",
+      "All writes must be sent to the Leader (Master) node, which then streams the data changes to the Followers (Slaves).",
+      "Writes are split evenly between the Leader and Followers.",
+      "Writes are cached on the client until the database is idle."
+    ],
+    "correctOptionId": 1,
+    "explanation": "To maintain strict consistency, the single leader processes all writes, logs the changes, and pushes that log to its read-only replicas."
+  },
+  {
+    "question": "What is the primary benefit of adding 'Read Replicas' (Followers) to a database?",
+    "options": [
+      "It allows the database to process more Write operations.",
+      "It allows you to scale out Read capacity by distributing read-only queries across multiple nodes, reducing load on the primary node.",
+      "It automatically encrypts the data.",
+      "It prevents SQL injection."
+    ],
+    "correctOptionId": 1,
+    "explanation": "For read-heavy applications, directing SELECT queries to replicas frees up the primary database to handle critical INSERT/UPDATE/DELETE operations."
+  },
+  {
+    "question": "What is 'Synchronous Replication'?",
+    "options": [
+      "The leader waits for confirmation from the replicas that they have received the write before reporting success to the client.",
+      "The leader reports success to the client immediately and sends the data to replicas in the background.",
+      "The data is replicated only once a day.",
+      "The replication happens over a synchronized clock network."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Synchronous replication guarantees strong consistency (no data loss if the leader crashes), but it significantly increases the latency of write operations."
+  },
+  {
+    "question": "What is 'Asynchronous Replication'?",
+    "options": [
+      "The leader waits for all replicas to acknowledge the write.",
+      "The leader writes the data locally, immediately reports success to the client, and forwards the data to replicas in the background.",
+      "The replicas pull data from the leader only when they are queried.",
+      "Replication happens without any network connection."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Asynchronous replication is fast for the client, but risks data loss. If the leader acknowledges the write and then crashes before sending it to the replica, the write is lost during failover."
+  },
+  {
+    "question": "What is 'Replication Lag'?",
+    "options": [
+      "The time it takes to boot up a new database server.",
+      "The delay between a write occurring on the Leader and that same write being reflected on the Followers.",
+      "The network latency between the client and the database.",
+      "A bug that stops replication completely."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In asynchronous replication, if you write data to the leader and immediately read from a follower, you might get old data due to replication lag (Eventual Consistency)."
+  },
+  {
+    "question": "How do you solve the 'Read-Your-Own-Writes' consistency problem caused by replication lag?",
+    "options": [
+      "Always read from a replica.",
+      "Disable replication entirely.",
+      "Implement a routing rule where if a user modifies their own profile, subsequent reads for their profile are routed to the Leader for a short time window.",
+      "Use a NoSQL database."
+    ],
+    "correctOptionId": 2,
+    "explanation": "To ensure users don't think their updates failed, you can force their specific read requests to hit the master for a few seconds after a write, while other users can safely hit the lagging replicas."
+  },
+  {
+    "question": "What is Multi-Leader (Master-Master) replication?",
+    "options": [
+      "A setup where there is no leader at all.",
+      "A setup where multiple nodes can accept Write operations simultaneously, and they asynchronously forward the writes to each other.",
+      "A setup where the leader changes every 5 minutes.",
+      "A setup where read replicas are promoted to leaders automatically."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Multi-leader architectures are great for multi-datacenter setups (e.g., a leader in the US and a leader in Europe), allowing fast local writes. However, it introduces complex conflict resolution."
+  },
+  {
+    "question": "What is the biggest challenge with Multi-Leader replication?",
+    "options": [
+      "It is too slow.",
+      "Resolving Write Conflicts (e.g., two users updating the same record on two different leaders at the exact same time).",
+      "It uses too much disk space.",
+      "It is not supported by any database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because writes happen asynchronously on both sides, if User A edits a doc on Leader 1 and User B edits it on Leader 2, the system must later figure out how to merge or reject the conflicting changes."
+  },
+  {
+    "question": "What is Leaderless Replication (e.g., used in Cassandra or DynamoDB)?",
+    "options": [
+      "Any replica can accept writes, and the system relies on reading and writing to a 'Quorum' of nodes to ensure consistency.",
+      "There is no replication; data is stored only once.",
+      "The client acts as the leader.",
+      "The database guesses what the data should be."
+    ],
+    "correctOptionId": 0,
+    "explanation": "In a leaderless system, a write is sent to multiple nodes. If a majority (quorum) acknowledge it, it's successful. To read, you query multiple nodes; if one has older data, it is corrected via 'Read Repair'."
+  }
+]

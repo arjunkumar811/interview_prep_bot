@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Tailwind CSS fundamentally?",
+    "options": [
+      "A JavaScript library for animating DOM elements.",
+      "A component-based CSS framework (like Bootstrap) that provides pre-styled buttons and cards.",
+      "A utility-first CSS framework that provides low-level utility classes to build custom designs directly in your markup.",
+      "A backend tool for compiling CSS."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Unlike Bootstrap, Tailwind does not give you a pre-styled `.btn` class. Instead, it gives you classes like `bg-blue-500`, `px-4`, and `rounded-lg` so you can construct the button yourself."
+  },
+  {
+    "question": "What does a 'Utility Class' do in Tailwind?",
+    "options": [
+      "It contains hundreds of CSS properties to style a complex component.",
+      "It typically maps directly to a single CSS property (e.g., `text-center` simply applies `text-align: center;`).",
+      "It executes JavaScript utilities.",
+      "It connects your HTML to a database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Utility classes are incredibly small and focused. Building a UI with Tailwind is essentially writing inline CSS, but using a concise, consistent design system."
+  },
+  {
+    "question": "What is the primary advantage of the utility-first approach?",
+    "options": [
+      "You don't have to learn CSS.",
+      "It prevents your CSS files from growing infinitely as you add features, because you are constantly reusing the same small set of utility classes.",
+      "It makes the HTML files smaller.",
+      "It automatically generates JavaScript."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In traditional CSS, every new component means writing new CSS rules. In Tailwind, adding a new component just means applying existing utility classes to new HTML, keeping the CSS bundle size extremely small."
+  },
+  {
+    "question": "How do you apply a hover effect (like changing background color) in Tailwind?",
+    "options": [
+      "By writing custom CSS in a separate file.",
+      "By using the `hover:` prefix on a utility class (e.g., `hover:bg-blue-700`).",
+      "By using JavaScript event listeners.",
+      "By adding an `:active` class."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Tailwind provides 'variants' (like `hover:`, `focus:`, `active:`) that allow you to style elements in different states directly in the HTML."
+  },
+  {
+    "question": "How does Tailwind handle responsive design (media queries)?",
+    "options": [
+      "It uses a separate CSS file for mobile devices.",
+      "It uses responsive prefixes (e.g., `md:`, `lg:`) before utility classes to apply styles at specific breakpoints (e.g., `md:flex-row`).",
+      "It relies on JavaScript to detect screen size.",
+      "Responsive design is not supported."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Tailwind is mobile-first. Writing `w-full md:w-1/2` means the element will be full-width on mobile, but half-width on medium screens and larger."
+  },
+  {
+    "question": "What is a common criticism of Tailwind CSS?",
+    "options": [
+      "It is too slow.",
+      "It results in 'HTML clutter', making the markup very long and sometimes hard to read due to the sheer number of classes on a single element.",
+      "It doesn't support Flexbox.",
+      "It requires a SQL database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because you might apply 10 classes to a single button (`flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2`), the HTML can look very messy."
+  },
+  {
+    "question": "How can you mitigate the 'HTML clutter' issue in modern JavaScript frameworks (like React/Vue) when using Tailwind?",
+    "options": [
+      "By avoiding Tailwind entirely.",
+      "By extracting repetitive class strings into reusable components (e.g., creating a `<Button>` component that encapsulates the messy classes).",
+      "By writing custom CSS.",
+      "By compressing the HTML."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Component-based frameworks solve the repetition problem natively. You write the messy Tailwind classes once inside your `<Button>` component, and then use the clean `<Button>` everywhere else."
+  },
+  {
+    "question": "What is the `tailwind.config.js` file used for?",
+    "options": [
+      "To store database credentials.",
+      "To customize the framework, such as defining your own color palette, custom breakpoints, or extending the default theme.",
+      "To configure the JavaScript bundler.",
+      "To define routing rules."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Tailwind is highly customizable. If your brand uses a specific shade of purple, you define it in the config file, and Tailwind generates all the utility classes (e.g., `bg-brand-purple`) for you."
+  },
+  {
+    "question": "How does Tailwind ensure the final CSS bundle sent to the browser is extremely small for production?",
+    "options": [
+      "It zips the CSS file.",
+      "It uses a compiler (like PostCSS) to scan your HTML/JS files, detects which utility classes you actually used, and purges all unused classes from the final CSS file.",
+      "It converts CSS to JavaScript.",
+      "It doesn't; the file is always massive."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Tailwind contains thousands of utility classes. However, in production, it aggressively tree-shakes the CSS. If you didn't use `bg-red-500` in your code, it won't be in the final CSS file, often resulting in bundles <10KB."
+  },
+  {
+    "question": "What does the `@apply` directive do in Tailwind (though its use is generally discouraged)?",
+    "options": [
+      "It applies JavaScript to CSS.",
+      "It allows you to inline any existing utility classes into your own custom CSS rules (e.g., `.btn { @apply bg-blue-500 text-white px-4; }`).",
+      "It imports fonts from Google.",
+      "It creates an animation."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While `@apply` can make HTML cleaner by grouping utilities into a traditional CSS class, it defeats the purpose of the utility-first workflow and can bloat your CSS if overused."
+  }
+]

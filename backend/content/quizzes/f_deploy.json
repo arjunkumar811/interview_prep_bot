@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is a major difference between deploying a traditional Multi-Page Application (like PHP) and a modern Single-Page Application (like React)?",
+    "options": [
+      "SPAs require a massive SQL database to be deployed.",
+      "Traditional apps require a server running a backend language to render HTML per request. A built SPA is just static files (HTML/CSS/JS) that can be served by any simple web server or CDN without needing Node.js or PHP.",
+      "SPAs cannot be deployed to the cloud.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "When you run `npm run build` on a React app, you get a folder of static assets. You don't need a heavy backend server to host these; you just need a server that can send files to a browser."
+  },
+  {
+    "question": "What is a CDN (Content Delivery Network)?",
+    "options": [
+      "A network cable.",
+      "A geographically distributed group of servers that work together to provide fast delivery of Internet content (like HTML, JS, CSS, and images) by serving it from a location closest to the user.",
+      "A database replication strategy.",
+      "A specific type of JavaScript framework."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If your main server is in New York, a user in Tokyo will experience high latency. A CDN stores a copy of your static React files in a server in Tokyo, making the site load almost instantly for them."
+  },
+  {
+    "question": "Why is deploying a pure React SPA incredibly cheap (or often free) on platforms like Vercel, Netlify, or AWS S3?",
+    "options": [
+      "Because React is sponsored by Facebook.",
+      "Because serving static files requires almost zero compute power (CPU/RAM). The platform is essentially just acting as a fast file server and CDN.",
+      "Because they steal your data to pay for it.",
+      "Because they use HTTP/1.0."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Hosting a Node.js API requires renting a computer that is always on and processing logic. Hosting static files just requires disk space and bandwidth, which is incredibly cheap."
+  },
+  {
+    "question": "What happens if a user navigates to `yoursite.com/dashboard` on a deployed SPA, but you haven't configured your web server correctly?",
+    "options": [
+      "The server returns a 404 Not Found error.",
+      "The server automatically downloads the code.",
+      "The browser crashes.",
+      "The server returns a 500 Internal Server Error."
+    ],
+    "correctOptionId": 0,
+    "explanation": "In an SPA, only `index.html` physically exists. If the server receives a request for `/dashboard`, it looks for a `dashboard/index.html` file, doesn't find it, and throws a 404."
+  },
+  {
+    "question": "How do you fix the 404 error issue on SPA deployments (e.g., using Nginx or an AWS S3 bucket)?",
+    "options": [
+      "By creating a separate HTML file for every possible route.",
+      "By configuring the server to 'rewrite' or 'fallback' all requests to the root `index.html` file, allowing the client-side router (like React Router) to take over.",
+      "By disabling client-side routing.",
+      "By using a NoSQL database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is a critical deployment step for SPAs. You tell the server: 'No matter what URL the user asks for, send them index.html'. The React app then boots up and renders the correct dashboard component."
+  },
+  {
+    "question": "What is the purpose of Webpack (or Vite, Parcel) during the build process of a frontend application?",
+    "options": [
+      "To deploy the code to the cloud.",
+      "To bundle thousands of separate JavaScript modules, CSS files, and images into a few optimized, minified files that the browser can load efficiently.",
+      "To write the code automatically.",
+      "To test the database connection."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Browsers cannot efficiently download 500 tiny JavaScript files. Bundlers combine them into a single `main.js` file, remove comments, shorten variable names (minification), and transpile new syntax for older browsers."
+  },
+  {
+    "question": "What does 'Code Splitting' do in a frontend build?",
+    "options": [
+      "It splits the code between developers.",
+      "It breaks a massive `main.js` bundle into smaller 'chunks'. The browser only downloads the chunk needed for the current page, significantly improving the initial load time.",
+      "It splits the database into shards.",
+      "It separates HTML and CSS into different folders."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a user visits the Login page, they shouldn't have to download the 5MB of code required for the Admin Dashboard. Code splitting (often handled automatically by Next.js or via `React.lazy()`) ensures they only download the Login code."
+  },
+  {
+    "question": "What are Environment Variables (`.env`) used for in a frontend application?",
+    "options": [
+      "To store highly sensitive passwords and database credentials securely in the browser.",
+      "To store configuration values (like API URLs) that change depending on the environment (e.g., pointing to `localhost:8000` in development, but `api.production.com` in production).",
+      "To set the browser's theme.",
+      "To configure the user's operating system."
+    ],
+    "correctOptionId": 1,
+    "explanation": "CRITICAL: Any environment variable bundled into a React app is visible to the user in their browser's developer tools. You must never store secrets (like database passwords or private API keys) in a frontend `.env` file."
+  },
+  {
+    "question": "If you deploy a Next.js application that uses Server-Side Rendering (SSR), can you host it on a static CDN like AWS S3?",
+    "options": [
+      "Yes, completely.",
+      "No. Because SSR requires executing Node.js code on the server for every incoming request, you must deploy it to a platform that supports a Node.js runtime (like Vercel, AWS EC2, or Docker on a VPS).",
+      "Yes, if you use WebSockets.",
+      "Yes, but it will be very slow."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While purely static React (or Next.js SSG) can live on a CDN, SSR fundamentally requires a running server to process the request, fetch data, and generate the HTML on the fly."
+  },
+  {
+    "question": "What is CI/CD (Continuous Integration / Continuous Deployment) in the context of frontend development?",
+    "options": [
+      "A design pattern for CSS.",
+      "Automated pipelines (like GitHub Actions) that automatically run your tests, build the optimized application, and push the files to your hosting provider every time you merge code to the main branch.",
+      "A database migration tool.",
+      "A tool for continuously checking if the internet is connected."
+    ],
+    "correctOptionId": 1,
+    "explanation": "CI/CD replaces manual deployment. You just push your code to GitHub, and the pipeline ensures the code passes tests (Integration) and then automatically puts it live on the internet (Deployment)."
+  }
+]

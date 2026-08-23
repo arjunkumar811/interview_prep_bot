@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What type of database is MongoDB?",
+    "options": [
+      "Relational Database (RDBMS)",
+      "Graph Database",
+      "Document-Oriented NoSQL Database",
+      "Key-Value Store"
+    ],
+    "correctOptionId": 2,
+    "explanation": "MongoDB is a widely used document-oriented NoSQL database that stores data in flexible, JSON-like documents."
+  },
+  {
+    "question": "What format does MongoDB use to store documents?",
+    "options": [
+      "XML",
+      "JSON",
+      "BSON",
+      "CSV"
+    ],
+    "correctOptionId": 2,
+    "explanation": "MongoDB stores data records as BSON documents. BSON is a binary representation of JSON documents."
+  },
+  {
+    "question": "Which of the following is equivalent to a 'Table' in MongoDB?",
+    "options": [
+      "Document",
+      "Collection",
+      "Database",
+      "Index"
+    ],
+    "correctOptionId": 1,
+    "explanation": "In MongoDB, a Collection is equivalent to an RDBMS Table. Documents inside a collection are equivalent to rows."
+  },
+  {
+    "question": "What is the primary key field in a MongoDB document by default?",
+    "options": [
+      "id",
+      "_id",
+      "uuid",
+      "primaryKey"
+    ],
+    "correctOptionId": 1,
+    "explanation": "MongoDB automatically assigns a unique _id field (usually an ObjectId) to each document if one is not provided."
+  },
+  {
+    "question": "Which method is used to insert a single document into a MongoDB collection?",
+    "options": [
+      "db.collection.addOne()",
+      "db.collection.insert()",
+      "db.collection.insertOne()",
+      "db.collection.create()"
+    ],
+    "correctOptionId": 2,
+    "explanation": "insertOne() is the modern and recommended method for inserting a single document into a collection."
+  },
+  {
+    "question": "How do you find all documents in a collection where 'age' is greater than 18?",
+    "options": [
+      "db.users.find({ age: > 18 })",
+      "db.users.find({ age: { $gt: 18 } })",
+      "db.users.where('age > 18')",
+      "db.users.find({ $greaterThan: { age: 18 } })"
+    ],
+    "correctOptionId": 1,
+    "explanation": "MongoDB uses query operators like $gt (greater than), $lt (less than), etc., inside the query document."
+  },
+  {
+    "question": "What is a Replica Set in MongoDB?",
+    "options": [
+      "A backup of the database stored on a remote server.",
+      "A group of MongoDB processes that maintain the same data set.",
+      "A method for duplicating collections within the same database.",
+      "A tool for migrating data from SQL to MongoDB."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A replica set in MongoDB is a group of mongod processes that maintain the same data set, providing redundancy and high availability."
+  },
+  {
+    "question": "What is 'Sharding' in MongoDB?",
+    "options": [
+      "Splitting large documents into smaller ones.",
+      "Encrypting data at rest.",
+      "Distributing data across multiple machines.",
+      "Creating secondary indexes."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Sharding is a method for distributing data across multiple machines to support deployments with very large data sets and high throughput operations."
+  },
+  {
+    "question": "What is the Aggregation Framework used for in MongoDB?",
+    "options": [
+      "To connect to multiple databases simultaneously.",
+      "To process data records and return computed results (like grouping and filtering).",
+      "To automatically generate schemas.",
+      "To compress BSON documents."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The aggregation framework allows you to process data records and return computed results, similar to the GROUP BY clause in SQL."
+  },
+  {
+    "question": "Which popular ODM (Object Data Modeling) library is commonly used with Node.js and MongoDB?",
+    "options": [
+      "Sequelize",
+      "Prisma",
+      "TypeORM",
+      "Mongoose"
+    ],
+    "correctOptionId": 3,
+    "explanation": "Mongoose is a very popular ODM for MongoDB and Node.js. It manages relationships between data, provides schema validation, and translates between objects in code and the representation of those objects in MongoDB."
+  }
+]

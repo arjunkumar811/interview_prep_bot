@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What does gRPC stand for?",
+    "options": [
+      "Global Remote Procedure Call",
+      "Generic Remote Procedure Call",
+      "gRPC Remote Procedure Call (recursive acronym)",
+      "Google Remote Procedure Call"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Though developed by Google, the 'g' technically stands for something different in every release (like 'good', 'green', 'grpc'). It is a high-performance RPC framework."
+  },
+  {
+    "question": "What is an RPC (Remote Procedure Call)?",
+    "options": [
+      "A protocol for encrypting web traffic.",
+      "A model where a client executes a procedure (function) on a remote server as if it were a local function call.",
+      "A database querying language.",
+      "A method for rendering HTML on the server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "RPC abstracts the network layer away. The developer calls a function (like userService.getUser()), and the framework handles serializing the request, sending it over the network, and deserializing the result."
+  },
+  {
+    "question": "Which protocol does gRPC use for transport under the hood?",
+    "options": [
+      "HTTP/1.1",
+      "HTTP/2",
+      "WebSockets",
+      "TCP raw sockets"
+    ],
+    "correctOptionId": 1,
+    "explanation": "gRPC relies exclusively on HTTP/2, which provides features like multiplexing, header compression, and bidirectional streaming out of the box."
+  },
+  {
+    "question": "What is Protocol Buffers (Protobuf)?",
+    "options": [
+      "A video streaming protocol.",
+      "Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data (used as the Interface Definition Language for gRPC).",
+      "A JavaScript library for parsing JSON.",
+      "An alternative to TCP."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In gRPC, you define your service and message payloads in a .proto file using Protobuf. This file is then compiled into strongly-typed code for both the client and server."
+  },
+  {
+    "question": "What is a major advantage of Protobuf over JSON in microservice communication?",
+    "options": [
+      "Protobuf is easier for humans to read.",
+      "Protobuf is serialized into a highly compressed binary format, making it much faster and smaller than text-based JSON over the network.",
+      "Protobuf does not require a schema.",
+      "Protobuf natively supports HTML."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because Protobuf data is binary and strictly typed by the schema, it lacks the repetitive keys of JSON, drastically reducing payload size and parsing time."
+  },
+  {
+    "question": "Which of the following streaming paradigms is NOT natively supported by gRPC?",
+    "options": [
+      "Server streaming (Client sends 1 request, Server returns a stream of responses).",
+      "Client streaming (Client sends a stream, Server returns 1 response).",
+      "Bidirectional streaming (Both sides stream independently).",
+      "Database streaming (Server streams directly to a NoSQL DB bypassing the application)."
+    ],
+    "correctOptionId": 3,
+    "explanation": "gRPC supports Unary (1 request, 1 response), Server Streaming, Client Streaming, and Bidirectional Streaming natively via HTTP/2."
+  },
+  {
+    "question": "What is the primary use case for gRPC in modern architectures?",
+    "options": [
+      "Serving HTML pages to web browsers.",
+      "High-performance, low-latency communication between internal microservices.",
+      "Storing large files on a hard drive.",
+      "Replacing CSS."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While gRPC-Web exists, gRPC shines in backend-to-backend (microservice) communication where strict typing, low latency, and high throughput are critical."
+  },
+  {
+    "question": "How do you generate the client and server code in Node.js when using gRPC?",
+    "options": [
+      "Write it manually from scratch.",
+      "Use the 'protoc' compiler (or tools like @grpc/proto-loader) to dynamically load or compile the .proto file into JavaScript/TypeScript.",
+      "Download it from npm.",
+      "Use Babel to transpile it."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The protoc compiler reads the .proto schema and generates the exact function stubs and types needed for your server and client, ensuring they are perfectly in sync."
+  },
+  {
+    "question": "How does gRPC handle backward compatibility when a schema changes?",
+    "options": [
+      "It doesn't; you must create a completely new API.",
+      "Through field numbering in Protobuf (e.g., string name = 1;). Old clients simply ignore new fields they don't recognize.",
+      "By using JSON instead of binary.",
+      "By enforcing that clients always upgrade first."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Protobuf relies on integer tags (field numbers) rather than field names. If you add a new field (e.g., int32 age = 2;), older clients will still deserialize the data, ignoring the new tag."
+  },
+  {
+    "question": "Why is it difficult to use standard gRPC directly from a web browser?",
+    "options": [
+      "Browsers do not support HTTP/2.",
+      "Browsers cannot parse binary data.",
+      "Browsers do not expose the low-level HTTP/2 framing controls required by the gRPC spec, necessitating a proxy like Envoy and the gRPC-Web protocol.",
+      "JavaScript cannot run gRPC."
+    ],
+    "correctOptionId": 2,
+    "explanation": "While browsers use HTTP/2, the fetch/XHR APIs don't give developers the fine-grained control over HTTP/2 frames that standard gRPC requires. Thus, gRPC-Web acts as a translation layer."
+  }
+]

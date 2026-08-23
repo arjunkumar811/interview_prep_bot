@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Short Polling?",
+    "options": [
+      "A technique where the client repeatedly sends requests to the server at a fixed, regular interval to check for new data.",
+      "A technique where the server sends data to the client only when it is ready.",
+      "A technique to measure network latency.",
+      "A database querying method."
+    ],
+    "correctOptionId": 0,
+    "explanation": "In short polling (or just 'polling'), the client uses setInterval (e.g., every 5 seconds) to make an AJAX request. Most of the time, the server replies 'no new data', wasting bandwidth and resources."
+  },
+  {
+    "question": "What is a major drawback of Short Polling?",
+    "options": [
+      "It requires WebSockets to work.",
+      "It generates a massive amount of unnecessary network traffic and server load due to empty responses.",
+      "It only works on mobile devices.",
+      "It is too secure."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a million users are short-polling a server every second, the server must process a million HTTP requests per second, even if 99.9% of them yield no new data."
+  },
+  {
+    "question": "What is Long Polling?",
+    "options": [
+      "Polling the server only once a day.",
+      "A technique where the client makes a request, but the server holds the connection open until new data is available (or a timeout occurs) before responding.",
+      "A method for downloading very large files.",
+      "A physical cable connection."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Long polling reduces empty responses. The server 'hangs' the request until it actually has something to say. Once the client receives the data (or times out), it immediately opens a new long-polling request."
+  },
+  {
+    "question": "How does Long Polling compare to Short Polling in terms of latency?",
+    "options": [
+      "Long Polling has higher latency.",
+      "Long Polling has much lower latency because data is sent to the client the exact moment it becomes available on the server.",
+      "They have exactly the same latency.",
+      "Short Polling is always faster."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In short polling, if an event happens at second 1, but the poll isn't until second 5, there is a 4-second delay. In long polling, the connection is already open, so the server pushes the event instantly."
+  },
+  {
+    "question": "What is a potential issue with Long Polling on the server side?",
+    "options": [
+      "It uses too much database storage.",
+      "It ties up server resources (like threads or connection slots) for long periods while waiting for events.",
+      "It is not compatible with HTTPS.",
+      "It cannot send JSON data."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a server uses a blocking thread-per-request model (like older Java/Apache servers), having 10,000 idle long-polling connections will consume 10,000 threads, quickly crashing the server."
+  },
+  {
+    "question": "Which technology was specifically designed as a modern, efficient alternative to Long Polling for bidirectional communication?",
+    "options": [
+      "HTTP/1.0",
+      "WebSockets",
+      "SOAP",
+      "XML"
+    ],
+    "correctOptionId": 1,
+    "explanation": "WebSockets were designed to overcome the overhead and complexity of HTTP long-polling hacks, providing a native, full-duplex TCP connection."
+  },
+  {
+    "question": "What are Server-Sent Events (SSE)?",
+    "options": [
+      "A bidirectional communication protocol.",
+      "A standard allowing a browser to receive automatic updates from a server via HTTP connection, but it is strictly unidirectional (server-to-client).",
+      "A way for servers to talk to databases.",
+      "A method of polling the client."
+    ],
+    "correctOptionId": 1,
+    "explanation": "SSE is a native browser API (EventSource) that opens a persistent HTTP connection where the server can push a stream of events. It's often much simpler than WebSockets if you only need one-way updates."
+  },
+  {
+    "question": "When might you choose Long Polling over WebSockets?",
+    "options": [
+      "When you need to stream live 4k video.",
+      "When you are in a highly restrictive corporate environment where firewalls/proxies block non-standard HTTP traffic or WebSocket upgrades.",
+      "When you want the fastest possible performance.",
+      "You should never use Long Polling."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because Long Polling uses standard HTTP GET/POST requests, it can penetrate almost any firewall or proxy, making it a reliable fallback when WebSockets fail (which is exactly what Socket.IO does)."
+  },
+  {
+    "question": "In a Node.js environment (which is single-threaded and non-blocking), is Long Polling resource-intensive?",
+    "options": [
+      "Yes, it will crash the server immediately.",
+      "No, because Node.js uses an event loop, holding a connection open does not consume a dedicated thread, making it highly efficient.",
+      "Yes, it uses up all the RAM.",
+      "No, but it requires a NoSQL database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Node.js (and other asynchronous frameworks like Nginx or Netty) excel at handling thousands of idle connections because they don't block a thread while waiting for an event to fire."
+  },
+  {
+    "question": "What happens if a Long Polling request reaches its maximum timeout (e.g., 30 seconds) without any data?",
+    "options": [
+      "The server crashes.",
+      "The server responds with an empty payload or a 204 No Content, and the client immediately initiates a new Long Polling request.",
+      "The client gives up and disconnects forever.",
+      "The server switches to Short Polling."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Timeouts are expected in Long Polling to prevent connections from hanging indefinitely. The client simply handles the timeout as a 'keep-alive' and reconnects."
+  }
+]

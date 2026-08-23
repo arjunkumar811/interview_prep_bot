@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is a 'Controlled Component' in React forms?",
+    "options": [
+      "A component controlled by the backend server.",
+      "An input form element whose value is controlled entirely by React state (via `useState`), rather than the DOM managing its own state.",
+      "A form that requires a captcha.",
+      "A component that cannot be edited by the user."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In a controlled component, the React state is the 'single source of truth'. When the user types, an `onChange` handler updates the state, which then updates the input's `value`."
+  },
+  {
+    "question": "What is an 'Uncontrolled Component' in React forms?",
+    "options": [
+      "A component that has crashed.",
+      "An input form element where the DOM handles the form data itself, and React accesses the values using a `ref` only when needed (like on form submission).",
+      "A form with no validation.",
+      "An input that users can type infinite characters into."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Uncontrolled components are closer to traditional HTML forms. You don't write an `onChange` handler for every keystroke; you just pull the final value from the DOM using `useRef` when the user clicks submit."
+  },
+  {
+    "question": "Why is `event.preventDefault()` commonly used in a React form's `onSubmit` handler?",
+    "options": [
+      "To prevent the user from typing.",
+      "To stop the browser's default behavior of reloading the entire page when the form is submitted, allowing JavaScript to handle the submission asynchronously.",
+      "To prevent CSS from applying to the form.",
+      "To block hackers from submitting the form."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you don't call `e.preventDefault()`, a standard HTML `<form>` will trigger a full page refresh on submit, destroying your React app's current state (a classic SPA anti-pattern)."
+  },
+  {
+    "question": "Which of the following is a significant drawback of heavily using Controlled Components for very large, complex forms in React?",
+    "options": [
+      "They are not secure.",
+      "Performance issues, because updating state on every single keystroke triggers a re-render of the component (and potentially its children).",
+      "They cannot be validated.",
+      "They do not support file uploads."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a form has 50 inputs, and typing one character re-renders the whole form, it can feel laggy. Solutions include memoization, splitting components, or using form libraries."
+  },
+  {
+    "question": "Which of the following is a highly popular library used to simplify form state management and validation in React?",
+    "options": [
+      "React Router",
+      "Redux",
+      "React Hook Form",
+      "Axios"
+    ],
+    "correctOptionId": 2,
+    "explanation": "React Hook Form (and Formik) are standard tools. React Hook Form is particularly popular because it uses uncontrolled components under the hood, maximizing performance while providing a simple API."
+  },
+  {
+    "question": "What is 'Form Validation'?",
+    "options": [
+      "Checking if the user is logged in.",
+      "The process of ensuring that the data entered by the user meets certain criteria (e.g., email format, minimum password length) before submitting it to the server.",
+      "Validating that the HTML syntax is correct.",
+      "Checking the server's SSL certificate."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Validation improves user experience by catching errors immediately (client-side validation), though the backend must always re-validate the data for security (server-side validation)."
+  },
+  {
+    "question": "Which library is commonly paired with React Hook Form to perform schema-based validation?",
+    "options": [
+      "Lodash",
+      "Zod (or Yup)",
+      "Moment.js",
+      "jQuery"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Instead of writing complex `if (email.includes('@'))` logic, you define a schema using Zod: `z.string().email().min(5)`. The form library uses this schema to automatically display errors."
+  },
+  {
+    "question": "What is the primary purpose of the `<label>` HTML element in a form?",
+    "options": [
+      "To style the text as bold.",
+      "To improve accessibility and usability by associating a text description with a specific form control (using the `htmlFor` attribute in React).",
+      "To create a hidden variable.",
+      "To group form elements together visually."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Screen readers use labels to tell visually impaired users what the input is for. Additionally, clicking a label automatically focuses the associated input, improving usability for everyone."
+  },
+  {
+    "question": "How do you handle file uploads in a React form?",
+    "options": [
+      "By using a standard controlled component state string.",
+      "You must use an Uncontrolled Component with a `ref` (or access `e.target.files` on change), because the browser's File API cannot be programmatically set via React state for security reasons.",
+      "File uploads are impossible in React.",
+      "By converting the file to text first."
+    ],
+    "correctOptionId": 1,
+    "explanation": "An `<input type=\"file\" />` is always an uncontrolled component. Its value can only be set by the user interacting with the browser's file picker, never by a script."
+  },
+  {
+    "question": "What does 'Debouncing' an input field mean?",
+    "options": [
+      "Removing the bounce animation from the input.",
+      "A programming practice used to ensure that time-consuming tasks (like an API search request) do not fire so often, by forcing the function to wait a certain amount of time after the user stops typing.",
+      "Clearing the input field automatically.",
+      "Encrypting the input."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you have an autocomplete search box, you don't want to make an API call for every keystroke. Debouncing waits (e.g., 300ms) until the user pauses typing before sending the request."
+  }
+]

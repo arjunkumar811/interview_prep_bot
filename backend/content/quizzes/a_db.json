@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the CAP Theorem?",
+    "options": [
+      "A theorem stating that it is impossible for a distributed data store to simultaneously provide more than two out of three guarantees: Consistency, Availability, and Partition tolerance.",
+      "A rule for creating primary keys.",
+      "A principle of object-oriented programming.",
+      "A law governing database encryption."
+    ],
+    "correctOptionId": 0,
+    "explanation": "The CAP theorem states that in the presence of a network partition (P), a distributed system must choose between Consistency (C) and Availability (A)."
+  },
+  {
+    "question": "In the CAP Theorem, what does 'Consistency' mean?",
+    "options": [
+      "The database schema never changes.",
+      "Every read receives the most recent write or an error.",
+      "The database is always online.",
+      "Data is formatted the same way across all tables."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Consistency in CAP (which is different from 'C' in ACID) means that all nodes see the same data at the same time."
+  },
+  {
+    "question": "What does PACELC theorem add to the CAP theorem?",
+    "options": [
+      "It adds Security.",
+      "It states that even when there is *no* Partition (P), the system still has to trade off between Latency (L) and Consistency (C).",
+      "It applies only to SQL databases.",
+      "It focuses entirely on front-end rendering."
+    ],
+    "correctOptionId": 1,
+    "explanation": "PACELC expands CAP by stating: if there is a Partition (P), trade off Availability (A) and Consistency (C); Else (E), trade off Latency (L) and Consistency (C)."
+  },
+  {
+    "question": "What is a 'B-Tree' (or B+ Tree) in the context of databases?",
+    "options": [
+      "A type of binary search used only in NoSQL.",
+      "The underlying data structure used by most relational databases to store indexes, allowing for efficient $O(log N)$ searches, insertions, and deletions.",
+      "A network topology for database replication.",
+      "A compression algorithm."
+    ],
+    "correctOptionId": 1,
+    "explanation": "B-Trees keep data sorted and allow searches, sequential access, insertions, and deletions in logarithmic time, making them ideal for disk-based storage systems like relational DBs."
+  },
+  {
+    "question": "Why are B+ Trees generally preferred over standard B-Trees for database indexes?",
+    "options": [
+      "B+ Trees use less RAM.",
+      "In a B+ Tree, all data pointers are stored at the leaf level, and leaves are linked together, making range queries (e.g., BETWEEN) incredibly fast.",
+      "B+ Trees are open source.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because the leaf nodes in a B+ tree are linked sequentially, scanning through a range of values requires just finding the start value and traversing the linked list."
+  },
+  {
+    "question": "What is an LSM-Tree (Log-Structured Merge-Tree)?",
+    "options": [
+      "A data structure optimized for write-heavy workloads, commonly used in NoSQL databases like Cassandra and RocksDB.",
+      "A structure used exclusively for read-only databases.",
+      "A method for logging user errors.",
+      "An algorithm for sorting HTML elements."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Unlike B-Trees which update data in place, LSM-Trees append data sequentially to logs (making writes blazing fast) and merge/sort them later in the background."
+  },
+  {
+    "question": "What is a 'Clustered Index'?",
+    "options": [
+      "An index that spans multiple servers.",
+      "An index where the physical order of the rows in the table is the same as the logical (indexed) order.",
+      "An index created on multiple columns.",
+      "A NoSQL specific index."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A clustered index determines the physical storage order of data in a table. Therefore, a table can only have one clustered index (usually the Primary Key)."
+  },
+  {
+    "question": "What is a 'Covering Index'?",
+    "options": [
+      "An index that encrypts the data it covers.",
+      "An index that includes all the columns required by a specific query, so the database doesn't need to look up the actual table row.",
+      "A backup of an index.",
+      "An index that covers the entire database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a query only SELECTs columns that are present in the index, the DB can return the result directly from the index (Index Only Scan), drastically improving performance."
+  },
+  {
+    "question": "What is the 'N+1 Query Problem'?",
+    "options": [
+      "A syntax error in SQL.",
+      "A performance anti-pattern where an application executes one query to get a list of items, and then executes N additional queries to fetch related data for each item.",
+      "When a database takes N+1 seconds to respond.",
+      "A bug in pagination logic."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The N+1 problem is common when using ORMs. If you query 100 users, and then loop through them to fetch their posts, the ORM might execute 101 queries instead of 1 JOIN."
+  },
+  {
+    "question": "What is 'Connection Pooling'?",
+    "options": [
+      "Combining multiple databases into one.",
+      "A cache of database connections maintained so that the connections can be reused when future requests to the database are required.",
+      "A method for hackers to steal data.",
+      "A feature of Redis to store network connections."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Opening and closing database connections is expensive (TCP handshake, auth). A connection pool keeps a set of connections open and reuses them, significantly improving performance."
+  }
+]

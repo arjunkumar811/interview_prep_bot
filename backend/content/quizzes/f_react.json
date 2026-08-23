@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is React?",
+    "options": [
+      "A complete MVC framework for building web applications.",
+      "A JavaScript library for building user interfaces, primarily focused on the view layer.",
+      "A database management system.",
+      "A CSS preprocessor."
+    ],
+    "correctOptionId": 1,
+    "explanation": "React (developed by Facebook) is technically a library, not a full framework like Angular. It handles the 'V' (View) in MVC, leaving routing and state management to other libraries."
+  },
+  {
+    "question": "What is JSX?",
+    "options": [
+      "JavaScript XML: A syntax extension for JavaScript that looks similar to HTML and is used in React to describe what the UI should look like.",
+      "A new version of JavaScript.",
+      "A tool to compile CSS.",
+      "A built-in state management tool."
+    ],
+    "correctOptionId": 0,
+    "explanation": "JSX allows you to write HTML structures in the same file as JavaScript code. Under the hood, Babel transforms JSX into standard `React.createElement()` JavaScript calls."
+  },
+  {
+    "question": "What is a 'Component' in React?",
+    "options": [
+      "A specific type of CSS class.",
+      "An independent, reusable piece of the UI (like a button, a header, or a whole page) that can have its own logic and state.",
+      "A database table.",
+      "A function that fetches data."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Components are the building blocks of any React application. Modern React relies heavily on 'Functional Components', which are just JavaScript functions that return JSX."
+  },
+  {
+    "question": "What are 'Props' (Properties) in React?",
+    "options": [
+      "Internal variables used to manage state.",
+      "Read-only inputs passed from a parent component down to a child component to configure it.",
+      "CSS properties applied to the component.",
+      "Functions that update the database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Props are how components talk to each other (top-down). If a parent renders `<Button color='red' />`, the child Button component receives 'color' as a prop."
+  },
+  {
+    "question": "What is 'State' in a React component?",
+    "options": [
+      "The physical location of the server.",
+      "An internal data store belonging to a specific component. When state changes, the component automatically re-renders to reflect the new data.",
+      "Data passed down from a parent.",
+      "A static HTML attribute."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Unlike Props (which are read-only and passed down), State is managed internally by the component. For example, whether a modal is currently open or closed is stored in state."
+  },
+  {
+    "question": "Which React Hook is used to add state to a functional component?",
+    "options": [
+      "useEffect",
+      "useContext",
+      "useState",
+      "useReducer"
+    ],
+    "correctOptionId": 2,
+    "explanation": "`useState` returns an array with two items: the current state value, and a function that lets you update it (e.g., `const [count, setCount] = useState(0);`)."
+  },
+  {
+    "question": "What is the primary purpose of the `useEffect` Hook?",
+    "options": [
+      "To style the component.",
+      "To perform side effects in functional components, such as fetching data from an API, setting up subscriptions, or manually changing the DOM.",
+      "To manage global state.",
+      "To handle form submissions."
+    ],
+    "correctOptionId": 1,
+    "explanation": "`useEffect` runs after the component renders. You can control when it runs (on every render, only once on mount, or when specific dependencies change) using its dependency array."
+  },
+  {
+    "question": "What is the 'Virtual DOM'?",
+    "options": [
+      "A 3D simulation of a webpage.",
+      "A lightweight JavaScript representation of the actual DOM. React updates the Virtual DOM first, compares it to the previous version (diffing), and then only updates the changed parts in the real DOM.",
+      "A browser extension for debugging React.",
+      "A database structure."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Directly manipulating the real DOM is slow. The Virtual DOM makes React fast by minimizing expensive DOM operations through a process called 'Reconciliation'."
+  },
+  {
+    "question": "Why is it important to use a unique `key` prop when rendering a list of elements in React (e.g., inside a `.map()`)?",
+    "options": [
+      "It prevents the array from being modified.",
+      "It helps React's diffing algorithm identify which specific items have changed, been added, or been removed, optimizing re-renders.",
+      "It adds a unique ID to the HTML element.",
+      "It encrypts the list data."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Without keys (or using array indexes as keys), if you reorder a list, React might unnecessarily re-render every item. A unique key (like a database ID) tells React exactly what moved."
+  },
+  {
+    "question": "What is 'Prop Drilling'?",
+    "options": [
+      "A security vulnerability in React.",
+      "The process of passing props deeply through multiple layers of nested components that don't need the data, just to get it to a child component that does.",
+      "A tool to extract data from a component.",
+      "A method of styling components."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Prop drilling makes code hard to maintain. To solve it, developers use the Context API (`useContext`) or state management libraries like Redux to make data globally accessible."
+  }
+]

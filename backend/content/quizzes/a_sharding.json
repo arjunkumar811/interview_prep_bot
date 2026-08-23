@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Database Sharding?",
+    "options": [
+      "Creating read-only copies of a database.",
+      "A type of horizontal partitioning that splits a single large logical dataset into multiple smaller, independent databases (shards).",
+      "Encrypting specific columns in a database table.",
+      "Combining multiple small databases into one large database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Sharding distributes data across multiple physical machines. For example, users A-M might be on Database Server 1, and users N-Z on Database Server 2."
+  },
+  {
+    "question": "What is the primary motivation for sharding a database?",
+    "options": [
+      "To improve data security.",
+      "To enable horizontal scaling when a dataset is too large to fit on a single server, or the read/write load is too high for a single server to handle.",
+      "To convert a SQL database to a NoSQL database.",
+      "To automatically generate backups."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Vertical scaling (buying a bigger server) has physical and financial limits. Sharding allows infinite scaling by adding more commodity servers."
+  },
+  {
+    "question": "What is a 'Shard Key' (or Partition Key)?",
+    "options": [
+      "The password used to access the database.",
+      "A specific column (or columns) in the data that is used to determine which shard the data should be stored in.",
+      "The primary key of the first row in the database.",
+      "An encryption key for the shard."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The shard key is the routing logic. If you shard by 'user_id', the application uses the user_id to know exactly which database server to query."
+  },
+  {
+    "question": "What is 'Range-Based Sharding'?",
+    "options": [
+      "Sharding based on the geographical range of the user.",
+      "Dividing data into shards based on contiguous ranges of the shard key values (e.g., Shard A handles IDs 1-1000, Shard B handles 1001-2000).",
+      "Sharding based on a hash of the key.",
+      "Sharding based on the time of day."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Range-based sharding is simple to implement but can lead to 'hotspots'. If you shard by timestamp, all new writes will hit the exact same 'latest' shard, defeating the purpose of load distribution."
+  },
+  {
+    "question": "What is 'Hash-Based Sharding'?",
+    "options": [
+      "Applying a hash function to the shard key to determine the shard, ensuring an even distribution of data.",
+      "Storing only the hashed values of passwords in the shard.",
+      "Sharding based on the physical hard drive hash.",
+      "A method of encrypting the data across shards."
+    ],
+    "correctOptionId": 0,
+    "explanation": "Hash sharding (e.g., Shard = Hash(user_id) % NumberOfShards) distributes data very evenly. However, it makes range queries (e.g., 'get all users with IDs between 10 and 50') extremely slow because data is scattered everywhere."
+  },
+  {
+    "question": "What is a 'Hotspot' in a sharded database?",
+    "options": [
+      "The fastest server in the cluster.",
+      "A situation where one shard receives a disproportionately large volume of traffic or data, causing it to become a bottleneck.",
+      "A Wi-Fi connection to the database.",
+      "The shard that stores the most recently accessed data."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Hotspots occur due to poor shard key choice. For example, if you shard a social network by 'Country', the 'USA' shard will be massively overloaded compared to the 'Antarctica' shard."
+  },
+  {
+    "question": "Why are JOIN operations notoriously difficult in a sharded database?",
+    "options": [
+      "Because SQL does not support JOINs.",
+      "Because the related data required for the JOIN might reside on completely different physical servers.",
+      "Because JOINs are not allowed in NoSQL.",
+      "Because sharded databases encrypt all foreign keys."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In a non-sharded database, a JOIN happens locally in memory/disk. In a sharded environment, joining a 'User' on Server 1 with their 'Orders' on Server 5 requires complex network coordination (Cross-Shard Queries)."
+  },
+  {
+    "question": "How can you mitigate the difficulty of Cross-Shard JOINs?",
+    "options": [
+      "By avoiding relational data entirely.",
+      "By using 'Data Denormalization', where you duplicate related data into the same shard to avoid the JOIN entirely.",
+      "By running the query 10 times.",
+      "By storing all data in memory."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Denormalization (e.g., storing the User's Name directly inside the Order record) sacrifices some storage space and write-consistency to ensure reads remain incredibly fast and local to one shard."
+  },
+  {
+    "question": "What is 'Consistent Hashing' and why is it useful in sharding?",
+    "options": [
+      "It ensures passwords are hashed consistently.",
+      "It is a hashing technique that minimizes the amount of data that needs to be moved when a new shard is added or an old one is removed.",
+      "It hashes the data 10 times for security.",
+      "It ensures all shards have the exact same amount of RAM."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In standard hash sharding (hash % N), if N (number of servers) changes from 4 to 5, almost every key hashes to a new location, requiring massive data migration. Consistent Hashing solves this, moving only a fraction of the data."
+  },
+  {
+    "question": "Which of the following is a major drawback of database sharding?",
+    "options": [
+      "It decreases the overall storage capacity.",
+      "It significantly increases operational complexity (backups, schema changes, and resharding become very difficult).",
+      "It makes the database slower.",
+      "It prevents you from using indexes."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Sharding should be a last resort. It introduces immense complexity to application logic, deployments, and maintenance. Often, scaling up or using Read Replicas is preferred until absolutely necessary."
+  }
+]

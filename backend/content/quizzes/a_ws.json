@@ -1,0 +1,112 @@
+[
+  {
+    "question": "At which layer of the OSI model do WebSockets operate?",
+    "options": [
+      "Layer 3 (Network Layer)",
+      "Layer 4 (Transport Layer)",
+      "Layer 7 (Application Layer)",
+      "Layer 2 (Data Link Layer)"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Like HTTP, WebSockets operate at the Application Layer (Layer 7). They run over a single TCP connection at Layer 4."
+  },
+  {
+    "question": "How is a WebSocket connection initiated?",
+    "options": [
+      "By sending a UDP packet.",
+      "By sending a standard HTTP request with an 'Upgrade' header, asking the server to switch to the WebSocket protocol.",
+      "By pinging the server.",
+      "By opening a raw TCP socket from the browser."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The WebSocket handshake starts as an HTTP/1.1 request. If the server agrees, it responds with a 101 Switching Protocols status, and the connection becomes a persistent WebSocket."
+  },
+  {
+    "question": "What is the primary advantage of WebSockets over HTTP Long-Polling for real-time applications?",
+    "options": [
+      "WebSockets use less CPU.",
+      "WebSockets are unidirectional, which is safer.",
+      "WebSockets provide full-duplex (two-way) communication with very low overhead, as headers don't need to be sent with every message.",
+      "There is no advantage."
+    ],
+    "correctOptionId": 2,
+    "explanation": "In HTTP, every request carries bulky headers (cookies, auth). Once a WebSocket is established, data frames are extremely lightweight (just a few bytes of overhead), making it highly efficient for fast, bidirectional data."
+  },
+  {
+    "question": "What is a 'Ping/Pong' frame in the WebSocket protocol?",
+    "options": [
+      "A game played by the server.",
+      "A control frame used as a heartbeat mechanism to check if the connection is still alive and to prevent proxies from dropping idle connections.",
+      "A way to send large files.",
+      "A command to close the connection."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because WebSockets are persistent, if no data is sent for a while, intermediate routers or firewalls might kill the 'idle' connection. Ping/Pong frames keep the connection warm."
+  },
+  {
+    "question": "Which of the following describes 'Socket.IO' accurately?",
+    "options": [
+      "It is the exact same thing as the native WebSocket API.",
+      "It is a database for real-time apps.",
+      "It is a library that provides an abstraction over WebSockets, offering features like auto-reconnection, broadcasting, and fallbacks to HTTP Long-Polling.",
+      "It is a frontend CSS framework."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Native WebSockets are barebones. Socket.IO adds a massive layer of convenience (rooms, namespaces, reconnections) and handles environments where WebSockets might be blocked."
+  },
+  {
+    "question": "Why is scaling a WebSocket server horizontally inherently difficult?",
+    "options": [
+      "Because WebSockets are stateless.",
+      "Because WebSockets are stateful; clients maintain a persistent connection to one specific server, meaning standard round-robin load balancing can disrupt sessions.",
+      "Because WebSockets use too much disk space.",
+      "Because load balancers do not support WebSockets."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If User A connects to Server 1, and Server 2 wants to send a message to User A, Server 2 has no direct connection to them. The architecture must account for this statefulness."
+  },
+  {
+    "question": "How do you broadcast a message to all connected clients when you have multiple horizontally scaled WebSocket servers?",
+    "options": [
+      "You cannot; it is impossible.",
+      "By using a central database to store all messages.",
+      "By using a Pub/Sub message broker (like Redis) as a backplane; when Server A receives a message, it publishes it to Redis, which pushes it to Server B and C to broadcast.",
+      "By connecting all servers directly to each other."
+    ],
+    "correctOptionId": 2,
+    "explanation": "The 'Redis Adapter' pattern is standard. All WebSocket servers subscribe to a Redis channel. If any server needs to broadcast, it tells Redis, and Redis tells all the other servers."
+  },
+  {
+    "question": "What does a Load Balancer need to support properly route WebSocket traffic?",
+    "options": [
+      "It only needs to support UDP.",
+      "It needs to support HTTP 'Upgrade' headers and persistent long-lived TCP connections without aggressively terminating them.",
+      "It needs to support XML parsing.",
+      "It needs to run on Windows."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Many older or improperly configured load balancers will kill connections that remain open for more than 60 seconds (HTTP timeout). They must be configured to allow long-lived connections for WebSockets."
+  },
+  {
+    "question": "What is 'CSWSH'?",
+    "options": [
+      "A new WebSocket standard.",
+      "Cross-Site WebSocket Hijacking; an attack similar to CSRF where an attacker tricks a user's browser into opening a WebSocket connection to a vulnerable server.",
+      "A hashing algorithm for WebSockets.",
+      "A method of compressing WebSocket frames."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because browsers automatically attach cookies to the WebSocket handshake request, an attacker's site can initiate a WebSocket connection to your bank and act on your behalf if the bank doesn't validate the 'Origin' header."
+  },
+  {
+    "question": "How do you prevent Cross-Site WebSocket Hijacking (CSWSH)?",
+    "options": [
+      "By encrypting the data.",
+      "By strictly validating the 'Origin' header on the server during the initial HTTP handshake.",
+      "By disabling cookies.",
+      "By using UDP instead of TCP."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The server must check the Origin header (e.g., https://my-app.com) during the upgrade request and reject the connection if it comes from an untrusted domain."
+  }
+]

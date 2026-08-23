@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is a DDoS (Distributed Denial of Service) attack?",
+    "options": [
+      "A technique to bypass a firewall.",
+      "An attack where multiple compromised computer systems attack a target, such as a server, website, or other network resource, causing a denial of service for users of the targeted resource.",
+      "A bug in a database that causes it to crash.",
+      "A method for encrypting data in transit."
+    ],
+    "correctOptionId": 1,
+    "explanation": "DDoS attacks aim to overwhelm the target's resources (like bandwidth, CPU, or memory) with a flood of illegitimate traffic, making it unavailable to legitimate users."
+  },
+  {
+    "question": "What is the difference between a DoS attack and a DDoS attack?",
+    "options": [
+      "DoS targets hardware; DDoS targets software.",
+      "DoS originates from a single source; DDoS originates from multiple, distributed sources (often a botnet).",
+      "DoS is harmless; DDoS is destructive.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A DoS (Denial of Service) is a 1-to-1 attack. A DDoS uses a distributed network of hijacked machines (botnet) to launch a massive many-to-1 attack, which is much harder to block."
+  },
+  {
+    "question": "Which of the following is an example of a Layer 3/4 (Network/Transport layer) DDoS attack?",
+    "options": [
+      "HTTP GET flood",
+      "SQL Injection",
+      "SYN Flood",
+      "Cross-Site Scripting (XSS)"
+    ],
+    "correctOptionId": 2,
+    "explanation": "A SYN Flood exploits the TCP three-way handshake by sending a massive number of SYN requests and never responding to the server's SYN-ACK, exhausting the server's connection queue."
+  },
+  {
+    "question": "Which of the following is an example of a Layer 7 (Application layer) DDoS attack?",
+    "options": [
+      "UDP Reflection Attack",
+      "ICMP (Ping) Flood",
+      "HTTP GET/POST Flood",
+      "ARP Spoofing"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Layer 7 attacks target the application layer by making seemingly legitimate, but highly resource-intensive requests (like repeatedly submitting a complex search form or downloading large files)."
+  },
+  {
+    "question": "What is a 'Botnet'?",
+    "options": [
+      "A network of legitimate chat bots.",
+      "A collection of internet-connected devices infected by malware that allow a hacker to control them remotely, often used to launch DDoS attacks.",
+      "A firewall feature that blocks bots.",
+      "A software used to automate web scraping."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Botnets can consist of thousands or millions of compromised computers, routers, or IoT devices, providing the massive firepower needed for a DDoS attack."
+  },
+  {
+    "question": "How can an 'Amplification/Reflection Attack' generate massive traffic?",
+    "options": [
+      "By using very large HTTP headers.",
+      "By spoofing the target's IP address and sending small requests to vulnerable third-party servers (like DNS or NTP), which reply with much larger responses to the target.",
+      "By attacking the load balancer directly.",
+      "By exploiting a memory leak in the server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In an amplification attack (e.g., DNS amplification), the attacker sends a small 50-byte request to an open DNS resolver, pretending to be the target. The DNS resolver sends a 4000-byte response to the target, creating an 80x amplification factor."
+  },
+  {
+    "question": "What is one of the most effective tools for mitigating DDoS attacks on modern web applications?",
+    "options": [
+      "A single on-premise firewall.",
+      "A globally distributed Content Delivery Network (CDN) with specialized DDoS protection (like Cloudflare or AWS Shield).",
+      "Writing faster application code.",
+      "Using a NoSQL database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "CDNs absorb traffic across their massive global networks. They can drop malicious packets at the network edge before they ever reach your origin server."
+  },
+  {
+    "question": "How does 'Rate Limiting' help mitigate Layer 7 DDoS attacks?",
+    "options": [
+      "It limits the size of the database.",
+      "It restricts the number of requests a single IP address can make within a given time frame, preventing a single bot from overwhelming the server.",
+      "It slows down the internet connection of the server.",
+      "It automatically encrypts the traffic."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While rate limiting won't stop a massive distributed attack (because there are too many IPs), it is highly effective at stopping smaller attacks or aggressive scraping from a few IP addresses."
+  },
+  {
+    "question": "What is 'Anycast' routing, and why is it useful for DDoS mitigation?",
+    "options": [
+      "Routing traffic to random servers.",
+      "A network addressing and routing methodology where a single IP address is shared by multiple servers in different locations; traffic is routed to the closest server, naturally distributing the attack load.",
+      "A protocol for encrypting IP addresses.",
+      "A method for caching database queries."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Anycast is heavily used by CDNs. Instead of a 100Gbps attack hitting one server in New York, Anycast distributes it across 20 data centers worldwide, making it manageable."
+  },
+  {
+    "question": "What is 'Blackhole Routing' (or Null Routing) in the context of DDoS?",
+    "options": [
+      "Encrypting the data so the attacker can't read it.",
+      "A defense mechanism where all traffic destined for the targeted IP address is routed to a 'black hole' (dropped completely) at the ISP level.",
+      "Hiding the server behind a VPN.",
+      "Sending the attack traffic back to the attacker."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Blackholing is a last-resort mitigation. If an attack is so large it threatens the ISP's entire network, they will drop all traffic to the victim's IP. This stops the attack, but unfortunately completes the Denial of Service."
+  }
+]

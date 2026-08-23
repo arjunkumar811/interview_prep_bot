@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary difference between Redis Cluster and Redis Sentinel?",
+    "options": [
+      "Sentinel provides automatic partitioning (sharding) across multiple nodes, while Cluster provides high availability.",
+      "Sentinel provides high availability and monitoring (failover), while Cluster provides data sharding (partitioning) along with high availability.",
+      "Sentinel is used for caching, while Cluster is used for message queues.",
+      "There is no difference; they are synonymous."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Redis Sentinel is focused purely on high availability (monitoring and automatic failover). Redis Cluster provides both high availability and automatic horizontal scaling (sharding)."
+  },
+  {
+    "question": "How does Redis Cluster distribute data across multiple nodes?",
+    "options": [
+      "By using a central database to map keys to nodes.",
+      "By randomly assigning keys to available nodes.",
+      "By using Hash Slots (16384 total). A CRC16 hash of the key determines its slot.",
+      "By duplicating all data on every node."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Redis Cluster uses algorithmic sharding. It computes CRC16(key) modulo 16384 to find the 'Hash Slot', and every node is responsible for a subset of these slots."
+  },
+  {
+    "question": "What happens in a Redis Cluster if a master node fails and has no replicas?",
+    "options": [
+      "The cluster remains fully functional, but that node's data is lost permanently.",
+      "The cluster automatically re-routes traffic to another master.",
+      "The entire cluster stops accepting queries (by default) because a portion of the hash slots are missing.",
+      "The cluster creates a new replica automatically."
+    ],
+    "correctOptionId": 2,
+    "explanation": "By default (cluster-require-full-coverage yes), if any of the 16384 hash slots are unassigned (due to a master dying without replicas), the entire cluster stops operating to prevent data inconsistencies."
+  },
+  {
+    "question": "What is a 'Hash Tag' in Redis Cluster?",
+    "options": [
+      "A hashtag used in Redis Pub/Sub channels.",
+      "A mechanism to force multiple keys to be allocated in the same hash slot by wrapping a substring in curly braces {}.",
+      "An encryption method for securing keys.",
+      "A command to tag specific nodes in a cluster."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a key contains '{}', only the substring inside the braces is hashed. E.g., user:{123}:profile and user:{123}:settings will hash to the same slot, ensuring they live on the same node (crucial for multi-key operations)."
+  },
+  {
+    "question": "What is the CAP theorem tradeoff for Redis Cluster?",
+    "options": [
+      "It favors Consistency over Availability.",
+      "It favors Availability and Partition Tolerance (AP), prioritizing performance over strong consistency.",
+      "It achieves full Consistency, Availability, and Partition Tolerance.",
+      "It is a CP system only."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Redis Cluster is generally an AP system. It uses asynchronous replication by default, meaning a write can be acknowledged to the client before being sent to replicas, potentially causing data loss during a failover."
+  },
+  {
+    "question": "What is the 'WAIT' command used for in Redis?",
+    "options": [
+      "To pause the server for maintenance.",
+      "To force the client to sleep for a specified time.",
+      "To block the current client until all previous write commands are successfully transferred and acknowledged by at least a specified number of replicas.",
+      "To wait for a key to expire."
+    ],
+    "correctOptionId": 2,
+    "explanation": "The WAIT command is a way to significantly improve data safety (moving towards strong consistency) by ensuring writes are replicated before returning success to the client."
+  },
+  {
+    "question": "Which of the following is true about Redis persistence mechanisms (RDB vs. AOF)?",
+    "options": [
+      "RDB logs every single write operation; AOF takes periodic snapshots.",
+      "RDB is faster for recovery but might lose minutes of data; AOF is more durable but creates larger files and slower restarts.",
+      "AOF is significantly faster than RDB in all scenarios.",
+      "Redis does not support persistence."
+    ],
+    "correctOptionId": 1,
+    "explanation": "RDB (Redis Database) takes point-in-time snapshots, which are compact and fast to load. AOF (Append Only File) logs every write, ensuring high durability at the cost of file size and performance."
+  },
+  {
+    "question": "What is a 'Split Brain' scenario in Redis Sentinel?",
+    "options": [
+      "When a single node crashes and restarts repeatedly.",
+      "When a network partition causes the cluster to split, and both sides elect their own master, leading to conflicting data writes.",
+      "When the CPU is overloaded handling too many connections.",
+      "When Redis runs out of memory."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Split brain occurs in distributed systems when nodes lose contact and mistakenly assume the others are dead. To prevent this, Sentinel requires a quorum (majority) to elect a new master."
+  },
+  {
+    "question": "What is 'Redis pipelining'?",
+    "options": [
+      "Connecting Redis to a CI/CD pipeline.",
+      "Streaming video data through Redis.",
+      "Sending multiple commands to the server without waiting for the replies, then reading the replies in a single step.",
+      "Using Redis as a message queue."
+    ],
+    "correctOptionId": 2,
+    "explanation": "Pipelining drastically improves performance by reducing the network round-trip time (RTT). It groups commands together and sends them in one network packet."
+  },
+  {
+    "question": "Which Redis data structure is best suited for implementing a Bloom Filter?",
+    "options": [
+      "Lists",
+      "Bitmaps (using commands like SETBIT and GETBIT)",
+      "Hashes",
+      "Sorted Sets"
+    ],
+    "correctOptionId": 1,
+    "explanation": "A Bloom Filter requires manipulating individual bits in an array to probabilistically check for set membership. Redis Bitmaps (which are actually just Strings) are perfect for this."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Next.js?",
+    "options": [
+      "A database management system.",
+      "A React framework that provides building blocks to create fast, full-stack web applications, offering features like Server-Side Rendering (SSR) and Static Site Generation (SSG) out of the box.",
+      "A CSS styling library.",
+      "A testing framework for React."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While React is a UI library for rendering components in the browser, Next.js is a full framework built on top of React that handles routing, server-rendering, and API endpoints."
+  },
+  {
+    "question": "What is the primary SEO (Search Engine Optimization) problem with standard, Client-Side Rendered (CSR) React applications?",
+    "options": [
+      "They are too fast.",
+      "They send a mostly empty HTML file to the browser. Search engine crawlers (bots) may struggle to index the content because they have to wait for JavaScript to execute and fetch data.",
+      "They use too many meta tags.",
+      "They cannot be hosted on standard servers."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a bot requests a React SPA, it gets `<div id=\"root\"></div>`. Next.js solves this by rendering the HTML on the server before sending it to the client."
+  },
+  {
+    "question": "What is Server-Side Rendering (SSR) in Next.js?",
+    "options": [
+      "Rendering the page in the browser using WebAssembly.",
+      "The process of generating the full HTML for a page on the server for *every single incoming request*, and sending the populated HTML to the client.",
+      "Rendering the page once during the build process.",
+      "A method of rendering images on the server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "SSR ensures the client gets a fully populated HTML document immediately. It is great for highly dynamic data that changes constantly (e.g., a personalized feed)."
+  },
+  {
+    "question": "What is Static Site Generation (SSG) in Next.js?",
+    "options": [
+      "Generating HTML on the server for every request.",
+      "The process of generating the HTML for a page *at build time* (when you run `next build`). That exact same HTML file is then served to every user instantly from a CDN.",
+      "Generating the site entirely in the browser.",
+      "A way to generate random passwords."
+    ],
+    "correctOptionId": 1,
+    "explanation": "SSG is incredibly fast and cheap to host because it just serves static files. It is perfect for marketing pages, blogs, and documentation that don't change per user."
+  },
+  {
+    "question": "What is Incremental Static Regeneration (ISR)?",
+    "options": [
+      "A way to slowly download a website.",
+      "A Next.js feature that allows you to update static pages *after* you've built your site, without needing a full rebuild. It regenerates specific pages in the background as traffic comes in.",
+      "A method for regenerating database keys.",
+      "A feature of standard React."
+    ],
+    "correctOptionId": 1,
+    "explanation": "ISR gives you the speed of SSG with the flexibility of SSR. For example, an e-commerce product page can be statically served, but re-generated in the background every 60 seconds if the price changes."
+  },
+  {
+    "question": "How does routing work in the Next.js 'App Router' (introduced in Next 13)?",
+    "options": [
+      "You define routes in a central `routes.js` file.",
+      "It uses a file-system based router. Folders inside the `app` directory define routes, and `page.tsx` files inside those folders define the UI for that route.",
+      "It uses React Router DOM.",
+      "Routing is handled entirely by the backend API."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you create a file at `app/about/page.tsx`, Next.js automatically creates a route at `/about`. You don't have to configure any routing maps manually."
+  },
+  {
+    "question": "What are React Server Components (RSC), which are heavily utilized in the Next.js App Router?",
+    "options": [
+      "Components that run a local database.",
+      "Components that fetch data and render entirely on the server. Their JavaScript is NEVER sent to the client, reducing bundle size and improving performance.",
+      "Components that only run in the browser.",
+      "A legacy feature of React."
+    ],
+    "correctOptionId": 1,
+    "explanation": "By default, components in the Next.js App Router are Server Components. Since they render on the server, you can safely write direct database queries inside them without exposing secrets to the browser."
+  },
+  {
+    "question": "How do you define a 'Client Component' in the Next.js App Router (a component that needs browser features like `useState` or `onClick`)?",
+    "options": [
+      "By placing it in a specific `client` folder.",
+      "By adding the `'use client';` directive at the very top of the file.",
+      "By importing it from a different library.",
+      "All components are Client Components by default."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Server components cannot use state, effects, or browser APIs. If you need a button with an `onClick` handler, you must mark that specific component with `'use client'`."
+  },
+  {
+    "question": "What is Hydration in the context of SSR/SSG?",
+    "options": [
+      "The process of drinking water while coding.",
+      "The process where React takes the static HTML sent by the server and attaches event listeners (like onClick) to it in the browser, making the page interactive.",
+      "Compressing the HTML file.",
+      "Fetching data from the database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The server sends 'dry' HTML. It looks correct, but it doesn't do anything if you click it. Once the JavaScript bundle loads, React 'hydrates' the DOM to make it fully functional."
+  },
+  {
+    "question": "What is the Next.js `<Image />` component used for?",
+    "options": [
+      "Drawing vector graphics.",
+      "It replaces the standard HTML `<img>` tag, providing automatic image optimization, resizing, format conversion (like WebP), and lazy loading to drastically improve Core Web Vitals.",
+      "Uploading images to a database.",
+      "Adding filters to images."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Images are often the biggest bottleneck in web performance. Next/Image handles the heavy lifting of serving the right size image for the user's device automatically."
+  }
+]
