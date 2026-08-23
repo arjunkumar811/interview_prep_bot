@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Internationalization (i18n)?",
+    "options": [
+      "Translating text manually using Google Translate.",
+      "The process of designing and developing a software application so that it can easily be adapted for users in different languages and regions without engineering changes.",
+      "Hosting a website on servers located in different countries.",
+      "Ensuring a website works on international keyboards."
+    ],
+    "correctOptionId": 1,
+    "explanation": "i18n (18 letters between 'i' and 'n') is the *architecture* step (e.g., extracting hardcoded strings into variables). Localization (l10n) is the *translation* step (providing the Spanish text for those variables)."
+  },
+  {
+    "question": "In a modern React application, how is i18n typically implemented?",
+    "options": [
+      "By creating a completely separate React repository for every language.",
+      "By using an i18n library (like `react-i18next` or `react-intl`) that replaces hardcoded text with a hook (e.g., `t('greeting')`) which dynamically fetches the correct translated string from a JSON file based on the user's locale.",
+      "By using CSS to swap text.",
+      "By writing custom SQL queries for every word."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Instead of `<h1>Hello</h1>`, you write `<h1>{t('homepage.hello')}</h1>`. The library looks up 'homepage.hello' in `en.json` or `fr.json` depending on the current state."
+  },
+  {
+    "question": "What is 'Pluralization' in the context of i18n?",
+    "options": [
+      "Adding an 's' to the end of every English word.",
+      "Handling the complex rules of how different languages express quantity. (e.g., English has singular and plural; Arabic has zero, singular, dual, plural, and multiple plurals).",
+      "Showing multiple languages on the screen at once.",
+      "Duplicating a component multiple times."
+    ],
+    "correctOptionId": 1,
+    "explanation": "You cannot just write `{count} item(s)`. A robust i18n library allows you to define complex pluralization rules in your translation files so the UI is grammatically correct in every language."
+  },
+  {
+    "question": "What is the `Intl` object in JavaScript?",
+    "options": [
+      "A third-party NPM package.",
+      "A built-in global browser API that provides language-sensitive string comparison, number formatting, and date/time formatting.",
+      "An object that connects to the internet.",
+      "A database connection object."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The native `Intl` API is incredibly powerful. Instead of writing custom logic to format a date as 'MM/DD/YYYY' for the US and 'DD/MM/YYYY' for the UK, you just use `new Intl.DateTimeFormat(locale).format(date)`."
+  },
+  {
+    "question": "Why must you format currencies using a locale-aware formatter (like `Intl.NumberFormat`) instead of just prepending a '$' symbol?",
+    "options": [
+      "Because the '$' symbol is illegal in some countries.",
+      "Because currency formatting rules vary wildly (e.g., `$1,000.50` in the US vs `1.000,50 €` in Germany). The placement of the symbol, the decimal separator, and the thousands separator all change based on locale.",
+      "Because the browser will crash.",
+      "Because it is required by Stripe."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Hardcoding a currency symbol or assuming a decimal point `.` is universally used for cents will confuse or mislead international users."
+  },
+  {
+    "question": "What is Right-to-Left (RTL) support in i18n?",
+    "options": [
+      "Moving the mouse from right to left.",
+      "Designing the UI layout to completely mirror itself (e.g., the logo moves to the right, sidebars move to the right) when a user selects a language that reads from right-to-left (like Arabic or Hebrew).",
+      "Reading code backwards.",
+      "A specific CSS animation."
+    ],
+    "correctOptionId": 1,
+    "explanation": "RTL is not just about translating text; it's about flipping the entire visual layout. Modern CSS Logical Properties (like `margin-inline-start` instead of `margin-left`) make RTL support much easier."
+  },
+  {
+    "question": "What does the HTML `dir=\"rtl\"` attribute do?",
+    "options": [
+      "It changes the directory of the file.",
+      "It instructs the browser to apply Right-to-Left text direction and layout rules to that element and all its children.",
+      "It reverses the colors on the screen.",
+      "It disables JavaScript on the page."
+    ],
+    "correctOptionId": 1,
+    "explanation": "When an Arabic user logs in, you add `dir=\"rtl\"` to the `<html>` or `<body>` tag. If you used CSS Logical Properties, the entire layout will automatically flip."
+  },
+  {
+    "question": "How should a frontend application ideally determine a user's initial locale?",
+    "options": [
+      "By forcing the user to select it from a massive dropdown on first load.",
+      "By checking the `Accept-Language` HTTP header sent by the browser, or by checking `navigator.languages` in JavaScript, which contains the user's preferred OS language settings.",
+      "By guessing based on their IP address.",
+      "By defaulting to English always."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Respect the user's browser settings. If their OS is set to French, automatically serve them the French site. (IP geolocation is often inaccurate, especially for VPN users or travelers)."
+  },
+  {
+    "question": "What is 'Locale Routing' (Subpath Routing) in frameworks like Next.js?",
+    "options": [
+      "Routing network traffic to different servers.",
+      "Embedding the locale into the URL (e.g., `yoursite.com/fr/about` or `fr.yoursite.com/about`) so that the language choice is preserved when sharing links, and so search engines can index the different language versions.",
+      "Routing users based on their GPS coordinates.",
+      "A method of compressing the URL."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If the language is only stored in a cookie, a French user sharing a link to an English friend will force the English friend to see the French site. Locale routing ensures the URL dictates the language."
+  },
+  {
+    "question": "What is a 'Translation Management System' (TMS)?",
+    "options": [
+      "A database table.",
+      "A third-party SaaS platform (like Phrase, Lokalise, or Crowdin) where developers upload their JSON translation files, allowing professional human translators to translate the text in a UI, which is then synced back to the codebase.",
+      "A JavaScript compiler.",
+      "A tool to translate code from React to Angular."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Developers should not be managing massive Excel spreadsheets of translations. A TMS acts as the bridge between the codebase and the non-technical translation team."
+  }
+]

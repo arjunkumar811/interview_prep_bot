@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Web Accessibility (a11y)?",
+    "options": [
+      "Making sure a website works on all web browsers.",
+      "The practice of ensuring there are no barriers that prevent interaction with, or access to, websites by people with physical disabilities, situational disabilities, or socio-economic restrictions on bandwidth and speed.",
+      "Making sure a website loads under 1 second.",
+      "The process of translating a website into multiple languages."
+    ],
+    "correctOptionId": 1,
+    "explanation": "'a11y' is a numeronym (a followed by 11 letters followed by y). It's about designing inclusive products that work for users using screen readers, keyboard-only navigation, or with color blindness."
+  },
+  {
+    "question": "What does the WCAG (Web Content Accessibility Guidelines) standard provide?",
+    "options": [
+      "A JavaScript library for accessible components.",
+      "A globally recognized set of guidelines and success criteria (categorized into A, AA, and AAA compliance levels) for making web content more accessible.",
+      "A CSS framework like Bootstrap.",
+      "A legal document for website terms of service."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Most modern organizations aim for WCAG 2.1 Level AA compliance, which ensures a strong baseline of accessibility without being overly restrictive on design."
+  },
+  {
+    "question": "Why is 'Semantic HTML' considered the foundation of web accessibility?",
+    "options": [
+      "It makes the HTML file size smaller.",
+      "Because native HTML elements (like `<button>`, `<nav>`, `<main>`) have built-in accessibility features (like keyboard focus and screen reader announcements) that `<div>` and `<span>` elements completely lack.",
+      "Because it makes the website look better automatically.",
+      "Because it is required by React."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you build a button using `<div onClick={...}>`, a screen reader doesn't know it's a button, and a user cannot trigger it using the Enter or Space keys."
+  },
+  {
+    "question": "What is the purpose of ARIA (Accessible Rich Internet Applications) attributes?",
+    "options": [
+      "To automatically translate the page.",
+      "To provide additional semantics to assistive technologies (like screen readers) when native HTML elements cannot accurately describe a complex, dynamic UI widget (like a custom dropdown or a modal).",
+      "To style the website for high contrast.",
+      "To encrypt data sent to the server."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The first rule of ARIA is: 'No ARIA is better than bad ARIA.' Always use native HTML (like `<input type=\"checkbox\">`) if possible, rather than `role=\"checkbox\"` on a `<div>`."
+  },
+  {
+    "question": "What does the `aria-hidden=\"true\"` attribute do?",
+    "options": [
+      "It hides the element visually from the screen using CSS `display: none`.",
+      "It removes the element and all of its children from the accessibility tree, meaning screen readers will completely ignore it, even if it is visually visible on the screen.",
+      "It hides the element's source code.",
+      "It prevents the user from clicking the element."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is useful for decorative icons (like a magnifying glass next to a 'Search' button). If the text already says 'Search', having the screen reader also announce 'Icon: Magnifying Glass' is redundant and annoying."
+  },
+  {
+    "question": "What is 'Focus Management' in a Single Page Application (SPA)?",
+    "options": [
+      "Managing the user's attention using animations.",
+      "Programmatically moving the browser's keyboard focus to a logical new element when the UI changes drastically (e.g., when a Modal opens, moving focus *into* the modal; when a route changes, moving focus to the new page header).",
+      "Managing the camera focus in WebRTC.",
+      "Managing which CSS file is loaded."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In an SPA, clicking a link doesn't reload the page. If the router just swaps the DOM, a keyboard user's focus might be lost in the void, or stuck at the bottom of the page."
+  },
+  {
+    "question": "What is a 'Focus Trap' (often used in Modals)?",
+    "options": [
+      "A bug that crashes the browser.",
+      "A technique that prevents keyboard focus (using the Tab key) from leaving a specific container (like an open Modal overlay). When the user tabs past the last element in the modal, focus loops back to the first element.",
+      "A honeypot for hackers.",
+      "A way to trap the mouse cursor on the screen."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Without a focus trap, a blind user could tab 'behind' the open modal and accidentally interact with the hidden background page without realizing it."
+  },
+  {
+    "question": "What is the recommended minimum contrast ratio for standard text against its background according to WCAG Level AA?",
+    "options": [
+      "1:1",
+      "4.5:1",
+      "10:1",
+      "21:1"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Low contrast (like light gray text on a white background) is one of the most common accessibility failures, making the web unreadable for users with low vision or even standard users in bright sunlight."
+  },
+  {
+    "question": "What is the purpose of a 'Skip to Content' link?",
+    "options": [
+      "To skip a video advertisement.",
+      "A visually hidden link at the very top of the DOM that becomes visible when a keyboard user presses Tab. It allows them to jump directly to the main content, bypassing a repetitive navigation menu.",
+      "To skip downloading images.",
+      "To bypass a paywall."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Imagine having to press Tab 30 times through a massive mega-menu on every single page load just to read an article. A skip link solves this major frustration for keyboard users."
+  },
+  {
+    "question": "How can you simulate a screen reader experience on a Mac for testing purposes?",
+    "options": [
+      "By installing a paid Chrome extension.",
+      "By turning on VoiceOver (a built-in screen reader on macOS).",
+      "By turning off the monitor.",
+      "By disabling CSS."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Every OS has built-in tools (VoiceOver on Mac, NVDA or Narrator on Windows). Testing your app with a screen reader is the only true way to understand the experience of a visually impaired user."
+  }
+]

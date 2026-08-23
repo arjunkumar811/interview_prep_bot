@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is Cross-Site Scripting (XSS)?",
+    "options": [
+      "A script that runs across multiple servers.",
+      "A vulnerability where an attacker injects malicious client-side JavaScript into a trusted website, which is then executed by the browser of other users visiting that site.",
+      "A method for writing CSS faster.",
+      "A database injection attack."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a site allows comments and doesn't sanitize the input, a hacker could post `<script>stealCookies()</script>`. When you view their comment, your browser runs the script, stealing your data."
+  },
+  {
+    "question": "How do modern frontend frameworks like React or Angular generally protect against XSS by default?",
+    "options": [
+      "By disabling JavaScript entirely.",
+      "By automatically escaping (encoding) all string variables embedded in the UI (e.g., converting `<` to `&lt;`) before rendering them to the DOM, rendering the malicious script as plain text rather than executable code.",
+      "By blocking IP addresses.",
+      "By encrypting the DOM."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you write `<div>{userInput}</div>` in React, it is safe. However, using features like `dangerouslySetInnerHTML` bypasses this protection and exposes you to XSS if the input isn't manually sanitized."
+  },
+  {
+    "question": "What is a Content Security Policy (CSP)?",
+    "options": [
+      "A privacy policy displayed to the user.",
+      "An added layer of security (an HTTP header) that helps detect and mitigate certain types of attacks, including XSS and data injection, by explicitly declaring which dynamic resources are allowed to load.",
+      "A password manager.",
+      "A tool to compress images."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A strict CSP can tell the browser: 'Only execute JavaScript files loaded directly from mydomain.com. Do NOT execute any inline `<script>` tags, and do NOT load scripts from hacker.com'."
+  },
+  {
+    "question": "What is Cross-Site Request Forgery (CSRF)?",
+    "options": [
+      "Forging a signature on a document.",
+      "An attack that forces an authenticated end-user to execute unwanted actions on a web application in which they are currently authenticated, exploiting the browser's behavior of automatically sending cookies.",
+      "Stealing a user's password.",
+      "A DDoS attack."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you are logged into your bank, and a malicious site has an invisible form that submits a POST request to your bank's 'transfer money' endpoint, your browser will attach your bank session cookie to the request."
+  },
+  {
+    "question": "Which cookie attribute is highly effective at preventing CSRF attacks?",
+    "options": [
+      "Secure",
+      "HttpOnly",
+      "SameSite",
+      "Max-Age"
+    ],
+    "correctOptionId": 2,
+    "explanation": "Setting `SameSite=Strict` or `SameSite=Lax` tells the browser to NOT attach the cookie if the request originated from a different domain, neutralizing the CSRF attack."
+  },
+  {
+    "question": "Why is it dangerous to store a JWT Access Token in the browser's `localStorage`?",
+    "options": [
+      "Because it is too slow.",
+      "Because any JavaScript running on the page (including malicious scripts from a successful XSS attack or a compromised third-party NPM dependency) can easily read `localStorage` and steal the token.",
+      "Because it takes up too much memory.",
+      "Because the server cannot read it."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If an attacker steals the JWT, they have full access to the user's account until the token expires. This is why `HttpOnly` cookies (which JS cannot read) are preferred for sensitive tokens."
+  },
+  {
+    "question": "What is 'Clickjacking'?",
+    "options": [
+      "Clicking a mouse too fast.",
+      "A malicious technique where an attacker tricks a user into clicking on something different from what the user perceives, often by loading the target site inside a transparent `<iframe>` overlaid on top of a decoy button.",
+      "Stealing a user's mouse.",
+      "A virus that clicks ads automatically."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The user thinks they are clicking 'Play Video' on a scam site, but they are actually clicking the 'Delete Account' button on the invisible iframe of the site they are logged into."
+  },
+  {
+    "question": "How can you defend against Clickjacking?",
+    "options": [
+      "By disabling the mouse.",
+      "By using the `X-Frame-Options` HTTP header (or CSP `frame-ancestors`) to instruct the browser not to allow your site to be rendered inside an `<iframe>` on other domains.",
+      "By encrypting the HTML.",
+      "By requiring double-clicks for all actions."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Setting `X-Frame-Options: DENY` ensures that no other site can embed your application, completely preventing iframe-based clickjacking."
+  },
+  {
+    "question": "What is a 'Supply Chain Attack' in frontend development?",
+    "options": [
+      "Attacking a logistics company.",
+      "When a malicious actor compromises a popular third-party library (e.g., an NPM package). When developers install or update the package, the malicious code is bundled into their application.",
+      "Attacking the server's power supply.",
+      "A bug in the CI/CD pipeline."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Modern frontend apps rely on thousands of NPM packages. If a hacker gains control of a small, heavily-used utility package, they can inject code to steal credit cards from every site using it."
+  },
+  {
+    "question": "What is 'Subresource Integrity' (SRI)?",
+    "options": [
+      "Checking if the database is intact.",
+      "A security feature that enables browsers to verify that resources (like scripts or stylesheets) fetched from a CDN have not been maliciously manipulated, by comparing the file to a cryptographic hash.",
+      "A way to integrate microservices.",
+      "A testing framework."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you load jQuery from a public CDN, and that CDN gets hacked, your site is compromised. SRI uses an `integrity` attribute on the `<script>` tag. If the CDN file is altered, the hash won't match, and the browser will refuse to execute it."
+  }
+]

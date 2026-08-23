@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What are Core Web Vitals?",
+    "options": [
+      "A set of React Hooks for managing state.",
+      "A set of standardized metrics established by Google that measure real-world user experience for loading performance, interactivity, and visual stability.",
+      "A list of essential CSS properties.",
+      "A set of database performance metrics."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Google uses these metrics (LCP, FID/INP, and CLS) as a ranking signal for SEO. A fast site with good web vitals will rank higher in search results."
+  },
+  {
+    "question": "In Core Web Vitals, what does LCP (Largest Contentful Paint) measure?",
+    "options": [
+      "The time it takes to paint the smallest pixel on the screen.",
+      "The render time of the largest image or text block visible within the viewport, serving as a proxy for when the main content of the page has loaded.",
+      "The total size of all images on the page.",
+      "The time it takes for the CSS to load."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a user opens a blog post, LCP usually measures how long it takes for the main hero image or the H1 title to appear. A good LCP is under 2.5 seconds."
+  },
+  {
+    "question": "What does CLS (Cumulative Layout Shift) measure?",
+    "options": [
+      "How many div elements are on the page.",
+      "The visual stability of a page; it measures how much elements unexpectedly jump around while the page is loading (e.g., text moving because an image loaded late).",
+      "The time it takes for a user to click a button.",
+      "The shift in database latency."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A high CLS is incredibly frustrating for users (e.g., trying to click a button, but it moves down because an ad loaded above it, causing them to click the wrong thing)."
+  },
+  {
+    "question": "How can you prevent a high Cumulative Layout Shift (CLS) caused by images?",
+    "options": [
+      "By not using images at all.",
+      "By explicitly defining the `width` and `height` attributes on the `<img>` tag (or using CSS aspect-ratio), allowing the browser to reserve the exact space before the image downloads.",
+      "By loading images asynchronously.",
+      "By compressing the images."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you don't define the dimensions, the browser assumes the image is 0x0. When the 800x600 image finally downloads, it forces the entire page to push down, causing a layout shift."
+  },
+  {
+    "question": "What is 'Code Splitting' and how does it improve frontend performance?",
+    "options": [
+      "Splitting the code between multiple developers.",
+      "Breaking a massive JavaScript bundle into smaller chunks that can be loaded on demand. This reduces the initial payload the browser must download and parse to render the first page.",
+      "Splitting CSS into separate files.",
+      "Using two different databases."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If your app has an Admin Dashboard, a regular user should not have to download the 2MB of JavaScript required for the dashboard. Code splitting ensures they only download what they need right now."
+  },
+  {
+    "question": "What is the primary performance benefit of using a CDN (Content Delivery Network) for static assets?",
+    "options": [
+      "It compresses images better than standard servers.",
+      "It drastically reduces network latency (Time to First Byte - TTFB) by serving files from a data center physically closest to the user's geographic location.",
+      "It encrypts the files automatically.",
+      "It prevents DDoS attacks."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If your server is in London, a user in Sydney will experience a 300ms delay just for the request to travel. A CDN caches the file in Sydney, reducing the delay to 20ms."
+  },
+  {
+    "question": "What is the difference between `defer` and `async` attributes on a `<script>` tag?",
+    "options": [
+      "They are identical.",
+      "`async` downloads the script in the background and executes it immediately when ready (blocking parsing). `defer` downloads in the background but waits to execute until HTML parsing is completely finished.",
+      "`defer` is for CSS; `async` is for JavaScript.",
+      "`async` guarantees execution order; `defer` does not."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Never use a `<script>` tag without one of these attributes in the `<head>`, or it will completely block the browser from rendering the HTML. `defer` is generally safer for scripts that depend on the DOM."
+  },
+  {
+    "question": "What is 'Tree Shaking'?",
+    "options": [
+      "A way to randomly select variables.",
+      "A build-step optimization (performed by tools like Webpack or Rollup) that analyzes your code and removes any unused or 'dead' code (e.g., imported functions you never called) from the final bundle.",
+      "A method of formatting CSS.",
+      "A testing technique."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you import a massive utility library like Lodash, but only use the `debounce` function, tree shaking ensures the other 500 functions in Lodash are completely stripped out of your final JavaScript file."
+  },
+  {
+    "question": "What does a Service Worker do?",
+    "options": [
+      "It manages database queries.",
+      "It is a script that runs in the background, separate from a web page, enabling features like offline caching, push notifications, and background sync.",
+      "It renders the UI faster.",
+      "It styles the page."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Service Workers are the core technology behind Progressive Web Apps (PWAs). By intercepting network requests, a service worker can serve a cached version of the site even if the user has no internet connection."
+  },
+  {
+    "question": "Why does excessive DOM manipulation cause performance issues?",
+    "options": [
+      "Because the DOM is stored in the database.",
+      "Because reading from or writing to the DOM forces the browser to recalculate layouts and repaint the screen (Reflow and Repaint), which are computationally very expensive operations.",
+      "Because JavaScript cannot access the DOM fast enough.",
+      "Because the DOM is encrypted."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is why frameworks like React use a Virtual DOM. Instead of changing 100 individual DOM elements one by one (causing 100 slow repaints), it calculates the differences in memory and updates the real DOM in one fast batch."
+  }
+]

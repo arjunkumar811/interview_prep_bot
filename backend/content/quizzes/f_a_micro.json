@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the core concept of Micro Frontends?",
+    "options": [
+      "Building a frontend exclusively for micro-devices like smartwatches.",
+      "An architectural style where independently deliverable frontend applications are composed into a single, cohesive user interface, extending the concept of microservices to the frontend world.",
+      "Using very small CSS files.",
+      "A frontend that only uses micro-interactions."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Instead of one massive React codebase (a frontend monolith), a large company might have the 'Search' team build a search app, and the 'Cart' team build a cart app. Micro frontends stitch these separate apps together into one page."
+  },
+  {
+    "question": "What is the primary organizational benefit of using Micro Frontends in a large enterprise?",
+    "options": [
+      "It makes the website load faster.",
+      "It allows multiple independent teams to develop, test, and deploy their specific piece of the frontend independently, without blocking or stepping on the toes of other teams.",
+      "It reduces the server cost.",
+      "It forces everyone to use the same framework."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In a monolithic frontend, if Team A breaks the build, Team B cannot deploy their feature. Micro frontends decouple deployments."
+  },
+  {
+    "question": "Which Webpack 5 feature has become a standard standard tool for implementing Micro Frontends by allowing a JavaScript application to dynamically load code from another application?",
+    "options": [
+      "Code Splitting",
+      "Module Federation",
+      "Tree Shaking",
+      "Hot Module Replacement (HMR)"
+    ],
+    "correctOptionId": 1,
+    "explanation": "Module Federation allows a 'Host' application to pull in components (like a Header or a whole page) from a 'Remote' application at runtime, sharing dependencies like React so they aren't downloaded twice."
+  },
+  {
+    "question": "What is 'Build-time Integration' in the context of Micro Frontends?",
+    "options": [
+      "Integrating code at the exact moment the user clicks a button.",
+      "Publishing each micro frontend as an NPM package, and having a container app import them and build them into a single bundle before deployment.",
+      "Integrating the frontend and backend in one file.",
+      "Using WebSockets for integration."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While simple, build-time integration defeats the main purpose of micro frontends (independent deployment) because updating one package requires rebuilding and redeploying the entire container app."
+  },
+  {
+    "question": "What is 'Run-time Integration' (via JavaScript) in Micro Frontends?",
+    "options": [
+      "Running the code in Node.js.",
+      "The container application fetches the JavaScript bundles for the micro frontends dynamically over the network (e.g., using Module Federation) when the user loads the page.",
+      "Running the integration tests.",
+      "Integrating the code using CSS."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Run-time integration is the holy grail. Team A can deploy a new version of their 'Cart' app. The next time a user visits the main site, the container app automatically fetches the new 'Cart' code without needing a redeployment itself."
+  },
+  {
+    "question": "What is a major technical challenge when using Micro Frontends?",
+    "options": [
+      "They cannot use CSS.",
+      "Maintaining a consistent user experience (UI/UX) and managing shared state (like authentication) across applications built by different teams, potentially using different frameworks.",
+      "They are not supported by modern browsers.",
+      "They require a NoSQL database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If the Search app is in React and the Checkout app is in Vue, sharing the 'logged-in user' state is difficult. Passing data via Custom Events or a shared window object is often required."
+  },
+  {
+    "question": "How can you isolate CSS styles in a Micro Frontend architecture to prevent one team's CSS from breaking another team's UI?",
+    "options": [
+      "By not using CSS.",
+      "By using CSS-in-JS, CSS Modules, or Shadow DOM (Web Components) to ensure styles are scoped locally to the specific micro frontend.",
+      "By putting all CSS in one massive file.",
+      "By using inline styles exclusively."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If Team A writes `button { background: red; }`, it might accidentally turn Team B's buttons red. CSS isolation is critical in micro frontends."
+  },
+  {
+    "question": "What is 'Server-side Integration' in Micro Frontends (often implemented using technologies like Edge Side Includes (ESI) or a custom Node.js service)?",
+    "options": [
+      "The server writing the JavaScript.",
+      "A server receives a request, fetches HTML fragments from various micro frontend services, stitches them together into a single HTML document, and sends it to the browser.",
+      "The browser sending code to the server.",
+      "A database join operation."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This approach is great for SEO and initial load performance. The user receives a fully formed HTML page, rather than waiting for a client-side container app to fetch and render JavaScript bundles."
+  },
+  {
+    "question": "What happens to the overall bundle size when multiple Micro Frontends are loaded on the same page, especially if they don't share dependencies correctly?",
+    "options": [
+      "The bundle size decreases.",
+      "The bundle size can increase significantly, as the user might download the React library multiple times (once for each micro frontend) if Module Federation is not configured to share it.",
+      "The bundle size stays exactly the same.",
+      "The browser crashes immediately."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Performance bloat is the biggest risk of micro frontends. If three teams use different versions of Lodash, the user downloads all three."
+  },
+  {
+    "question": "Are Web Components a viable technology for building Micro Frontends?",
+    "options": [
+      "No, they are deprecated.",
+      "Yes. Because they are framework-agnostic native browser APIs, a team can build a complex UI in React, wrap it in a custom Web Component (e.g., `<my-cart>`), and drop it into any container app.",
+      "No, they only work in Chrome.",
+      "Yes, but only for backend code."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Web Components (Custom Elements + Shadow DOM) provide perfect encapsulation. The container app just needs to inject the script and write `<my-cart></my-cart>`, regardless of what framework powers the cart internally."
+  }
+]

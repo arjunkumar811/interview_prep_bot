@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary purpose of Frontend Monitoring?",
+    "options": [
+      "To monitor the backend database.",
+      "To track, analyze, and report on the real-world performance, errors, and user interactions of a web application as experienced by actual users in their browsers.",
+      "To monitor employee productivity.",
+      "To track the company's financial metrics."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Backend monitoring tells you if the server is healthy. Frontend monitoring tells you if the user is actually having a good experience, which is often completely different."
+  },
+  {
+    "question": "What does RUM stand for in frontend monitoring?",
+    "options": [
+      "Random User Memory",
+      "Real User Monitoring (capturing performance data directly from the browsers of actual users as they interact with the application).",
+      "Resource Usage Metrics",
+      "Reactive UI Management"
+    ],
+    "correctOptionId": 1,
+    "explanation": "RUM is crucial because synthetic testing (like running Lighthouse in a lab) doesn't account for users on a 3G network in rural India using a 5-year-old Android phone."
+  },
+  {
+    "question": "Which of the following is a highly popular tool used for Frontend Error Tracking and Crash Reporting?",
+    "options": [
+      "Docker",
+      "Sentry (or Bugsnag / LogRocket)",
+      "Redis",
+      "Webpack"
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a user's browser crashes because of a `TypeError: Cannot read properties of undefined`, Sentry catches it, captures the stack trace, and sends an alert to the developers, even before the user complains."
+  },
+  {
+    "question": "Why is 'Source Map' integration critical for frontend error tracking tools like Sentry?",
+    "options": [
+      "To show the user a map of where the server is located.",
+      "Because the deployed code is minified and bundled (e.g., `a.b is undefined in main.min.js`). The tool uses Source Maps to translate that minified error back into the exact line of the original source code (e.g., `user.profile in UserCard.tsx:42`).",
+      "To map the database to the frontend.",
+      "To track the user's GPS coordinates."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Without uploading source maps to your monitoring tool during the CI/CD build process, the error reports you receive will be completely illegible."
+  },
+  {
+    "question": "What is 'Session Replay' (provided by tools like LogRocket or Datadog)?",
+    "options": [
+      "A feature to restart a video.",
+      "A monitoring feature that records the DOM mutations, mouse movements, and network requests of a user's session, allowing developers to literally watch a 'video' playback of exactly what the user did leading up to a crash.",
+      "A way to replay database queries.",
+      "A testing framework."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Session replay is incredibly powerful for debugging 'impossible' bugs where the user says 'I clicked the button and it crashed', but the developer cannot reproduce it locally."
+  },
+  {
+    "question": "When implementing Session Replay or Analytics, what is a critical legal and ethical consideration?",
+    "options": [
+      "Ensuring the video quality is 1080p.",
+      "Strictly scrubbing (masking) all Personally Identifiable Information (PII), such as passwords, credit card numbers, and private messages, so they are never recorded or sent to the monitoring servers.",
+      "Making sure the data is sold to advertisers.",
+      "Encrypting the CSS files."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Recording a user typing their password is a massive security breach and violates GDPR/CCPA. Good monitoring tools automatically mask standard input fields, but developers must configure custom masking for sensitive DOM elements."
+  },
+  {
+    "question": "What is the `window.onerror` event handler used for?",
+    "options": [
+      "To style error messages in red.",
+      "A global browser API that catches unhandled JavaScript exceptions that occur anywhere in the application, allowing you to intercept them and send them to your monitoring service.",
+      "To prevent the browser from crashing.",
+      "To catch backend API errors."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If an error slips past your React Error Boundaries, `window.onerror` is the last line of defense to ensure you at least log that the error occurred."
+  },
+  {
+    "question": "How do you monitor Core Web Vitals (LCP, FID, CLS) for real users in production?",
+    "options": [
+      "By running Lighthouse every hour.",
+      "By using the browser's native `PerformanceObserver` API (or a library like `web-vitals`) to measure the metrics in the browser and send the data to an analytics endpoint.",
+      "By asking users to report how fast the site felt.",
+      "By checking the server logs."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The `web-vitals` library (often built into Next.js or Create React App) allows you to capture the exact LCP score a real user experienced and send it to Google Analytics or a custom dashboard."
+  },
+  {
+    "question": "What is 'Distributed Tracing' in modern full-stack applications?",
+    "options": [
+      "Tracing a bug to a specific developer.",
+      "A method of tracking a single request as it travels from the frontend, through the API gateway, across multiple backend microservices, and to the database, usually by passing a unique 'Trace ID' in the HTTP headers.",
+      "Distributing the monitoring servers globally.",
+      "A way to draw maps."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a user clicks 'Checkout' and it takes 10 seconds, tracing allows you to see exactly where the bottleneck is (e.g., Frontend took 1s, API Gateway took 1s, Inventory Service took 8s)."
+  },
+  {
+    "question": "What is a major risk of adding too many frontend monitoring and analytics scripts (like Sentry, Google Analytics, Hotjar, Segment) to an application?",
+    "options": [
+      "They might delete the database.",
+      "They can severely degrade frontend performance (especially Time to Interactive) because they are often heavy JavaScript files that compete for the browser's main thread.",
+      "They will change the CSS styling.",
+      "They will cause XSS attacks."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Monitoring is essential, but it is a tradeoff. You must carefully manage when these scripts load (e.g., using `defer`, loading them in a Web Worker via Partytown, or lazy-loading them)."
+  }
+]

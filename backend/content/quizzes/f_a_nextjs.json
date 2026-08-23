@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary difference between `getServerSideProps` and `getStaticProps` in Next.js (Pages Router)?",
+    "options": [
+      "There is no difference.",
+      "`getServerSideProps` runs on the server for *every single request*. `getStaticProps` runs only once *at build time* (or in the background during ISR).",
+      "`getStaticProps` is used for client-side rendering.",
+      "`getServerSideProps` is faster than `getStaticProps`."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Use `getServerSideProps` for highly dynamic, user-specific data (like a user's bank dashboard). Use `getStaticProps` for fast, cacheable data that is the same for all users (like a blog post)."
+  },
+  {
+    "question": "How do you achieve Server-Side Rendering (SSR) fetching in the newer Next.js App Router (Next 13+)?",
+    "options": [
+      "By using `getServerSideProps`.",
+      "By using the native `fetch` API directly inside a Server Component and setting the `{ cache: 'no-store' }` option.",
+      "By using the `useEffect` hook.",
+      "By using Redux."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The App Router fundamentally changes data fetching. Instead of special exported functions, you just write standard `fetch` inside your async Server Components. `no-store` tells Next.js not to cache the request, effectively making it SSR."
+  },
+  {
+    "question": "What is the purpose of `generateStaticParams` in the Next.js App Router (formerly `getStaticPaths` in the Pages Router)?",
+    "options": [
+      "To generate a static CSS file.",
+      "To tell Next.js exactly which dynamic routes (e.g., `/blog/[slug]`) it should pre-render into static HTML at build time, based on a list of parameters.",
+      "To generate random passwords.",
+      "To prevent users from accessing certain routes."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If your blog has 100 posts, you return an array of 100 slugs from `generateStaticParams`. During the build, Next.js calls your page component 100 times to generate 100 highly-optimized static HTML files."
+  },
+  {
+    "question": "What are 'Server Actions' in Next.js?",
+    "options": [
+      "Server-side Redux actions.",
+      "Asynchronous functions that run exclusively on the server, but can be called directly from Client Components (e.g., submitting a form directly to a database without manually creating an API endpoint).",
+      "Actions that crash the server.",
+      "Functions that update the server's OS."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Server Actions heavily reduce boilerplate. Instead of creating a `/api/submit` route and writing a `fetch` call on the client, you just pass a server function directly to the `action={}` prop of a `<form>`."
+  },
+  {
+    "question": "In the Next.js App Router, how do you handle Loading states while a Server Component is fetching data?",
+    "options": [
+      "By using a `useState` loading boolean.",
+      "By creating a `loading.tsx` file in the same directory. Next.js automatically wraps the page in a React Suspense boundary and shows the `loading.tsx` UI until the fetch resolves.",
+      "By using a Redux spinner.",
+      "By using `useEffect`."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is a massive benefit of the App Router's file-system conventions. You don't need to write `if (isLoading) return <Spinner />` in your components anymore."
+  },
+  {
+    "question": "What is the purpose of the `layout.tsx` file in the App Router?",
+    "options": [
+      "To define CSS grid layouts.",
+      "To create a UI shell (like a navigation bar or footer) that is shared across multiple pages in a route segment, and strictly preserves its state across navigations.",
+      "To override the global CSS.",
+      "To configure database schemas."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Unlike `page.tsx` which changes entirely on navigation, `layout.tsx` wraps the page. If you have an audio player in `layout.tsx`, it will keep playing seamlessly while the user navigates between pages inside that layout."
+  },
+  {
+    "question": "What is 'Route Interception' in Next.js?",
+    "options": [
+      "A hacking technique.",
+      "A feature that allows you to load a route from another part of your application within the current layout (e.g., clicking a photo in a feed opens it in a Modal, but refreshing the page loads the photo as a full standalone page).",
+      "Blocking users based on their IP.",
+      "Redirecting HTTP to HTTPS."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Route interception (using folders like `(.)photo`) is incredibly powerful for complex UIs like Instagram or Reddit, where context matters when navigating forward, but direct URLs must still work."
+  },
+  {
+    "question": "How does Next.js optimize third-party scripts (like Google Analytics) to prevent them from hurting Core Web Vitals?",
+    "options": [
+      "By deleting them automatically.",
+      "By providing the `<Script />` component, which gives you precise control over when the script loads (e.g., `strategy=\"afterInteractive\"` or `strategy=\"lazyOnload\"`).",
+      "By running them in WebAssembly.",
+      "By rewriting the scripts in Rust."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Loading a heavy analytics script too early will ruin your LCP and TTI scores. The `<Script>` component ensures your main application UI always gets priority."
+  },
+  {
+    "question": "What is the 'Middleware' feature in Next.js?",
+    "options": [
+      "A database proxy.",
+      "Code (running on the Edge) that executes *before* a request is completed. It allows you to modify the response, rewrite the URL, or redirect the user (e.g., checking an Auth cookie before they hit a protected route).",
+      "A CSS preprocessor.",
+      "A state management library."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Middleware is extremely fast because it often runs on Edge functions (like Cloudflare Workers). It's the perfect place for global authentication checks or A/B testing routing."
+  },
+  {
+    "question": "Why might you use the `'use server'` directive inside a file?",
+    "options": [
+      "To tell the browser to run it.",
+      "To explicitly mark all exported functions in that file as Server Actions, allowing them to be imported and called directly by Client Components.",
+      "To start a Node.js server.",
+      "To bypass firewall rules."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a Client Component needs to talk to the database, it imports a function from a file marked with `'use server'`. Next.js automatically creates a hidden API endpoint under the hood to facilitate the call."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary goal of System Design in the context of Frontend Engineering?",
+    "options": [
+      "Designing the SQL database schema.",
+      "Architecting scalable, maintainable, and highly performant user interfaces and client-side applications that can handle complex state, heavy traffic, and large development teams.",
+      "Designing the CSS animations.",
+      "Writing the HTML markup."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Frontend System Design goes beyond writing a single component. It's about how hundreds of components, APIs, state managers, and build tools work together efficiently at a large scale."
+  },
+  {
+    "question": "When designing a large-scale frontend, why might a 'Monorepo' be preferred over multiple separate repositories (Polyrepo)?",
+    "options": [
+      "Because Git cannot handle multiple repositories.",
+      "It simplifies dependency management, allows for easier code sharing (e.g., shared UI components or utility functions across multiple apps), and ensures atomic commits across the entire stack.",
+      "Because it makes the codebase smaller.",
+      "It prevents junior developers from breaking code."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Tools like Nx, Turborepo, or Lerna are used to manage monorepos. If you update a core Button component, all apps in the monorepo that use it can be tested and deployed together."
+  },
+  {
+    "question": "What is a 'Design System'?",
+    "options": [
+      "A software for drawing diagrams.",
+      "A comprehensive set of standardized, reusable UI components, design tokens (colors, typography), and guidelines that ensure visual consistency and speed up development across all company products.",
+      "A specific CSS framework.",
+      "A backend database architecture."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Instead of every developer styling their own buttons, a Design System (often documented in Storybook) provides a single `<Button>` component that everyone uses, ensuring the brand looks identical everywhere."
+  },
+  {
+    "question": "What is 'BFF' (Backend For Frontend) in system architecture?",
+    "options": [
+      "Best Friends Forever.",
+      "An architectural pattern where a dedicated, lightweight backend server is created specifically to serve the needs of a particular frontend client (e.g., aggregating data from multiple microservices before sending it to a mobile app).",
+      "A database proxy.",
+      "A specific type of React component."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a frontend needs User data (Service A) and Order data (Service B), the client could make two requests. Alternatively, the BFF makes the two requests internally (which is faster) and sends one tailored payload to the frontend."
+  },
+  {
+    "question": "When designing an infinite-scrolling feed (like Twitter or Instagram), what is 'DOM Virtualization' (or Windowing)?",
+    "options": [
+      "Rendering the DOM in a Virtual Machine.",
+      "A performance technique where only the items currently visible in the user's viewport (plus a small buffer) are actually rendered in the DOM, while off-screen items are replaced with empty space.",
+      "Encrypting the DOM.",
+      "Using the React Virtual DOM."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a user scrolls past 10,000 tweets, having 10,000 complex DOM nodes active will crash the browser. Virtualization (e.g., using `react-window`) keeps the DOM size constant (e.g., 20 nodes) regardless of the list size."
+  },
+  {
+    "question": "How does 'Pagination' differ from 'Cursor-based Pagination' when designing an API for a frontend?",
+    "options": [
+      "They are the same thing.",
+      "Standard pagination uses `page=2&limit=10` (which can skip or duplicate items if new items are inserted during pagination). Cursor pagination uses a unique identifier (`after=item_10_id`), which is much more resilient for real-time feeds.",
+      "Cursor pagination is slower.",
+      "Standard pagination is only for SQL databases."
+    ],
+    "correctOptionId": 1,
+    "explanation": "For dynamic feeds where items are constantly added (like a chat app or Twitter), cursor pagination is mandatory to prevent UI glitches."
+  },
+  {
+    "question": "What is the primary benefit of 'Server-Driven UI' (SDUI)?",
+    "options": [
+      "The server renders the HTML faster.",
+      "The API response dictates not just the data, but the actual structure and layout of the UI components. This allows product teams to change the app's layout without requiring an app store update or frontend deployment.",
+      "It eliminates the need for JavaScript.",
+      "It prevents DDoS attacks."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In SDUI, the server sends JSON like `[{ type: 'Banner', url: '...' }, { type: 'ProductList', items: [...] }]`. The frontend just loops through the JSON and renders the corresponding components."
+  },
+  {
+    "question": "In a highly interactive collaborative app (like Google Docs or Figma), what technology is typically used to ensure real-time synchronization between multiple users?",
+    "options": [
+      "Standard HTTP GET requests.",
+      "WebSockets (often combined with Operational Transformation (OT) or Conflict-free Replicated Data Types (CRDTs) to handle conflicting edits).",
+      "Local Storage.",
+      "Server-Sent Events."
+    ],
+    "correctOptionId": 1,
+    "explanation": "WebSockets provide the persistent, two-way connection needed for real-time updates. OT/CRDTs are complex algorithms that merge simultaneous edits from different users without data loss."
+  },
+  {
+    "question": "What is 'State Normalization' in a global store (like Redux)?",
+    "options": [
+      "Making sure all state variables are lowercase.",
+      "Structuring the state object like a relational database (flat), using IDs as keys, to prevent deeply nested data structures and data duplication.",
+      "Removing old data from the state.",
+      "Encrypting the state."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a user object is nested inside a 'post' object, and also inside a 'comment' object, updating the user's name requires traversing the whole tree. If normalized (stored by ID in a `users` dictionary), you update it in one place."
+  },
+  {
+    "question": "When designing a frontend application, what is the 'Offline-First' architecture?",
+    "options": [
+      "An app that never connects to the internet.",
+      "Designing the app to work seamlessly without a network connection by aggressively caching data locally (e.g., IndexedDB) and queueing user actions to be synced with the server once the connection is restored.",
+      "An app that prints documents.",
+      "An app that only works on local networks."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Offline-first requires complex logic (often using Service Workers and background sync) to ensure users can keep working (e.g., writing an email) even if they go into a tunnel, syncing the data invisibly later."
+  }
+]

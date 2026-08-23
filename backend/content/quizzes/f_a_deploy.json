@@ -1,0 +1,112 @@
+[
+  {
+    "question": "In advanced frontend deployment, what is a 'Monolith' vs a 'Micro Frontends' deployment strategy?",
+    "options": [
+      "Monolith uses one server; Micro Frontends uses zero servers.",
+      "A Monolith builds and deploys the entire frontend application as a single massive artifact. Micro Frontends allow independent teams to build and deploy specific sections of the UI (like a header or a checkout flow) separately, combining them at runtime or build time.",
+      "Monolith means deploying to AWS; Micro Frontends means deploying to Vercel.",
+      "They are the exact same thing."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Micro frontends decouple deployments. If the checkout team needs to push an urgent fix, they don't have to wait for the core team to build the entire 500MB monolith."
+  },
+  {
+    "question": "What is 'Immutable Deployment'?",
+    "options": [
+      "Deploying code that cannot be deleted.",
+      "A strategy where you never update or overwrite an existing deployment in place. Instead, every deployment creates a completely new, unique version of the infrastructure (e.g., a new folder on S3 or a new Docker container), and you simply switch traffic to it.",
+      "Deploying code to a blockchain.",
+      "A deployment that takes zero time."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Immutable deployments make rollbacks incredibly safe and instantaneous. If V2 is broken, you just point the router back to the V1 folder, which was never modified or deleted."
+  },
+  {
+    "question": "What is 'Cache Busting' (or Cache Invalidation) and why is it essential when deploying a frontend application?",
+    "options": [
+      "A way to bypass security firewalls.",
+      "Ensuring that when you deploy new code, users' browsers actually download the new files instead of using old, cached versions. This is typically achieved by appending a unique hash to the filenames during the build process (e.g., `main.a3b4c.js`).",
+      "Clearing the database cache.",
+      "A feature of WebSockets."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If your file is named `main.js`, the browser might cache it for a year. If you deploy a fix, the user won't see it. By naming it `main.a3b4c.js` (and `main.z9y8x.js` on the next build), the browser treats it as a brand new file."
+  },
+  {
+    "question": "When deploying a Server-Side Rendered (SSR) Node.js application (like Next.js), what is the purpose of a Reverse Proxy (like Nginx)?",
+    "options": [
+      "To translate the code to PHP.",
+      "To sit in front of the Node.js process, handling tasks that Node.js is inefficient at, such as terminating SSL/TLS, serving static assets, and load balancing traffic before forwarding the dynamic requests to Node.js.",
+      "To store the database.",
+      "To run the frontend code in the browser."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Node.js (being single-threaded) is great at running application logic, but it is terrible at serving static files securely at scale. Nginx handles the heavy lifting of network traffic."
+  },
+  {
+    "question": "What is 'Serverless' hosting (e.g., AWS Lambda, Vercel Functions)?",
+    "options": [
+      "Hosting a website without any hardware.",
+      "An execution model where the cloud provider dynamically manages the allocation of servers. The developer just uploads functions, and the provider automatically provisions servers to run them only when a request arrives, charging only for the exact compute time used.",
+      "Hosting on a local laptop.",
+      "A type of CSS framework."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Serverless (or FaaS - Functions as a Service) is revolutionary for frontend APIs. You don't pay for an idle server running 24/7. If you get 0 traffic, you pay $0. If you get a massive spike, the cloud provider scales it instantly."
+  },
+  {
+    "question": "What is a major challenge ('Cold Start') associated with Serverless functions?",
+    "options": [
+      "The servers freezing in cold climates.",
+      "The noticeable delay (latency) that occurs when a serverless function is invoked for the first time (or after a period of inactivity), because the cloud provider must spin up a new container and initialize the runtime environment before executing the code.",
+      "The time it takes to write the code.",
+      "A bug in the React rendering cycle."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a Next.js SSR page is hosted on a serverless function, a user might experience a 1-2 second delay if they are the first person to visit the site in a few hours. 'Edge Functions' are a modern solution to this."
+  },
+  {
+    "question": "What are 'Edge Functions' (e.g., Cloudflare Workers, Vercel Edge)?",
+    "options": [
+      "Functions that draw borders around HTML elements.",
+      "Lightweight, globally distributed serverless functions that run directly on the CDN nodes (the 'edge') closest to the user. They typically use a restricted runtime (like V8 Isolates instead of full Node.js) to achieve near-zero cold starts and incredibly low latency.",
+      "Functions that only run on Microsoft Edge.",
+      "Functions that manage database schemas."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Edge functions are perfect for Next.js Middleware. They run instantly in the user's city, intercepting the request to check authentication or A/B testing flags before the request ever reaches your main server."
+  },
+  {
+    "question": "What is 'Infrastructure as Code' (IaC) (e.g., Terraform, AWS CDK)?",
+    "options": [
+      "Writing CSS to look like code.",
+      "The process of managing and provisioning cloud resources (servers, databases, CDNs) through machine-readable definition files (code), rather than manual configuration in a web interface.",
+      "A new programming language for the frontend.",
+      "Using a database to store code."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Instead of clicking 50 buttons in the AWS console to deploy your frontend, you write a script. If your server dies, you just run the script again, and the entire infrastructure is rebuilt exactly as it was."
+  },
+  {
+    "question": "What is 'A/B Testing' (Split Testing) in a deployment context?",
+    "options": [
+      "Testing two different databases.",
+      "A technique where a routing layer randomly directs a portion of users to 'Version A' of the site and the rest to 'Version B'. Analytics are then used to determine which version performed better (e.g., had a higher conversion rate) before fully deploying the winner.",
+      "Testing the site on Apple and BlackBerry devices.",
+      "A method of splitting CSS files."
+    ],
+    "correctOptionId": 1,
+    "explanation": "A/B testing allows data-driven development. You deploy the new checkout flow, route 50% of traffic to it, and if revenue drops, you instantly turn it off."
+  },
+  {
+    "question": "In a robust CI/CD pipeline, what is the role of a 'Staging' environment?",
+    "options": [
+      "A place to store old code.",
+      "An environment that perfectly mirrors the production environment (including databases, APIs, and infrastructure configuration) used for final QA, User Acceptance Testing (UAT), and load testing before the code is promoted to the actual production environment.",
+      "A server for designers to draw wireframes.",
+      "A local environment on a developer's laptop."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Testing on 'localhost' is not enough. A staging server ensures that the code will actually run correctly on the Linux servers, connecting to the real (or sanitized clone of the) database, preventing surprises on deployment day."
+  }
+]

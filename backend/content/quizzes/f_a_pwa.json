@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is a Progressive Web App (PWA)?",
+    "options": [
+      "A website built only with HTML and CSS.",
+      "A web application that uses modern web capabilities (like Service Workers and Web App Manifests) to deliver an app-like experience to users, including offline support, push notifications, and home screen installation.",
+      "An app that can only be downloaded from the Apple App Store.",
+      "A desktop software program."
+    ],
+    "correctOptionId": 1,
+    "explanation": "PWAs blur the line between websites and native mobile apps. They are built with web technologies but feel like a real app installed on your phone."
+  },
+  {
+    "question": "What are the three core technical requirements for a website to be considered a PWA?",
+    "options": [
+      "React, Redux, and Webpack.",
+      "A SQL Database, a Node.js server, and an API.",
+      "HTTPS, a Web App Manifest file, and a registered Service Worker with a fetch event handler.",
+      "HTML, CSS, and JavaScript."
+    ],
+    "correctOptionId": 2,
+    "explanation": "A browser will not show the 'Add to Home Screen' prompt unless the site is secure (HTTPS), tells the OS how to display the app (Manifest), and can load at least some content offline (Service Worker)."
+  },
+  {
+    "question": "What is the primary role of a Service Worker in a PWA?",
+    "options": [
+      "To style the UI components.",
+      "To act as a programmable network proxy that sits between the web app and the network, intercepting requests to serve cached responses when offline, and enabling background features.",
+      "To render HTML on the server.",
+      "To connect to a SQL database."
+    ],
+    "correctOptionId": 1,
+    "explanation": "The Service Worker is the engine of a PWA. When your app makes a `fetch` request, the Service Worker intercepts it. If there is no internet, the SW can return a cached response instead of the browser showing the offline dinosaur game."
+  },
+  {
+    "question": "Which of the following describes the 'Cache-First' (or Cache-Falling-Back-to-Network) strategy in a Service Worker?",
+    "options": [
+      "Always fetching from the network, never caching.",
+      "The Service Worker intercepts the request, checks the local Cache Storage first. If the file is there, it returns it instantly. If not, it fetches it from the network, caches it for next time, and returns it.",
+      "Caching the entire internet locally.",
+      "Only caching images."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This strategy is perfect for static assets (logos, fonts, CSS files) that rarely change. It makes the app load instantly on subsequent visits, regardless of network speed."
+  },
+  {
+    "question": "Which caching strategy is best for dynamic API data (like a user's bank balance) in a PWA?",
+    "options": [
+      "Cache-First",
+      "Network-First (Falling back to cache)",
+      "Cache-Only",
+      "Network-Only"
+    ],
+    "correctOptionId": 1,
+    "explanation": "For sensitive or frequently changing data, you always want the freshest version (Network-First). However, if the user is in a subway with no signal, you fall back to the cache so they can at least see their *last known* balance."
+  },
+  {
+    "question": "What is the purpose of the `manifest.json` (Web App Manifest) file in a PWA?",
+    "options": [
+      "To store database credentials.",
+      "To provide the browser with metadata about the application (name, icons, theme color, display mode), allowing the OS to install it as a standalone app on the user's home screen.",
+      "To list the NPM dependencies.",
+      "To write routing rules."
+    ],
+    "correctOptionId": 1,
+    "explanation": "When a user 'Installs' a PWA on iOS or Android, the OS reads the manifest file to know what icon to put on the home screen and what color to make the status bar."
+  },
+  {
+    "question": "What does the `display: \"standalone\"` property do in the Web App Manifest?",
+    "options": [
+      "It opens the app in a new browser tab.",
+      "It hides standard browser UI elements like the URL address bar and navigation buttons, making the PWA look and feel exactly like a native mobile app.",
+      "It forces the app to only work on desktop.",
+      "It disables JavaScript."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is crucial for the 'native feel'. Without it, the user just feels like they are browsing a website in Safari or Chrome. With it, the app launches in its own dedicated window."
+  },
+  {
+    "question": "What is 'Background Sync' in the context of PWAs?",
+    "options": [
+      "Syncing files to Dropbox.",
+      "A Service Worker API that allows the app to defer actions (like sending an email or uploading a photo) until the user has a stable internet connection, even if they have closed the app.",
+      "Syncing video audio.",
+      "A React state management library."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a user hits 'Send Message' while offline, the app queues the action. The Service Worker will wait until the OS detects a network connection, wake up in the background, and send the message."
+  },
+  {
+    "question": "Are Web Push Notifications supported in PWAs?",
+    "options": [
+      "No, only native apps can send notifications.",
+      "Yes, the Service Worker can receive push messages from the server and display OS-level notifications to the user, even when the browser tab is closed.",
+      "Yes, but only via email.",
+      "Yes, but only while the app is actively open on the screen."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Push notifications are a major reason companies build PWAs. (Note: iOS support for Web Push was historically poor but was finally added in iOS 16.4)."
+  },
+  {
+    "question": "What is Lighthouse?",
+    "options": [
+      "A physical server.",
+      "An open-source, automated tool integrated into Chrome DevTools used for auditing web pages, providing specific scores and actionable advice for improving PWA compliance, Performance, Accessibility, and SEO.",
+      "A database indexing tool.",
+      "A CSS animation library."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Running a Lighthouse audit is the standard way to verify if your site meets all the technical criteria to be considered a fully compliant PWA."
+  }
+]

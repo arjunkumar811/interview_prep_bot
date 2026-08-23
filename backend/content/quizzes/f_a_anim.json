@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the most performant way to animate elements on the web?",
+    "options": [
+      "Using `setInterval` in JavaScript to manually update styling properties every millisecond.",
+      "Using CSS Transitions and CSS Keyframe Animations, relying specifically on the `transform` and `opacity` properties.",
+      "Using jQuery `.animate()`.",
+      "Changing the `width` and `height` attributes continuously."
+    ],
+    "correctOptionId": 1,
+    "explanation": "CSS animations are often hardware-accelerated (offloaded to the GPU). Animating layout properties (like `width`, `margin`, `top`) forces the CPU to recalculate the page layout on every frame, causing lag (jank)."
+  },
+  {
+    "question": "Why are `transform` (e.g., translate, scale, rotate) and `opacity` the only CSS properties recommended for high-performance animations (reaching 60 FPS)?",
+    "options": [
+      "They are the only properties supported in CSS3.",
+      "Changing these properties does not trigger a browser Reflow (layout recalculation) or Repaint. They only trigger 'Compositing', which the GPU can handle incredibly fast.",
+      "They use less battery power.",
+      "They are automatically translated by the browser."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you animate `margin-top`, the browser has to recalculate the position of every other element on the page 60 times a second. If you animate `transform: translateY()`, the GPU just slides a texture around without affecting the actual DOM layout."
+  },
+  {
+    "question": "What does the `requestAnimationFrame` API do in JavaScript?",
+    "options": [
+      "It requests a 3D animation from the server.",
+      "It tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation *right before the next repaint*.",
+      "It pauses an animation.",
+      "It converts 2D elements to 3D."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Using `setTimeout` or `setInterval` for animations is terrible because they fire blindly, regardless of what the screen is doing. `requestAnimationFrame` syncs perfectly with the monitor's refresh rate (usually 60Hz), resulting in buttery smooth JS animations."
+  },
+  {
+    "question": "What is FLIP animation?",
+    "options": [
+      "Flipping an image upside down.",
+      "A technique (First, Last, Invert, Play) used to achieve high-performance animations for expensive DOM changes (like reordering a massive list) by pre-calculating the layout changes and faking them using fast `transform` properties.",
+      "A specific CSS library.",
+      "A method of animating SVG files."
+    ],
+    "correctOptionId": 1,
+    "explanation": "FLIP is a brilliant hack. If an item moves from top to bottom, calculating the whole layout change is slow. FLIP measures where it *should* be (Last), instantly moves it there, applies a negative `transform` to visually snap it back to the start (Invert), and then animates the transform to 0 (Play) using the GPU."
+  },
+  {
+    "question": "What is Framer Motion?",
+    "options": [
+      "A hardware component for rendering graphics.",
+      "A highly popular, production-ready animation library for React that simplifies complex, physics-based animations (like spring physics) and gesture recognition.",
+      "A CSS preprocessor.",
+      "A tool for creating animated GIFs."
+    ],
+    "correctOptionId": 1,
+    "explanation": "While CSS is great for simple hovers, animating a modal opening with a realistic 'spring' bounce effect, or animating elements as they enter/leave the React DOM tree, is vastly easier with Framer Motion."
+  },
+  {
+    "question": "In React, why is animating an element *unmounting* (leaving the DOM) notoriously difficult without a library like Framer Motion or React Transition Group?",
+    "options": [
+      "Because the DOM is read-only.",
+      "Because the moment a component is removed from the React state (e.g., `isOpen` becomes false), it instantly disappears from the DOM. There is no time for a CSS 'fade out' transition to occur.",
+      "Because CSS does not support exit animations.",
+      "Because React blocks all animations."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Framer Motion solves this with `<AnimatePresence>`. It intercepts the unmount, keeps the element in the DOM just long enough to run the exit animation, and then finally deletes it."
+  },
+  {
+    "question": "What does the CSS `will-change` property do?",
+    "options": [
+      "It forces the user to change their settings.",
+      "It is a performance optimization hint that tells the browser how an element is expected to change in the near future (e.g., `will-change: transform`), allowing the browser to set up optimizations (like creating a new compositor layer) ahead of time.",
+      "It creates a random animation.",
+      "It tells the server to prepare new data."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Use `will-change` sparingly! Overusing it (e.g., applying it to everything) consumes massive amounts of RAM and will actually degrade performance."
+  },
+  {
+    "question": "What is GSAP (GreenSock Animation Platform)?",
+    "options": [
+      "A protocol for green energy servers.",
+      "An industry-standard, wildly robust JavaScript animation library used for complex sequencing, SVG manipulation, and high-performance scroll-triggered animations.",
+      "A database standard.",
+      "A tool for minifying CSS."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you visit an award-winning website with crazy 3D scrolling effects, SVG morphing, and complex timelines, it is almost certainly built with GSAP."
+  },
+  {
+    "question": "What is the `prefers-reduced-motion` media query used for?",
+    "options": [
+      "To save battery life on mobile devices.",
+      "An accessibility feature that allows you to disable or simplify complex animations if the user has indicated in their OS settings that they suffer from vestibular motion disorders (vertigo/nausea) triggered by movement on screen.",
+      "To make the website load faster on slow connections.",
+      "To reduce the framerate of a video."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Always respect this! What looks like a 'cool parallax scrolling effect' to you might literally make another user physically sick."
+  },
+  {
+    "question": "What is an SVG (Scalable Vector Graphic) animation?",
+    "options": [
+      "Animating a standard JPG image.",
+      "Animating the internal markup of an SVG (like `<path>`, `<circle>`, `<rect>`) using CSS or JS, allowing for complex, infinitely scalable animations like drawing paths or morphing shapes.",
+      "A 3D rendering technique.",
+      "A video format."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Because an SVG is just math and code (not a grid of pixels), you can animate individual parts of it. For example, animating the `stroke-dashoffset` property creates the popular 'line drawing itself' effect."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is 'Visual Regression Testing'?",
+    "options": [
+      "Testing if the user's eyesight is degrading.",
+      "An automated testing technique that takes a screenshot of a component or page and compares it pixel-by-pixel to a baseline image to ensure that CSS or layout changes haven't unintentionally broken the UI.",
+      "Testing if the backend returns the correct JSON.",
+      "A test to see if the website loads fast."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Even if all your React component unit tests pass, a CSS change in a parent container might make your button invisible. Visual regression tools (like Percy or Chromatic) catch these exact visual bugs."
+  },
+  {
+    "question": "How does Cypress (or Playwright) handle asynchronous operations (like waiting for a network request to finish) differently than older tools like Selenium?",
+    "options": [
+      "It requires you to manually write `sleep(5000)` everywhere.",
+      "It automatically waits for elements to exist, become visible, and for network requests to complete before interacting with them, drastically reducing 'flaky' tests.",
+      "It doesn't handle them; you can only test synchronous code.",
+      "It forces the browser to run synchronously."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In Selenium, if the API was slow, the test would try to click a button that wasn't there yet and fail. Cypress's auto-waiting mechanism revolutionized E2E testing by making it highly reliable."
+  },
+  {
+    "question": "What is the primary purpose of 'Mutation Testing'?",
+    "options": [
+      "To test genetic algorithms.",
+      "To test the quality of your *tests*. It introduces small, deliberate bugs (mutations) into your source code and runs your test suite. If the tests still pass, your tests are weak.",
+      "To mutate the DOM to see if it breaks.",
+      "To test if state management is working."
+    ],
+    "correctOptionId": 1,
+    "explanation": "You might have 100% test coverage, but if your assertions are missing (e.g., you wrote `expect(true).toBe(true)`), mutation testing (using tools like Stryker) will expose that false sense of security."
+  },
+  {
+    "question": "What is 'Component-Driven Development' (CDD) and how does it relate to testing?",
+    "options": [
+      "Developing components on a remote server.",
+      "A methodology where you build and test UIs one component at a time in isolation (often using Storybook). This makes unit and visual testing vastly easier before assembling them into complex pages.",
+      "A way to drive cars using React components.",
+      "Developing components using AI."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you build a `DatePicker` component and only test it while it's buried inside a massive `CheckoutForm` page, it's hard to test all its edge cases. CDD forces you to isolate it first."
+  },
+  {
+    "question": "In React Testing Library, why is `screen.findByText()` used instead of `screen.getByText()` when checking for an element that appears after an API call?",
+    "options": [
+      "Because `getByText` is deprecated.",
+      "`findBy...` queries return a Promise that automatically retries (up to a timeout) until the element appears in the DOM, whereas `getBy...` fails instantly if the element isn't already there.",
+      "Because `findBy` is faster.",
+      "Because `findBy` only searches the active window."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If your component fetches data on mount, the initial render won't have the data. You must `await screen.findByText('Data Loaded')` to give React time to finish the fetch and re-render."
+  },
+  {
+    "question": "What is 'Stubbing' in the context of E2E testing?",
+    "options": [
+      "Stubbing your toe while writing tests.",
+      "Intercepting an application's outgoing network requests (e.g., using `cy.intercept()`) and forcing them to return a predetermined, fake response, bypassing the real backend.",
+      "A technique for testing HTML buttons.",
+      "A method of shrinking the code size."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you are testing how your UI handles a 500 Server Error, you don't actually break the backend. You stub the request to instantly return a 500 error, allowing you to test the UI's error state reliably."
+  },
+  {
+    "question": "Why is it generally bad practice to write E2E tests that test CSS colors or exact font sizes?",
+    "options": [
+      "Because Cypress cannot read CSS.",
+      "Because it makes the tests highly 'brittle'. If a designer changes a blue button to a slightly different shade of blue, the test fails, even though the application still functions perfectly.",
+      "Because it is too slow.",
+      "Because the browser blocks it."
+    ],
+    "correctOptionId": 1,
+    "explanation": "E2E tests should focus on user journeys (Can I log in? Can I checkout?). Leave pixel-perfect styling checks to Visual Regression Testing tools."
+  },
+  {
+    "question": "What is the 'Testing Trophy' concept (proposed by Kent C. Dodds)?",
+    "options": [
+      "A physical trophy given to the best developer.",
+      "A shift away from the traditional Testing Pyramid. It suggests writing mostly Integration tests (the fat middle), some Unit tests (the bottom), and a few E2E tests (the top), because Integration tests offer the best balance of confidence and speed.",
+      "A rule that you must write 1000 tests.",
+      "A specific testing library."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Writing 50 isolated unit tests for individual functions gives you little confidence that the *page* actually works when put together. Integration tests (using React Testing Library) test the components working together."
+  },
+  {
+    "question": "What does a 'Test Double' refer to in testing?",
+    "options": [
+      "Running the same test twice.",
+      "A generic term for any object (like a Mock, Stub, or Spy) that replaces a real object for testing purposes (e.g., replacing the real `window.localStorage` with a fake one to track if it was called).",
+      "A floating point number used in testing.",
+      "A bug that appears in two places."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a component uses the `navigator.geolocation` API, you use a 'test double' to simulate the API returning a fake GPS coordinate, so you don't actually have to move your laptop to test it."
+  },
+  {
+    "question": "Why should you avoid testing internal state (e.g., `wrapper.state().isOpen`) when writing React component tests?",
+    "options": [
+      "Because state is encrypted.",
+      "Because it ties your tests to the *implementation details*. If you refactor the component to use Hooks instead of a Class (or rename the variable), the test breaks, even if the UI output is identical.",
+      "Because state is too slow to read.",
+      "Because React prevents it."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This is the core philosophy of React Testing Library. Don't test that `isOpen === true`. Test that the user can actually see the Modal on the screen."
+  }
+]

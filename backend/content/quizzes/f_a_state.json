@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the primary difference between 'Client State' and 'Server State'?",
+    "options": [
+      "Client state is secure; server state is public.",
+      "Client state (e.g., UI toggles, form inputs) is ephemeral and owned by the browser. Server state (e.g., user profiles, products) is persisted remotely, is asynchronous, and can be changed by other users without the client knowing.",
+      "Client state is managed by Redux; server state is managed by the Context API.",
+      "There is no difference."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Understanding this distinction is crucial. Managing server state (fetching, caching, deduping, background updating) is much harder than managing client state (is the modal open or closed?)."
+  },
+  {
+    "question": "Why is using Redux purely for fetching and caching Server State considered an anti-pattern in modern React development?",
+    "options": [
+      "Because Redux cannot handle asynchronous operations.",
+      "Because it requires massive boilerplate (actions, reducers, thunks) to handle loading/error/success states for every single API call, a problem better solved by specialized libraries like React Query.",
+      "Because Redux is not secure.",
+      "Because Redux is deprecated."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Before React Query or RTK Query, developers spent hours writing boilerplate just to fetch a list of users and handle the loading spinner. Modern tools automate this entirely."
+  },
+  {
+    "question": "What does a library like React Query (TanStack Query) do fundamentally?",
+    "options": [
+      "It provides a UI component library.",
+      "It acts as an asynchronous state manager that automatically fetches, caches, synchronizes, and updates Server State in your React applications.",
+      "It manages the browser's Local Storage.",
+      "It replaces the need for a backend API."
+    ],
+    "correctOptionId": 1,
+    "explanation": "With React Query, you write `const { data, isLoading } = useQuery(['users'], fetchUsers);`. The library handles the caching, deduping identical requests, and background refetching automatically."
+  },
+  {
+    "question": "What is 'Stale-While-Revalidate' (SWR)?",
+    "options": [
+      "A method of encrypting stale data.",
+      "A caching strategy where the UI immediately returns cached (stale) data for a fast UX, while simultaneously fetching updated data in the background to replace it.",
+      "A technique for deleting old data from a database.",
+      "A tool for validating forms."
+    ],
+    "correctOptionId": 1,
+    "explanation": "This strategy (popularized by Vercel's SWR library and React Query) provides the illusion of zero-latency loading. The user sees the old data instantly, and a split second later, it silently updates with the fresh data."
+  },
+  {
+    "question": "In React Query, what is 'Query Invalidation'?",
+    "options": [
+      "Throwing an error when an API fails.",
+      "Telling the cache that specific data (e.g., the 'users' list) is out-of-date, forcing the library to refetch it in the background the next time it is needed.",
+      "Deleting the entire cache.",
+      "Preventing a component from rendering."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If a user submits a form to add a new post, you 'invalidate' the 'posts' query. React Query will immediately hit the API in the background to get the updated list, keeping the UI perfectly in sync."
+  },
+  {
+    "question": "What is 'Optimistic UI Update' (or Optimistic Mutation)?",
+    "options": [
+      "Adding happy colors to the UI.",
+      "Updating the UI immediately after a user action (like 'liking' a post) *before* the server responds, assuming the API call will succeed, to make the app feel incredibly fast.",
+      "Waiting for the server to respond before updating the UI.",
+      "Only updating the UI if the user is an admin."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If the API call eventually fails, the library automatically rolls back the UI to its previous state. This provides a completely latency-free experience for the user."
+  },
+  {
+    "question": "What is the primary benefit of the Context API compared to passing props?",
+    "options": [
+      "It makes the application run faster.",
+      "It solves the 'prop drilling' problem, allowing deeply nested components to access global data without passing it through every intermediate component.",
+      "It encrypts the data being passed.",
+      "It replaces the need for local state."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If the App component holds the 'Theme' (dark/light), and a Button nested 10 levels deep needs it, passing it via props is tedious. Context allows the Button to read the Theme directly."
+  },
+  {
+    "question": "What is a major performance pitfall when overusing the React Context API for frequently changing data?",
+    "options": [
+      "It uses too much memory.",
+      "Whenever the Context value changes, *every single component* that consumes that context re-renders, regardless of whether they actually care about the specific piece of data that changed.",
+      "It crashes the browser.",
+      "It causes infinite loops."
+    ],
+    "correctOptionId": 1,
+    "explanation": "If you put everything (User Auth, UI toggles, and API data) into one giant Context, toggling a sidebar might cause the entire application to re-render. Context is best for data that rarely changes."
+  },
+  {
+    "question": "How do modern state libraries like Zustand or Jotai solve the Context re-render problem?",
+    "options": [
+      "By using Web Workers.",
+      "They allow components to subscribe to very specific slices of the state tree. A component only re-renders when the exact data it requested changes, ignoring other updates.",
+      "By preventing all re-renders.",
+      "By forcing the user to refresh the page."
+    ],
+    "correctOptionId": 1,
+    "explanation": "In Zustand, if you write `const bears = useStore(state => state.bears)`, your component will ONLY re-render if `bears` changes. If `state.fishes` changes, your component ignores it."
+  },
+  {
+    "question": "What is 'Atomic State Management' (as seen in libraries like Recoil or Jotai)?",
+    "options": [
+      "State managed by a nuclear reactor.",
+      "A bottom-up approach where state is broken into tiny, independent pieces called 'atoms'. Components subscribe to individual atoms, creating a highly granular, performant dependency graph.",
+      "A top-down approach like Redux.",
+      "A method of storing state in the URL."
+    ],
+    "correctOptionId": 1,
+    "explanation": "Instead of one massive global store (Redux), you create hundreds of tiny atoms. This is particularly useful in highly dynamic applications with complex, interconnected state (like a design tool like Figma)."
+  }
+]
