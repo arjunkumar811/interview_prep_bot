@@ -13,13 +13,87 @@ import {
 } from '../keyboards/roadmap.keyboards';
 
 const roadmapService = new RoadmapNavigationService();
+import prisma from '../prisma/client';
+
+export const sendModuleDetail = async (ctx: Context, moduleId: string, isCallback: boolean = false) => {
+  try {
+    const moduleInfo = roadmapService.getModuleDetails(moduleId);
+    const keyboard = getModuleDetailKeyboard(moduleId, moduleInfo.roadmapId, moduleInfo.levelId);
+    
+    const message = `**${moduleInfo.name}**\n\n${moduleInfo.description}\n\nEstimated Topics: ${moduleInfo.estimatedTopics}\nEstimated Learning Time: ${moduleInfo.estimatedTime}`;
+
+    if (isCallback && ctx.callbackQuery) {
+      await ctx.editMessageText(message, { ...keyboard, parse_mode: 'Markdown' });
+      await ctx.answerCbQuery();
+    } else {
+      await ctx.reply(message, { ...keyboard, parse_mode: 'Markdown' });
+    }
+
+    const telegramId = ctx.from?.id?.toString();
+    if (telegramId) {
+      await prisma.user.upsert({
+        where: { telegramId },
+        update: { lastModuleId: moduleId },
+        create: { 
+          telegramId, 
+          lastModuleId: moduleId,
+          username: ctx.from?.username,
+          firstName: ctx.from?.first_name,
+          lastName: ctx.from?.last_name
+        }
+      });
+    }
+  } catch (error) {
+    console.error('Error loading module:', error);
+    await ctx.reply('Error loading module.', getErrorKeyboard());
+  }
+};
 
 export const handleStart = async (ctx: Context) => {
+  const telegramId = ctx.from?.id?.toString();
+  if (telegramId) {
+    try {
+      const user = await prisma.user.findUnique({ where: { telegramId } });
+      if (user && user.lastModuleId) {
+        return sendModuleDetail(ctx, user.lastModuleId, false);
+      }
+    } catch (e) {
+      console.error('DB Error in handleStart', e);
+    }
+  }
+
   const roadmaps = roadmapService.getRoadmaps();
   const keyboard = getRoadmapSelectionKeyboard(roadmaps);
   const message = '🚀 Welcome to DevPrep\n\nChoose your learning roadmap.\n\n💡 _Tip: You can type "restart" at any time to return to this menu._';
 
   await ctx.reply(message, keyboard);
+};
+
+export const handleRestart = async (ctx: Context) => {
+  const telegramId = ctx.from?.id?.toString();
+  if (telegramId) {
+    try {
+      await prisma.user.updateMany({
+        where: { telegramId },
+        data: { lastModuleId: null }
+      });
+    } catch(e) {
+      console.error('DB Error on restart', e);
+    }
+  }
+
+  const roadmaps = roadmapService.getRoadmaps();
+  const keyboard = getRoadmapSelectionKeyboard(roadmaps);
+  const message = '🚀 Welcome to DevPrep\n\nChoose your learning roadmap.\n\n💡 _Tip: You can type "restart" at any time to return to this menu._';
+
+  if (ctx.callbackQuery) {
+    try {
+      await ctx.editMessageText(message, keyboard);
+      await ctx.answerCbQuery();
+    } catch (e) {}
+  } else {
+    await ctx.reply(message, keyboard);
+  }
 };
 
 export const handleRoadmapSelection = async (ctx: Context) => {
@@ -75,18 +149,7 @@ export const handleModuleSelection = async (ctx: Context) => {
   if (!cbQuery || !cbQuery.data) return;
 
   const [, moduleId] = cbQuery.data.split(':');
-
-  try {
-    const moduleInfo = roadmapService.getModuleDetails(moduleId);
-    const keyboard = getModuleDetailKeyboard(moduleId, moduleInfo.roadmapId, moduleInfo.levelId);
-
-    const message = `**${moduleInfo.name}**\n\n${moduleInfo.description}\n\nEstimated Topics: ${moduleInfo.estimatedTopics}\nEstimated Learning Time: ${moduleInfo.estimatedTime}`;
-
-    await ctx.editMessageText(message, { ...keyboard, parse_mode: 'Markdown' });
-    await ctx.answerCbQuery();
-  } catch (error) {
-    await ctx.reply('Error loading module.', getErrorKeyboard());
-  }
+  await sendModuleDetail(ctx, moduleId, true);
 };
 
 export const handleBack = async (ctx: Context) => {
@@ -151,10 +214,9 @@ export const handleLearn = async (ctx: Context) => {
     await ctx.answerCbQuery('Loading lesson...');
 
     for (const chunk of chunks) {
-      // Stream each chunk to simulate ChatGPT typing effect
-      await streamHtmlMessage(ctx, chunk);
+      await ctx.reply(chunk, { parse_mode: 'HTML' });
       // Small delay before starting the next chunk (if any)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     // Show completion menu with next module
@@ -190,14 +252,13 @@ export const handleQuiz = async (ctx: Context) => {
     await ctx.reply(`🧠 Starting Quiz... Good luck!`);
 
     for (const q of questions) {
-      await ctx.replyWithPoll(q.question, q.options, {
-        type: 'quiz',
+      await ctx.replyWithQuiz(q.question, q.options, {
         correct_option_id: q.correctOptionId,
         explanation: q.explanation,
         is_anonymous: false
       });
       // Delay to ensure sequential delivery
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     // Send the completion keyboard
@@ -209,7 +270,7 @@ export const handleQuiz = async (ctx: Context) => {
     const endKeyboard = getQuizCompletionKeyboard(moduleId, moduleInfo.roadmapId, moduleInfo.levelId, nextModule);
     
     // Slight delay so the complete message appears after polls
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 200));
     await ctx.reply('✅ Quiz Finished! What would you like to do next?', endKeyboard);
 
   } catch (error) {
@@ -218,86 +279,3 @@ export const handleQuiz = async (ctx: Context) => {
   }
 };
 
-async function streamHtmlMessage(ctx: any, html: string) {
-  const tokens = [];
-  const regex = /(<[^>]+>)|([^<]+)/g;
-  let match;
-  while ((match = regex.exec(html)) !== null) {
-    tokens.push(match[0]);
-  }
-
-  let currentText = '';
-  const openTags: string[] = [];
-  let messageId: number | null = null;
-
-  let lastEditTime = 0;
-  let pendingUpdate = false;
-
-  const sendOrUpdate = async (isFinal = false) => {
-    let validHtml = currentText;
-    for (let i = openTags.length - 1; i >= 0; i--) {
-      validHtml += `</${openTags[i]}>`;
-    }
-
-    const now = Date.now();
-    if (!isFinal && now - lastEditTime < 800) {
-      pendingUpdate = true;
-      return;
-    }
-
-    try {
-      if (!messageId) {
-        const msg = await ctx.reply(validHtml + (isFinal ? '' : ' ✍️'), { parse_mode: 'HTML' });
-        messageId = msg.message_id;
-      } else {
-        await ctx.telegram.editMessageText(
-          ctx.chat.id,
-          messageId,
-          undefined,
-          validHtml + (isFinal ? '' : ' ✍️'),
-          { parse_mode: 'HTML' }
-        );
-      }
-      lastEditTime = Date.now();
-      pendingUpdate = false;
-    } catch (e: any) {
-      if (e.description && e.description.includes('is not modified')) {
-        // ignore
-      } else {
-        console.error('Error updating message:', e);
-      }
-    }
-  };
-
-  for (const token of tokens) {
-    if (token.startsWith('<')) {
-      currentText += token;
-      if (token.startsWith('</')) {
-        const matchToken = token.match(/<\/([a-zA-Z0-9]+)>/);
-        if (matchToken) {
-          const tagName = matchToken[1];
-          const idx = openTags.lastIndexOf(tagName);
-          if (idx !== -1) openTags.splice(idx, 1);
-        }
-      } else {
-        const matchToken = token.match(/<([a-zA-Z0-9]+)/);
-        if (matchToken) {
-          openTags.push(matchToken[1]);
-        }
-      }
-    } else {
-      for (let i = 0; i < token.length; i++) {
-        currentText += token[i];
-        await sendOrUpdate(false);
-        // 10ms per character gives a smooth, continuous typewriter effect
-        await new Promise(r => setTimeout(r, 10)); 
-      }
-    }
-  }
-
-  if (pendingUpdate && messageId) {
-    await sendOrUpdate(true);
-  } else if (!messageId) {
-    await sendOrUpdate(true);
-  }
-}

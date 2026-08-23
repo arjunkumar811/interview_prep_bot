@@ -2,6 +2,7 @@ import { Telegraf } from 'telegraf';
 import { env } from '../config/env';
 import {
   handleStart,
+  handleRestart,
   handleRoadmapSelection,
   handleLevelSelection,
   handleModuleSelection,
@@ -20,10 +21,10 @@ bot.action(/^module:.+/, handleModuleSelection);
 bot.action(/^back:.+/, handleBack);
 bot.action(/^learn:.+/, handleLearn);
 bot.action(/^quiz:.+/, handleQuiz);
-bot.action('restart', handleStart);
+bot.action('restart', handleRestart);
 
-bot.hears(/restart/i, handleStart);
-bot.command('restart', handleStart);
+bot.hears(/restart/i, handleRestart);
+bot.command('restart', handleRestart);
 
 export const startBot = async () => {
   try {
