@@ -204,7 +204,7 @@ export const handleLearn = async (ctx: Context) => {
   const [, moduleId] = cbQuery.data.split(':');
 
   try {
-    const chunks = contentService.getLessonChunks(moduleId);
+    const chunks = await contentService.getLessonChunks(moduleId);
 
     if (chunks.length === 0) {
       await ctx.reply('Lesson content not found. Coming soon!', getErrorKeyboard());
@@ -241,7 +241,7 @@ export const handleQuiz = async (ctx: Context) => {
   const [, moduleId] = cbQuery.data.split(':');
 
   try {
-    const questions = quizService.getQuizByModuleId(moduleId);
+    const questions = await quizService.getQuizByModuleId(moduleId);
 
     if (questions.length === 0) {
       await ctx.reply('Quiz coming soon for this topic!', getErrorKeyboard());
@@ -252,9 +252,16 @@ export const handleQuiz = async (ctx: Context) => {
     await ctx.reply(`🧠 Starting Quiz... Good luck!`);
 
     for (const q of questions) {
-      await ctx.replyWithQuiz(q.question, q.options, {
+      const safeOptions = q.options.map((opt: string) => 
+        opt.length > 100 ? opt.substring(0, 97) + '...' : opt
+      );
+      const safeExplanation = q.explanation && q.explanation.length > 200 
+        ? q.explanation.substring(0, 197) + '...' 
+        : q.explanation;
+
+      await ctx.replyWithQuiz(q.question, safeOptions, {
         correct_option_id: q.correctOptionId,
-        explanation: q.explanation,
+        explanation: safeExplanation,
         is_anonymous: false
       });
       // Delay to ensure sequential delivery

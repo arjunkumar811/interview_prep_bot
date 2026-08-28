@@ -3,18 +3,23 @@ import path from 'path';
 
 export class ContentService {
   private contentDir = path.resolve(__dirname, '../../content/lessons');
+  private cache: Map<string, string[]> = new Map();
 
   /**
    * Reads a markdown file for the given moduleId and chunks it by `## ` headings.
    */
-  public getLessonChunks(moduleId: string): string[] {
+  public async getLessonChunks(moduleId: string): Promise<string[]> {
+    if (this.cache.has(moduleId)) {
+      return this.cache.get(moduleId)!;
+    }
+
     const filePath = path.join(this.contentDir, `${moduleId}.md`);
     
     if (!fs.existsSync(filePath)) {
       return [];
     }
 
-    const content = fs.readFileSync(filePath, 'utf8');
+    const content = await fs.promises.readFile(filePath, 'utf8');
 
     // Split content by '---' to allow explicit pagination by the author
     const rawChunks = content.split(/^---$/m);
@@ -42,9 +47,12 @@ export class ContentService {
       }
     }
 
-    return finalChunks
+    const processedChunks = finalChunks
       .map(chunk => this.parseMarkdownToTelegramHtml(chunk.trim()))
       .filter(chunk => chunk.length > 0);
+
+    this.cache.set(moduleId, processedChunks);
+    return processedChunks;
   }
 
   /**

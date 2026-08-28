@@ -10,8 +10,13 @@ export interface QuizQuestion {
 
 export class QuizService {
   private quizDir = path.resolve(__dirname, '../../content/quizzes');
+  private cache: Map<string, QuizQuestion[]> = new Map();
 
-  public getQuizByModuleId(moduleId: string): QuizQuestion[] {
+  public async getQuizByModuleId(moduleId: string): Promise<QuizQuestion[]> {
+    if (this.cache.has(moduleId)) {
+      return this.cache.get(moduleId)!;
+    }
+
     const filePath = path.join(this.quizDir, `${moduleId}.json`);
     
     if (!fs.existsSync(filePath)) {
@@ -19,8 +24,10 @@ export class QuizService {
     }
 
     try {
-      const content = fs.readFileSync(filePath, 'utf8');
-      return JSON.parse(content) as QuizQuestion[];
+      const content = await fs.promises.readFile(filePath, 'utf8');
+      const questions = JSON.parse(content) as QuizQuestion[];
+      this.cache.set(moduleId, questions);
+      return questions;
     } catch (error) {
       console.error(`Error parsing quiz for module ${moduleId}:`, error);
       return [];
