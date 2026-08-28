@@ -90,14 +90,16 @@ export const handleRestart = async (ctx: Context) => {
     try {
       await ctx.editMessageText(message, keyboard);
       await ctx.answerCbQuery();
-    } catch (e) {}
+    } catch (e) {
+      console.error('Error answering cb query on restart:', e);
+    }
   } else {
     await ctx.reply(message, keyboard);
   }
 };
 
 export const handleRoadmapSelection = async (ctx: Context) => {
-  const cbQuery = ctx.callbackQuery as any;
+  const cbQuery = ctx.callbackQuery as { data?: string };
   if (!cbQuery || !cbQuery.data) return;
 
   const [, roadmapId] = cbQuery.data.split(':');
@@ -118,13 +120,13 @@ export const handleRoadmapSelection = async (ctx: Context) => {
 
     await ctx.editMessageText(message, { ...keyboard, parse_mode: 'Markdown' });
     await ctx.answerCbQuery();
-  } catch (error) {
+  } catch {
     await ctx.reply('Error loading roadmap levels.', getErrorKeyboard());
   }
 };
 
 export const handleLevelSelection = async (ctx: Context) => {
-  const cbQuery = ctx.callbackQuery as any;
+  const cbQuery = ctx.callbackQuery as { data?: string };
   if (!cbQuery || !cbQuery.data) return;
 
   const [, roadmapId, levelId] = cbQuery.data.split(':');
@@ -139,13 +141,13 @@ export const handleLevelSelection = async (ctx: Context) => {
 
     await ctx.editMessageText(message, { ...keyboard, parse_mode: 'Markdown' });
     await ctx.answerCbQuery();
-  } catch (error) {
+  } catch {
     await ctx.reply('Error loading modules.', getErrorKeyboard());
   }
 };
 
 export const handleModuleSelection = async (ctx: Context) => {
-  const cbQuery = ctx.callbackQuery as any;
+  const cbQuery = ctx.callbackQuery as { data?: string };
   if (!cbQuery || !cbQuery.data) return;
 
   const [, moduleId] = cbQuery.data.split(':');
@@ -153,7 +155,7 @@ export const handleModuleSelection = async (ctx: Context) => {
 };
 
 export const handleBack = async (ctx: Context) => {
-  const cbQuery = ctx.callbackQuery as any;
+  const cbQuery = ctx.callbackQuery as { data?: string };
   if (!cbQuery || !cbQuery.data) return;
 
   const parts = cbQuery.data.split(':');
@@ -192,13 +194,13 @@ export const handleBack = async (ctx: Context) => {
       await ctx.editMessageText(message, keyboard);
       await ctx.answerCbQuery();
     }
-  } catch (error) {
+  } catch {
     await ctx.reply('Error returning to menu.', getErrorKeyboard());
   }
 };
 
 export const handleLearn = async (ctx: Context) => {
-  const cbQuery = ctx.callbackQuery as any;
+  const cbQuery = ctx.callbackQuery as { data?: string };
   if (!cbQuery || !cbQuery.data) return;
 
   const [, moduleId] = cbQuery.data.split(':');
@@ -235,7 +237,7 @@ export const handleLearn = async (ctx: Context) => {
 };
 
 export const handleQuiz = async (ctx: Context) => {
-  const cbQuery = ctx.callbackQuery as any;
+  const cbQuery = ctx.callbackQuery as { data?: string };
   if (!cbQuery || !cbQuery.data) return;
 
   const [, moduleId] = cbQuery.data.split(':');

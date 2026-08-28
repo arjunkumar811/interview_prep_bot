@@ -43,5 +43,10 @@
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.66.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "deepmerge-ts": "^8.0.0"
+    }
   }
 }
