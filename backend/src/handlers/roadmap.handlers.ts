@@ -53,10 +53,11 @@ export const handleStart = async (ctx: Context) => {
   const telegramId = ctx.from?.id?.toString();
   if (telegramId) {
     try {
-      const user = await prisma.user.findUnique({ where: { telegramId } });
-      if (user && user.lastModuleId) {
-        return sendModuleDetail(ctx, user.lastModuleId, false);
-      }
+      // Always reset progress on /start to begin from the main menu
+      await prisma.user.updateMany({
+        where: { telegramId },
+        data: { lastModuleId: null }
+      });
     } catch (e) {
       console.error('DB Error in handleStart', e);
     }
