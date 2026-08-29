@@ -52,15 +52,14 @@ export const sendModuleDetail = async (ctx: Context, moduleId: string, isCallbac
 export const handleStart = async (ctx: Context) => {
   const telegramId = ctx.from?.id?.toString();
   if (telegramId) {
-    try {
-      // Always reset progress on /start to begin from the main menu
-      await prisma.user.updateMany({
-        where: { telegramId },
-        data: { lastModuleId: null }
-      });
-    } catch (e) {
+    // Always reset progress on /start to begin from the main menu
+    // Fire-and-forget to avoid blocking the initial response
+    prisma.user.updateMany({
+      where: { telegramId },
+      data: { lastModuleId: null }
+    }).catch(e => {
       console.error('DB Error in handleStart', e);
-    }
+    });
   }
 
   const roadmaps = roadmapService.getRoadmaps();
@@ -73,14 +72,13 @@ export const handleStart = async (ctx: Context) => {
 export const handleRestart = async (ctx: Context) => {
   const telegramId = ctx.from?.id?.toString();
   if (telegramId) {
-    try {
-      await prisma.user.updateMany({
-        where: { telegramId },
-        data: { lastModuleId: null }
-      });
-    } catch(e) {
+    // Fire-and-forget to avoid blocking the restart response
+    prisma.user.updateMany({
+      where: { telegramId },
+      data: { lastModuleId: null }
+    }).catch(e => {
       console.error('DB Error on restart', e);
-    }
+    });
   }
 
   const roadmaps = roadmapService.getRoadmaps();
